@@ -1,38 +1,25 @@
 
 const canvas = document.getElementById("overlay");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-
-let ripple = { x: 0, y: 0, radius: 0, alpha: 0 };
-
-document.addEventListener("mousemove", (e) => {
-  ripple.x = e.clientX;
-  ripple.y = e.clientY;
-  ripple.radius = 0;
-  ripple.alpha = 1;
-});
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (ripple.alpha > 0.01) {
-    ripple.radius += 2;
-    ripple.alpha *= 0.95;
-    ctx.beginPath();
-    ctx.arc(ripple.x, ripple.y, ripple.radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = `rgba(255, 255, 255, ${ripple.alpha})`;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  }
-  requestAnimationFrame(animate);
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
-animate();
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
 
-document.getElementById("menu-toggle").addEventListener("click", () => {
-  document.getElementById("menu").classList.toggle("hidden");
+document.addEventListener("mousemove", function(e) {
+    const x = e.clientX;
+    const y = e.clientY;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < 10; i++) {
+        ctx.beginPath();
+        ctx.arc(x, y, i * 10, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(255,255,255,${1 - i / 10})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
 });
