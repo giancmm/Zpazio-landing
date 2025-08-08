@@ -1,0 +1,54 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #000 url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Si existe por cache viejo, lo escondemos */
+#cursor-effect { display: none !important; }
+
+.logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  height: 50px;
+  z-index: 10;
+}
+
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  z-index: 10;
+}
+
+nav.hidden { display: none; }
+
+nav {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background: rgba(200,200,200,0.95);
+  border-radius: 10px;
+  padding: 18px 20px;
+  z-index: 9;
+}
+
+nav ul { list-style: none; margin: 0; padding: 0; }
+nav li { margin: 10px 0; }
+nav a { color: #111; text-decoration: none; font-weight: 700; }
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
