@@ -1,71 +1,88 @@
 
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zpazio — Iluminación de Lujo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-black text-white font-sans">
-    <!-- Header -->
-    <header class="flex justify-between items-center p-6 border-b border-gray-800">
-      <h1 class="text-3xl font-light">Zpazio</h1>
-      <nav class="space-x-6 text-sm uppercase tracking-wider">
-        <a href="#nosotros" class="hover:text-gray-400">Nosotros</a>
-        <a href="#marcas" class="hover:text-gray-400">Marcas</a>
-        <a href="#proyectos" class="hover:text-gray-400">Proyectos</a>
-        <a href="#contacto" class="hover:text-gray-400">Contacto</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zpazio — Iluminación de Lujo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-sans relative overflow-hidden">
 
-    <!-- Hero -->
-    <section class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('https://www.flos.com/on/demandware.static/-/Sites-flos-master-catalog/default/dw3b6f8aa8/images/Products/F6607030/F6607030.jpg');">
-      <div class="bg-black bg-opacity-60 p-10 rounded-xl text-center">
-        <h2 class="text-5xl font-light mb-4">Iluminación como experiencia</h2>
-        <p class="text-gray-300 text-lg max-w-xl mx-auto">Creamos atmósferas de alto diseño con marcas como Flos, Vibia, Lutron, Terzani y más.</p>
-      </div>
-    </section>
+  <!-- Ripple Canvas -->
+  <canvas id="rippleCanvas" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
 
-    <!-- Nosotros -->
-    <section id="nosotros" class="py-20 px-6 max-w-4xl mx-auto">
-      <h3 class="text-2xl font-semibold mb-4 uppercase tracking-widest">Nosotros</h3>
-      <p class="text-gray-400 leading-relaxed">
-        En Zpazio diseñamos experiencias a través de la luz. Nos especializamos en iluminación arquitectónica de lujo, trabajando exclusivamente con marcas internacionales de diseño icónico y tecnología avanzada. Nuestro equipo acompaña a arquitectos, diseñadores y desarrolladores en cada etapa del proyecto.
-      </p>
-    </section>
+  <!-- Contenido principal -->
+  <header class="relative z-10 flex justify-between items-center p-6 border-b border-gray-800">
+    <h1 class="text-3xl font-light">Zpazio</h1>
+    <nav class="space-x-6 text-sm uppercase tracking-wider">
+      <a href="#nosotros" class="hover:text-gray-400">Nosotros</a>
+      <a href="#marcas" class="hover:text-gray-400">Marcas</a>
+      <a href="#proyectos" class="hover:text-gray-400">Proyectos</a>
+      <a href="#contacto" class="hover:text-gray-400">Contacto</a>
+    </nav>
+  </header>
 
-    <!-- Marcas -->
-    <section id="marcas" class="py-20 px-6 bg-gray-900">
-      <h3 class="text-2xl font-semibold mb-8 text-center uppercase tracking-widest">Nuestras Marcas</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 justify-items-center">
-        <img src="https://www.flos.com/on/demandware.static/-/Sites-flos-master-catalog/default/dw3b6f8aa8/images/Products/F6607030/F6607030.jpg" alt="Flos" class="h-24 rounded-lg shadow-lg" />
-        <img src="https://www.vibia.com/es/media/2vbkyrfg/iluminacion-lineal.jpg" alt="Vibia" class="h-24 rounded-lg shadow-lg" />
-        <img src="https://cdn.lutron.com/aem-export/sites/lutron/home/US/images/homepage/alisse-keypad-livingroom.jpg" alt="Lutron" class="h-24 rounded-lg shadow-lg" />
-        <img src="https://www.terzani.com/wp-content/uploads/2022/04/mood-terzani-volver-gallery-2.jpg" alt="Terzani" class="h-24 rounded-lg shadow-lg" />
-      </div>
-    </section>
+  <section class="relative z-10 h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1505692794403-34d4982d5b69');">
+    <div class="bg-black bg-opacity-60 p-10 rounded-xl text-center">
+      <h2 class="text-5xl font-light mb-4">Iluminación como experiencia</h2>
+      <p class="text-gray-300 text-lg max-w-xl mx-auto">Creamos atmósferas de alto diseño con marcas como Flos, Vibia, Lutron, Terzani y más.</p>
+    </div>
+  </section>
 
-    <!-- Proyectos -->
-    <section id="proyectos" class="py-20 px-6 max-w-6xl mx-auto">
-      <h3 class="text-2xl font-semibold mb-8 text-center uppercase tracking-widest">Proyectos Destacados</h3>
-      <div class="grid md:grid-cols-3 gap-6">
-        <img src="https://www.vibia.com/es/media/qaypgz0s/projecto_8.jpg" alt="Proyecto 1" class="rounded-lg shadow-lg" />
-        <img src="https://cdn.lutron.com/aem-export/sites/lutron/home/US/images/applications/residential.jpg" alt="Proyecto 2" class="rounded-lg shadow-lg" />
-        <img src="https://www.terzani.com/wp-content/uploads/2022/04/mood-terzani-core-gallery-3.jpg" alt="Proyecto 3" class="rounded-lg shadow-lg" />
-      </div>
-    </section>
+  <!-- Sección Nosotros -->
+  <section id="nosotros" class="relative z-10 py-20 px-6 max-w-4xl mx-auto">
+    <h3 class="text-2xl font-semibold mb-4 uppercase tracking-widest">Nosotros</h3>
+    <p class="text-gray-400 leading-relaxed">
+      En Zpazio diseñamos experiencias a través de la luz. Nos especializamos en iluminación arquitectónica de lujo, trabajando exclusivamente con marcas internacionales de diseño icónico y tecnología avanzada.
+    </p>
+  </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="py-20 px-6 bg-gray-900 text-center">
-      <h3 class="text-2xl font-semibold mb-6 uppercase tracking-widest">Contáctanos</h3>
-      <p class="text-gray-400 mb-4">¿Tienes un proyecto? Escríbenos y te acompañamos desde la conceptualización hasta la instalación final.</p>
-      <a href="mailto:info@zpazio.com" class="inline-block mt-4 px-6 py-3 border border-white rounded-full hover:bg-white hover:text-black transition">info@zpazio.com</a>
-    </section>
+  <!-- JavaScript para el efecto ripple -->
+  <script>
+    const canvas = document.getElementById('rippleCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    <!-- Footer -->
-    <footer class="py-6 text-center text-gray-600 text-sm border-t border-gray-800">
-      © 2025 Zpazio. Todos los derechos reservados.
-    </footer>
-  </body>
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    let ripples = [];
+
+    window.addEventListener('mousemove', (e) => {
+      ripples.push({
+        x: e.clientX,
+        y: e.clientY,
+        radius: 0,
+        alpha: 1,
+      });
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ripples.forEach((ripple, i) => {
+        ripple.radius += 2;
+        ripple.alpha -= 0.02;
+
+        if (ripple.alpha <= 0) {
+          ripples.splice(i, 1);
+        } else {
+          ctx.beginPath();
+          ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(255, 255, 255, ${ripple.alpha})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
 </html>
