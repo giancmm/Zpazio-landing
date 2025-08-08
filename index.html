@@ -5,132 +5,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100vh;
-      overflow: hidden;
-      font-family: 'Helvetica Neue', sans-serif;
-    }
-
-    .video-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .video-background iframe {
-      width: 100vw;
-      height: 100vh;
-    }
-
-    .overlay {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      color: white;
-      background: rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 2;
-    }
-
-    .logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      height: 60px;
-    }
-
-    .menu-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-      z-index: 3;
-    }
-
-    .menu-toggle div {
-      width: 30px;
-      height: 4px;
-      background-color: white;
-      margin: 6px 0;
-    }
-
-    .menu {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: rgba(100, 100, 100, 0.9);
-      width: 200px;
-      height: 100%;
-      padding: 60px 20px;
-      display: none;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 18px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="video-background">
-    <iframe src="https://www.youtube.com/embed/9byz0E_l0u0?autoplay=1&mute=1&loop=1&controls=0&playlist=9byz0E_l0u0&modestbranding=1&showinfo=0&rel=0" 
-            frameborder="0"
-            allow="autoplay; fullscreen"
-            allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/9byz0E_l0u0?autoplay=1&mute=1&controls=0&loop=1&playlist=9byz0E_l0u0&modestbranding=1&showinfo=0"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
   </div>
 
-  <div class="overlay">
-    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo" />
+  <div class="ripple" id="ripple"></div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
+  <header class="top-bar">
+    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
+    <div class="menu-icon" onclick="toggleMenu()">
       <div></div>
       <div></div>
       <div></div>
     </div>
+  </header>
 
-    <div class="menu" id="menu">
-      <a href="#">NOSOTROS</a>
-      <a href="#">MARCAS</a>
-      <a href="#">EQUIPO</a>
-      <a href="#">CONTACTO</a>
-    </div>
+  <nav id="menu" class="hidden">
+    <ul>
+      <li><a href="#">NOSOTROS</a></li>
+      <li><a href="#">MARCAS</a></li>
+      <li><a href="#">EQUIPO</a></li>
+      <li><a href="#">CONTACTO</a></li>
+    </ul>
+  </nav>
 
+  <main>
     <h1>Zpazio</h1>
     <p>Creamos atmósferas de alto diseño con marcas como Flos, Vibia, Lutron, Terzani y más.</p>
-  </div>
+  </main>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
