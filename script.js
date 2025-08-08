@@ -1,40 +1,53 @@
 
-function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.classList.toggle('hidden');
-}
-
-// WAVE effect
-const canvas = document.getElementById("wave-canvas");
+const canvas = document.getElementById("effect-canvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let waves = [];
+let rippleArray = [];
 
-function createWave(x, y) {
-    waves.push({ x, y, radius: 0, alpha: 1 });
-}
-
-function drawWaves() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    waves.forEach((wave, index) => {
-        ctx.beginPath();
-        ctx.arc(wave.x, wave.y, wave.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(255, 255, 255, ${wave.alpha})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        wave.radius += 1;
-        wave.alpha -= 0.01;
-        if (wave.alpha <= 0) {
-            waves.splice(index, 1);
-        }
-    });
-    requestAnimationFrame(drawWaves);
-}
-
-canvas.addEventListener("mousemove", (e) => {
-    createWave(e.clientX, e.clientY);
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 });
 
-drawWaves();
+class Ripple {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.radius = 0;
+    this.maxRadius = 100;
+    this.alpha = 1;
+  }
+  update() {
+    this.radius += 1.5;
+    this.alpha -= 0.01;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha})`;
+    ctx.stroke();
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  rippleArray.forEach((ripple, index) => {
+    ripple.update();
+    ripple.draw();
+    if (ripple.alpha <= 0) {
+      rippleArray.splice(index, 1);
+    }
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+
+canvas.addEventListener("mousemove", (e) => {
+  rippleArray.push(new Ripple(e.clientX, e.clientY));
+});
+
+document.getElementById("menu-toggle").addEventListener("click", () => {
+  document.getElementById("menu").classList.toggle("hidden");
+});
