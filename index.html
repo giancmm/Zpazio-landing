@@ -3,110 +3,128 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zpazio — Iluminación de Lujo</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zpazio</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     html, body {
       height: 100%;
-      margin: 0;
       overflow: hidden;
+      font-family: 'Helvetica Neue', sans-serif;
+      color: white;
     }
-    #rippleCanvas {
-      position: fixed;
+    body {
+      position: relative;
+    }
+    video#bg-video {
+      position: absolute;
       top: 0;
       left: 0;
-      z-index: 0;
-      pointer-events: none;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    header {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    header img {
+      height: 50px;
+    }
+    .menu-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .menu-btn div {
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 250px;
+      height: 100%;
+      background-color: rgba(200, 200, 200, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.4s ease;
+      z-index: 2;
+    }
+    .menu a {
+      color: black;
+      text-decoration: none;
+      font-size: 1.5rem;
+      margin: 15px 0;
+    }
+    .menu.open {
+      right: 0;
+    }
+    main {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    main h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    main p {
+      font-size: 1.2rem;
     }
   </style>
 </head>
-<body class="bg-black text-white font-sans relative">
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="Bellhop Matte Black.mp4" type="video/mp4">
+    Tu navegador no soporta video en HTML5.
+  </video>
 
-  <!-- Ripple Canvas -->
-  <canvas id="rippleCanvas" class="w-full h-full"></canvas>
+  <header>
+    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" />
+  </header>
 
-  <!-- Logo y Menú -->
-  <div class="absolute top-6 left-6 z-20">
-    <img src="logo_zpazio_blanco_1.png" alt="Logo Zpazio" class="h-12" />
+  <div class="menu-btn" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
 
-  <div class="absolute top-6 right-6 z-20">
-    <button id="menuButton" class="flex flex-col space-y-1 w-8 h-8 focus:outline-none">
-      <span class="h-0.5 bg-white w-full"></span>
-      <span class="h-0.5 bg-white w-full"></span>
-      <span class="h-0.5 bg-white w-full"></span>
-    </button>
+  <div class="menu" id="menu">
+    <a href="#">Nosotros</a>
+    <a href="#">Marcas</a>
+    <a href="#">Equipo</a>
+    <a href="#">Contacto</a>
   </div>
 
-  <!-- Menú Desplegable -->
-  <div id="menuPanel" class="hidden absolute top-0 right-0 h-full w-64 bg-gray-800 bg-opacity-90 z-30 flex flex-col justify-center items-center space-y-6 text-xl uppercase tracking-widest">
-    <a href="#nosotros" class="hover:text-gray-300">Nosotros</a>
-    <a href="#marcas" class="hover:text-gray-300">Marcas</a>
-    <a href="#equipo" class="hover:text-gray-300">Equipo</a>
-    <a href="#contacto" class="hover:text-gray-300">Contacto</a>
-  </div>
-
-  <!-- Contenido central -->
-  <div class="z-10 relative h-screen flex justify-center items-center text-center px-6">
+  <main>
     <div>
-      <h1 class="text-5xl font-light mb-4">Zpazio</h1>
-      <p class="text-gray-300 text-lg max-w-xl mx-auto">
-        Creamos atmósferas de alto diseño con marcas como Flos, Vibia, Lutron, Terzani y más.
-      </p>
+      <h1>Zpazio</h1>
+      <p>Creamos atmósferas de alto diseño con marcas como Flos, Vibia, Lutron, Terzani y más.</p>
     </div>
-  </div>
+  </main>
 
-  <!-- JS Ripple Effect -->
   <script>
-    const canvas = document.getElementById('rippleCanvas');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-
-    let ripples = [];
-    window.addEventListener('mousemove', (e) => {
-      ripples.push({
-        x: e.clientX,
-        y: e.clientY,
-        radius: 0,
-        alpha: 1
-      });
-    });
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      ripples.forEach((r, i) => {
-        r.radius += 2;
-        r.alpha -= 0.02;
-        if (r.alpha <= 0) {
-          ripples.splice(i, 1);
-        } else {
-          ctx.beginPath();
-          ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(255, 255, 255, ${r.alpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      });
-      requestAnimationFrame(animate);
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('open');
     }
-
-    animate();
-
-    // Toggle menú
-    const menuButton = document.getElementById("menuButton");
-    const menuPanel = document.getElementById("menuPanel");
-
-    menuButton.addEventListener("click", () => {
-      menuPanel.classList.toggle("hidden");
-    });
   </script>
-
 </body>
 </html>
