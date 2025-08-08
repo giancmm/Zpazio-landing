@@ -1,17 +1,11 @@
 
-const menu = document.getElementById("menu");
+document.addEventListener('mousemove', (e) => {
+  const cursor = document.getElementById('cursor-effect');
+  cursor.style.left = `${e.clientX - 40}px`;
+  cursor.style.top = `${e.clientY - 40}px`;
+});
 
 function toggleMenu() {
-  menu.classList.toggle("hidden");
+  const menu = document.getElementById("menu");
+  menu.style.display = (menu.style.display === "block") ? "none" : "block";
 }
-
-// Efecto de ondas con círculos pequeños
-const overlay = document.getElementById("waveOverlay");
-document.addEventListener("mousemove", e => {
-  const circle = document.createElement("div");
-  circle.className = "ripple";
-  circle.style.left = e.clientX + "px";
-  circle.style.top = e.clientY + "px";
-  overlay.appendChild(circle);
-  setTimeout(() => circle.remove(), 600);
-});
