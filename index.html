@@ -5,42 +5,162 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+    }
+
+    .content {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+    }
+
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 180px;
+    }
+
+    .menu-button {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .menu-button div {
+      width: 35px;
+      height: 4px;
+      background-color: white;
+      margin: 6px 0;
+    }
+
+    .menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 100%;
+      background-color: rgba(200, 200, 200, 0.95);
+      padding: 60px 20px;
+      z-index: 9;
+    }
+
+    .menu a {
+      display: block;
+      color: #000;
+      text-decoration: none;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="video-background">
-    <iframe src="https://www.youtube.com/embed/9byz0E_l0u0?autoplay=1&mute=1&controls=0&loop=1&playlist=9byz0E_l0u0&modestbranding=1&showinfo=0"
-      frameborder="0"
-      allow="autoplay; fullscreen"
-      allowfullscreen>
-    </iframe>
+  <div class="background-video">
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/9byz0E_l0u0?autoplay=1&mute=1&controls=0&loop=1&playlist=9byz0E_l0u0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <div class="overlay"></div>
+
+  <img src="logo_zpazio_blanco_1.png" alt="Logo Zpazio" class="logo"/>
+
+  <div class="menu-button" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
 
-  <div class="ripple" id="ripple"></div>
+  <div class="menu" id="menu">
+    <a href="#">NOSOTROS</a>
+    <a href="#">MARCAS</a>
+    <a href="#">EQUIPO</a>
+    <a href="#">CONTACTO</a>
+  </div>
 
-  <header class="top-bar">
-    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
-    <div class="menu-icon" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </header>
-
-  <nav id="menu" class="hidden">
-    <ul>
-      <li><a href="#">NOSOTROS</a></li>
-      <li><a href="#">MARCAS</a></li>
-      <li><a href="#">EQUIPO</a></li>
-      <li><a href="#">CONTACTO</a></li>
-    </ul>
-  </nav>
-
-  <main>
+  <div class="content">
     <h1>Zpazio</h1>
     <p>Creamos atmósferas de alto diseño con marcas como Flos, Vibia, Lutron, Terzani y más.</p>
-  </main>
+  </div>
 
-  <script src="script.js"></script>
+  <canvas id="ripple"></canvas>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    const canvas = document.getElementById('ripple');
+    const ctx = canvas.getContext('2d');
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    let ripples = [];
+
+    window.addEventListener('mousemove', (e) => {
+      ripples.push({ x: e.clientX, y: e.clientY, radius: 0, alpha: 1 });
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ripples.forEach((ripple, i) => {
+        ctx.beginPath();
+        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(255, 255, 255, ${ripple.alpha})`;
+        ctx.stroke();
+        ripple.radius += 2;
+        ripple.alpha -= 0.02;
+        if (ripple.alpha <= 0) ripples.splice(i, 1);
+      });
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
