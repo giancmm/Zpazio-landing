@@ -5,23 +5,22 @@ document.getElementById('menu-toggle').addEventListener('click', ()=>{
 });
 
 // --- Cursor Bombilla ---
-const bulb = document.querySelector('.cursor-bulb');
+const bulb = document.getElementById('cursor-bulb');
 window.addEventListener('mousemove',(e)=>{
   bulb.style.transform = `translate(${e.clientX+12}px, ${e.clientY+12}px)`;
 });
-
-// Efecto encendido al hacer click
 window.addEventListener('click', ()=>{
   bulb.classList.add('on');
-  setTimeout(()=> bulb.classList.remove('on'), 300);
+  setTimeout(()=> bulb.classList.remove('on'), 320);
 });
 
-// --- Ripple sobre la IMAGEN de fondo (canvas) ---
+// --- Onda GRANDE sobre la IMAGEN de fondo (canvas) ---
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 const img = new Image();
 img.src = 'background.jpg';
 
+// resize canvas
 function resize(){
   canvas.width = innerWidth;
   canvas.height = innerHeight;
@@ -32,24 +31,21 @@ resize();
 
 img.onload = drawBase;
 
+// Dibuja la imagen con 'cover'
 function drawBase(){
   const iw = img.width, ih = img.height;
   const cw = canvas.width, ch = canvas.height;
-  const ir = iw/ih; const cr = cw/ch;
+  const ir = iw/ih, cr = cw/ch;
   let dw, dh, dx, dy;
-  if (ir > cr){
-    dh = ch; dw = dh * ir;
-    dx = (cw - dw)/2; dy = 0;
-  } else {
-    dw = cw; dh = dw / ir;
-    dx = 0; dy = (ch - dh)/2;
-  }
+  if (ir > cr){ dh = ch; dw = dh*ir; dx = (cw-dw)/2; dy = 0; }
+  else { dw = cw; dh = dw/ir; dx = 0; dy = (ch-dh)/2; }
   ctx.drawImage(img, dx, dy, dw, dh);
 }
 
 let ripples = [];
 addEventListener('mousemove', (e)=>{
-  ripples.push({ x:e.clientX, y:e.clientY, r: 8, a: 0.85 });
+  // Añade una nueva onda grande
+  ripples.push({ x:e.clientX, y:e.clientY, r: 16, a: 0.9 });
 });
 
 function loop(){
@@ -57,38 +53,39 @@ function loop(){
 
   for (let i=ripples.length-1; i>=0; i--){
     const rp = ripples[i];
+
+    // Región circular grande
     ctx.save();
     ctx.beginPath();
     ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
     ctx.clip();
 
-    const zoom = 1.06;
-    const ox = (rp.x - canvas.width/2) * 0.01;
-    const oy = (rp.y - canvas.height/2) * 0.01;
+    // Zoom y leve desplazamiento -> efecto de refracción
+    const zoom = 1.10;  // más grande que antes
+    const ox = (rp.x - canvas.width/2) * 0.012;
+    const oy = (rp.y - canvas.height/2) * 0.012;
 
+    // redibuja imagen con cover + zoom
     const iw = img.width, ih = img.height;
     const cw = canvas.width, ch = canvas.height;
-    const ir = iw/ih; const cr = cw/ch;
+    const ir = iw/ih, cr = cw/ch;
     let dw, dh, dx, dy;
-    if (ir > cr){
-      dh = ch*zoom; dw = dh * ir;
-      dx = (cw - dw)/2 + ox; dy = (ch - dh)/2 + oy;
-    } else {
-      dw = cw*zoom; dh = dw / ir;
-      dx = (cw - dw)/2 + ox; dy = (ch - dh)/2 + oy;
-    }
+    if (ir > cr){ dh = ch*zoom; dw = dh*ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
+    else { dw = cw*zoom; dh = dw/ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
     ctx.drawImage(img, dx, dy, dw, dh);
 
+    // Anillo sutil para reforzar la onda (no es cursor, solo borde de la distorsión)
     ctx.beginPath();
     ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
-    ctx.strokeStyle = `rgba(255,255,255,${rp.a*0.35})`;
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = `rgba(255,255,255,${rp.a*0.25})`;
+    ctx.lineWidth = 1.2;
     ctx.stroke();
 
     ctx.restore();
 
-    rp.r += 2.8;     // Duplicamos el crecimiento de la onda
-    rp.a -= 0.03;
+    // Avance: onda GRANDE (doble)
+    rp.r += 3.2;   // crece más rápido (grande)
+    rp.a -= 0.02;  // se desvanece más lento -> visible
     if (rp.a <= 0) ripples.splice(i,1);
   }
 
