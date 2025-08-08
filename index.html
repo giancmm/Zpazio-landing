@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="overlay"></div>
+
   <header>
     <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo" />
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
@@ -20,6 +21,13 @@
       </ul>
     </nav>
   </header>
-  <script src="overlay.js"></script>
+
+  <!-- Quita cualquier rastro antiguo del círculo estático si existiera -->
+  <script>
+    const old = document.getElementById('cursor-effect');
+    if (old) old.remove();
+  </script>
+
+  <script defer src="overlay.js"></script>
 </body>
 </html>

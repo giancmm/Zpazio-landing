@@ -9,6 +9,9 @@ html, body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* Si quedara en caché un estilo viejo, lo anulamos */
+#cursor-effect { display: none !important; }
+
 .logo {
   position: fixed;
   top: 20px;
