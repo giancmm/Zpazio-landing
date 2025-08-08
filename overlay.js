@@ -1,38 +1,40 @@
 
-const canvas = document.getElementById("overlay");
-const ctx = canvas.getContext("2d");
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+document.querySelector('.overlay').appendChild(canvas);
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
 });
 
-let ripple = { x: 0, y: 0, radius: 0, alpha: 0 };
+function drawWave() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-document.addEventListener("mousemove", (e) => {
-  ripple.x = e.clientX;
-  ripple.y = e.clientY;
-  ripple.radius = 0;
-  ripple.alpha = 1;
-});
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (ripple.alpha > 0.01) {
-    ripple.radius += 2;
-    ripple.alpha *= 0.95;
     ctx.beginPath();
-    ctx.arc(ripple.x, ripple.y, ripple.radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = `rgba(255, 255, 255, ${ripple.alpha})`;
-    ctx.lineWidth = 1;
+    ctx.arc(mouse.x, mouse.y, 40, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+    ctx.lineWidth = 3;
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = 'rgba(255,255,255,1)';
     ctx.stroke();
-  }
-  requestAnimationFrame(animate);
-}
-animate();
 
-document.getElementById("menu-toggle").addEventListener("click", () => {
-  document.getElementById("menu").classList.toggle("hidden");
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 80, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    requestAnimationFrame(drawWave);
+}
+
+drawWave();
+
+document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('menu').classList.toggle('active');
 });
