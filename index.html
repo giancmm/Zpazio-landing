@@ -2,34 +2,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
     <title>Zpazio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="video-background">
-        <iframe src="https://www.youtube.com/embed/9byz0E_l0u0?autoplay=1&mute=1&controls=0&loop=1&playlist=9byz0E_l0u0&modestbranding=1&showinfo=0&rel=0"
+    <div class="background-video">
+        <iframe src="https://www.youtube.com/embed/9byz0E_l0u0?autoplay=1&mute=1&controls=0&loop=1&playlist=9byz0E_l0u0"
                 frameborder="0"
                 allow="autoplay; fullscreen"
                 allowfullscreen></iframe>
     </div>
 
+    <canvas id="overlay"></canvas>
+
     <header>
-        <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo" />
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        <nav id="menu" class="hidden">
-            <ul>
-                <li><a href="#">NOSOTROS</a></li>
-                <li><a href="#">MARCAS</a></li>
-                <li><a href="#">EQUIPO</a></li>
-                <li><a href="#">CONTACTO</a></li>
-            </ul>
-        </nav>
+        <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo">
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </header>
 
-    <canvas id="effect-canvas"></canvas>
+    <nav class="menu" id="menu">
+        <ul>
+            <li><a href="#">NOSOTROS</a></li>
+            <li><a href="#">MARCAS</a></li>
+            <li><a href="#">EQUIPO</a></li>
+            <li><a href="#">CONTACTO</a></li>
+        </ul>
+    </nav>
 
-    <script src="script.js"></script>
+    <script src="overlay.js"></script>
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
