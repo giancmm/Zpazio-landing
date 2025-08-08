@@ -1,38 +1,39 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
     <title>Zpazio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="video-background">
-        <iframe src="https://www.youtube.com/embed/9byz0E_l0u0?autoplay=1&mute=1&controls=0&loop=1&playlist=9byz0E_l0u0"
+        <iframe src="https://www.youtube.com/embed/9byz0E_l0u0?autoplay=1&mute=1&controls=0&loop=1&playlist=9byz0E_l0u0&modestbranding=1&showinfo=0&rel=0"
                 frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen></iframe>
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+        </iframe>
     </div>
 
     <canvas id="wave-canvas"></canvas>
 
     <header>
         <img src="logo_zpazio_blanco_1.png" alt="Logo Zpazio" class="logo">
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        <nav id="menu">
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+        <nav id="menu" class="hidden">
             <ul>
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Marcas</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#">NOSOTROS</a></li>
+                <li><a href="#">MARCAS</a></li>
+                <li><a href="#">EQUIPO</a></li>
+                <li><a href="#">CONTACTO</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="content">
+    <main>
         <h1>Zpazio</h1>
         <p>Creamos atmósferas de alto diseño con marcas como Flos, Vibia, Lutron, Terzani y más.</p>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
