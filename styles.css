@@ -61,3 +61,11 @@ nav a { color: #111; text-decoration: none; font-weight: 700; }
   width: 20px; height: 20px;
   display: block;
 }
+
+
+/* Efecto encendido bombilla */
+.cursor-bulb.on img {
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.9));
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
