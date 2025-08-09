@@ -1,4 +1,4 @@
-/* ===== Zpazio — Panel + Center Nav (vertical sin blur) ===== */
+/* ===== Zpazio — Panel + Center Nav ===== */
 
 /* Base */
 html, body{
@@ -32,10 +32,11 @@ body.menu-open .menu-toggle .bar:nth-child(1){ transform: translateY(7px) rotate
 body.menu-open .menu-toggle .bar:nth-child(2){ opacity:0; }
 body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-/* ===== Off-canvas lateral (se mantiene) ===== */
+/* ===== Off-canvas lateral ===== */
 :root{ --panel-bg: rgba(50,50,50,.55); }
 
 nav#menu.hidden{ display:block !important; }
+
 nav#menu{
   position:fixed; top:0; right:0; z-index:30;
   width:6.5cm; max-width:90vw; height:100vh;
@@ -59,6 +60,12 @@ nav#menu a, .center-nav .btn-link{
 }
 nav#menu a:hover, .center-nav .btn-link:hover{ opacity:.92; transform: translateY(-1px); }
 
+/* Indicador activo en lateral (si lo usas) */
+nav#menu a.active::before{
+  content:""; position:absolute; left:0; top:4px; bottom:4px; width:2px;
+  background: rgba(255,255,255,.66); border-radius:2px;
+}
+
 /* Scrim */
 .menu-scrim{
   position:fixed; inset:0; z-index:25;
@@ -71,37 +78,33 @@ body.menu-open .menu-scrim{ opacity:1; pointer-events:auto; }
 body.menu-open #bgCanvas,
 body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate(.98); }
 
-/* ===== Center Nav vertical, sin blur ni fondo ===== */
+/* ===== Center Nav (bloque central a la altura del logo) ===== */
 .center-nav{
   position: fixed;
-  top: 20px;                 /* a la altura del logo */
+  top: 20px;               /* misma altura que el logo */
   left: 50%;
   transform: translateX(-50%);
   z-index: 25;
   display: flex;
-  flex-direction: column;    /* vertical */
   align-items: center;
-  gap: 6px;
-  padding: 0;                /* sin fondo ni marco */
-  background: transparent;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  box-shadow: none;
-  border: none;
+  gap: 24px;
+  padding: 8px 12px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.18);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
 }
 
-/* 'Nosotros' arriba y los demás debajo */
+/* Botones tipo link, misma tipografía del panel lateral */
 .center-nav .btn-link{
   color: #fff;
   text-decoration: none;
-  padding: 4px 6px;
+  padding: 6px 8px;
 }
-.center-nav .btn-link.principal{
-  margin-bottom: 4px;        /* pequeña separación con la columna */
-  font-weight: 600;
-}
+.center-nav .btn-link:active{ opacity:.85; transform: translateY(0); }
 
-/* Responsive: ocultar el bloque central en móviles */
+/* Responsive: ocultar el bloque central si el ancho es muy pequeño */
 @media (max-width: 680px){
   .center-nav{ display:none; }
 }
