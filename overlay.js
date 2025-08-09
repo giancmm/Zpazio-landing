@@ -1,11 +1,20 @@
-
 // --- Menú ---
-const __menu = document.getElementById('menu');
-const __toggle = document.getElementById('menu-toggle');
-__toggle.addEventListener('click', (e)=>{ e.stopPropagation();
-  document.getElementById('menu').classList.toggle('hidden');
-});
+document.addEventListener('DOMContentLoaded', ()=>{
+  const menu = document.getElementById('menu');
+  const toggle = document.getElementById('menu-toggle');
+  if (!menu || !toggle) return;
 
+  toggle.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e)=>{
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+});
 // --- Cursor Bombilla ---
 const bulb = document.getElementById('cursor-bulb');
 window.addEventListener('mousemove',(e)=>{
