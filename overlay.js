@@ -1,7 +1,7 @@
 
 // --- Menú ---
 document.getElementById('menu-toggle').addEventListener('click', ()=>{
-  document.getElementById('menu').classList.toggle('open');
+  document.getElementById('menu').classList.toggle('hidden');
 });
 
 // --- Cursor Bombilla ---
@@ -42,10 +42,28 @@ function drawBase(){
   ctx.drawImage(img, dx, dy, dw, dh);
 }
 
+
 let ripples = [];
+const TWO_PI = Math.PI * 2;
+
+// Añadir ondas con variabilidad sutil para aspecto más orgánico
 addEventListener('mousemove', (e)=>{
-  // Añade una nueva onda grande
-  ripples.push({ x:e.clientX, y:e.clientY, r: 16, a: 0.9 });
+  const speed = Math.hypot((e.movementX||0), (e.movementY||0));
+  const baseR = 12 + Math.min(speed, 18) * 0.4; // radio inicial depende un poco de la velocidad
+  const growth = 2.2 + Math.random()*1.6;        // crecimiento por frame
+  const fade = 0.016 + Math.random()*0.012;      // desvanecimiento
+  const zoom = 1.06 + Math.random()*0.05;        // zoom local
+  const ringAlpha = 0.18 + Math.random()*0.14;   // intensidad del anillo
+  const wobbleAmp = 0.35 + Math.random()*0.45;   // oscilación del borde
+  const phase = Math.random()*TWO_PI;
+  ripples.push({
+    x: e.clientX,
+    y: e.clientY,
+    r: baseR,
+    a: 0.9,
+    growth, fade, zoom, ringAlpha, wobbleAmp, phase,
+    t: 0
+  });
 });
 
 function loop(){
@@ -53,52 +71,49 @@ function loop(){
 
   for (let i=ripples.length-1; i>=0; i--){
     const rp = ripples[i];
+    rp.t += 1;
 
-    // Región circular grande
+    // Región circular
     ctx.save();
     ctx.beginPath();
-    ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
+
+    // Borde con leve "wobble" para un look más natural
+    const steps = 24;
+    ctx.moveTo(rp.x + (rp.r + Math.sin(rp.t*0.12 + rp.phase)*rp.wobbleAmp), rp.y);
+    for (let k=1; k<=steps; k++){
+      const ang = k/steps * TWO_PI;
+      const rr = rp.r + Math.sin(ang*3 + rp.t*0.12 + rp.phase)*rp.wobbleAmp;
+      ctx.lineTo(rp.x + Math.cos(ang)*rr, rp.y + Math.sin(ang)*rr);
+    }
     ctx.clip();
 
-    // Zoom y leve desplazamiento -> efecto de refracción
-    const zoom = 1.10;  // más grande que antes
-    const ox = (rp.x - canvas.width/2) * 0.012;
-    const oy = (rp.y - canvas.height/2) * 0.012;
-
-    // redibuja imagen con cover + zoom
+    // Redibuja imagen con cover + leve zoom local y desplazamiento de refracción
     const iw = img.width, ih = img.height;
     const cw = canvas.width, ch = canvas.height;
     const ir = iw/ih, cr = cw/ch;
+    const localZoom = rp.zoom;
+    const ox = (rp.x - cw/2) * 0.010;
+    const oy = (rp.y - ch/2) * 0.010;
     let dw, dh, dx, dy;
-    if (ir > cr){ dh = ch*zoom; dw = dh*ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
-    else { dw = cw*zoom; dh = dw/ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
+    if (ir > cr){ dh = ch*localZoom; dw = dh*ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
+    else { dw = cw*localZoom; dh = dw/ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
     ctx.drawImage(img, dx, dy, dw, dh);
 
-    // Anillo sutil para reforzar la onda (no es cursor, solo borde de la distorsión)
+    // Anillo sutil con alpha variable
     ctx.beginPath();
-    ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
-    ctx.strokeStyle = `rgba(255,255,255,${rp.a*0.25})`;
-    ctx.lineWidth = 1.2;
+    ctx.arc(rp.x, rp.y, rp.r, 0, TWO_PI);
+    ctx.strokeStyle = `rgba(255,255,255,${rp.a * rp.ringAlpha})`;
+    ctx.lineWidth = 1.1;
     ctx.stroke();
 
     ctx.restore();
 
-    // Avance: onda GRANDE (doble)
-    rp.r += 3.2;   // crece más rápido (grande)
-    rp.a -= 0.02;  // se desvanece más lento -> visible
+    // Avance de la onda
+    rp.r += rp.growth;
+    rp.a -= rp.fade;
     if (rp.a <= 0) ripples.splice(i,1);
   }
 
   requestAnimationFrame(loop);
 }
 loop();
-
-
-// Cerrar menú al click fuera
-document.addEventListener('click', (e)=>{
-  const menu = document.getElementById('menu');
-  const toggle = document.getElementById('menu-toggle');
-  if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-    menu.classList.remove('open');
-  }
-});
