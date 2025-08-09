@@ -66,32 +66,9 @@ nav a { color: #111; text-decoration: none; font-weight: 700; }
 }
 
 
-/* ===== Off-canvas panel from right (square edges) ===== */
-nav{
-  top: 0 !important;
-  right: 0 !important;
-  height: 100vh !important;
-  width: 320px !important;
-  border-radius: 0 !important;
-  border-left: 1px solid rgba(255,255,255,0.22);
-  padding: 28px 26px !important;
-  transform: translateX(105%) !important; /* fuera de la pantalla por defecto */
-  opacity: 1 !important;
-  pointer-events: none !important;
-  z-index: 12 !important; /* por encima del scrim */
-  transition: transform .35s ease, opacity .25s ease !important;
-}
-nav.open{
-  transform: translateX(0%) !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-/* Layout interno */
-nav ul{ margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
-nav li{ margin: 0; }
-@media (max-width: 420px){
-  nav{ width: 88vw !important; }
-}
-
-/* Ajustar scrim a z-index 11 (debajo del panel) */
-.menu-scrim{ z-index: 11 !important; }
+/* ==== HOTFIX SAFARI: Toggle visible y clickeable ==== */
+.menu-toggle{ position: fixed; top: 20px; right: 20px; z-index: 10000 !important; }
+.menu-toggle .bar{ background: #fff !important; }
+/* Si algo lo tapa, el panel off-canvas cerrado no recibe eventos */
+nav{ pointer-events: none !important; }
+nav.open{ pointer-events: auto !important; }
