@@ -4,31 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css?v=5"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="styles.css?v=20250809-2"/>
 </head>
 <body>
-  <!-- Canvas que pinta la IMAGEN DE FONDO y aplica la onda -->
   <canvas id="bgCanvas"></canvas>
 
   <header>
     <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
-    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
-    <nav id="menu">
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+    <nav id="menu" class="hidden">
       <ul>
-        <li><a href="#">NOSOTROS</a></li>
-        <li><a href="#">MARCAS</a></li>
-        <li><a href="#">EQUIPO</a></li>
-        <li><a href="#">CONTACTO</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#marcas">Marcas</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
   </header>
   <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
 
-  <!-- Bombilla que sigue al cursor -->
+  <!-- Bloque central a la altura del logo -->
+  <nav class="center-nav" aria-label="Acciones principales">
+    <a href="#nosotros" class="btn-link">Nosotros</a>
+    <a href="#equipo" class="btn-link">Equipo</a>
+    <a href="#contacto" class="btn-link">Contacto</a>
+  </nav>
+
   <div class="cursor-bulb" id="cursor-bulb">
     <img src="bombilla.svg" alt="bulb"/>
   </div>
 
-  <script defer src="overlay.js?v=5"></script>
+  <script defer src="overlay.js?v=20250809"></script>
 </body>
 </html>
