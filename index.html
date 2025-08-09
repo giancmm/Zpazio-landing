@@ -4,31 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css?v=9"/>
+  <link rel="stylesheet" href="styles.css?v=5"/>
 </head>
 <body>
-  <!-- El canvas se crea automáticamente desde overlay.js si no existe -->
+  <!-- Canvas que pinta la IMAGEN DE FONDO y aplica la onda -->
+  <canvas id="bgCanvas"></canvas>
+
   <header>
     <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
-    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </div>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
     <nav id="menu">
       <ul>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Marcas</a></li>
-        <li><a href="#">Equipo</a></li>
-        <li><a href="#">Contacto</a></li>
+        <li><a href="#">NOSOTROS</a></li>
+        <li><a href="#">MARCAS</a></li>
+        <li><a href="#">EQUIPO</a></li>
+        <li><a href="#">CONTACTO</a></li>
       </ul>
     </nav>
   </header>
   <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
 
-  <!-- Cursor Bombilla (fallback a .jpeg lo maneja overlay.js) -->
+  <!-- Bombilla que sigue al cursor -->
   <div class="cursor-bulb" id="cursor-bulb">
     <img src="bombilla.svg" alt="bulb"/>
   </div>
 
-  <script defer src="overlay.js?v=9"></script>
+  <script defer src="overlay.js?v=5"></script>
 </body>
 </html>
