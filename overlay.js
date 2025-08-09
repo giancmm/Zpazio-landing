@@ -1,6 +1,8 @@
 
 // --- Menú ---
-document.getElementById('menu-toggle').addEventListener('click', ()=>{
+const __menu = document.getElementById('menu');
+const __toggle = document.getElementById('menu-toggle');
+__toggle.addEventListener('click', (e)=>{ e.stopPropagation();
   document.getElementById('menu').classList.toggle('hidden');
 });
 
@@ -117,3 +119,10 @@ function loop(){
   requestAnimationFrame(loop);
 }
 loop();
+
+// Cerrar al hacer click fuera (robusto)
+document.addEventListener('click', (e)=>{
+  if (!__menu.contains(e.target) && !__toggle.contains(e.target)) {
+    __menu.classList.remove('open');
+  }
+});

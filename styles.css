@@ -95,3 +95,7 @@ nav a { color: #111; text-decoration: none; font-weight: 700; }
 
 /* Asegurar layering correcto */
 header, .menu-toggle, nav, .logo, .cursor-bulb { position: fixed; }
+
+/* Robustez: nav cerrado por defecto, visible sólo en .open */
+nav { opacity: 0; transform: translateY(-6px) scale(.985); pointer-events: none; }
+nav.open { opacity: 1; transform: none; pointer-events: auto; }
