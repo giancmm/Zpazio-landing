@@ -10,7 +10,6 @@
         }
         body{
           margin:0;
-          background:#111; /* placeholder oscuro para ver el bloque */
           font-family: Arial, sans-serif;
         }
         /* Bloque central */
@@ -22,12 +21,9 @@
           font-weight: bold;
           font-size: 13px;
           line-height: 1.8;
-          color: #fff; /* visible sobre fondo oscuro */
+          color: #fff;
           z-index: 1000;
           pointer-events: auto;
-          /* DEBUG: quitar después */
-          outline: 1px dashed rgba(255,255,255,.35);
-          padding-left: 6px;
         }
         .central-block a{
           color: #fff;
@@ -35,7 +31,7 @@
           transition: opacity .2s ease;
         }
         .central-block a:hover{ opacity:.75; }
-        /* Logo y hamburguesa (placeholders) */
+        /* Logo y hamburguesa */
         .logo{
           position:absolute;
           top:20px; left:20px;
