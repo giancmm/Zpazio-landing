@@ -216,3 +216,21 @@ nav .menu-close {
   top: 20px;
   margin: 0;
 }
+
+
+/* === FIX EN DURO: X a la derecha y panel sin borde (con !important) === */
+nav {
+  border: none !important;
+  border-left: none !important;
+}
+nav .menu-header {
+  border: none !important;
+  position: relative !important;
+}
+/* Forzar la X dentro del panel en la esquina superior derecha */
+nav .menu-close {
+  position: absolute !important;
+  right: 20px !important;
+  top: 20px !important;
+  margin: 0 !important;
+}
