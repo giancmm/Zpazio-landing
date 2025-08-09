@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zpazio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Canvas que pinta la IMAGEN DE FONDO y el efecto de onda -->
-  <canvas id="bgCanvas"></canvas>
+    <header>
+        <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo">
+        <div class="menu-hamburguesa" onclick="toggleMenu()">&#9776;</div>
+        <nav class="menu" id="menu">
+            <a href="#nosotros">NOSOTROS</a>
+            <a href="#marcas">MARCAS</a>
+            <a href="#equipo">EQUIPO</a>
+            <a href="#contacto">CONTACTO</a>
+        </nav>
+    </header>
 
-  <!-- Logo y menú -->
-  <header>
-    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo" />
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <nav id="menu" class="hidden">
-      <ul>
-        <li><a href="#">NOSOTROS</a></li>
-        <li><a href="#">MARCAS</a></li>
-        <li><a href="#">EQUIPO</a></li>
-        <li><a href="#">CONTACTO</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Bloque central tipo 5Sólidos -->
+    <div class="menu-central">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#contacto">Contacto</a>
+    </div>
 
-  <!-- Bombilla que sigue al cursor -->
-  <div class="cursor-bulb">
-    <img src="bombilla.svg" alt="bulb"/>
-  </div>
-
-  <script defer src="overlay.js"></script>
+    <script src="overlay.js"></script>
 </body>
 </html>

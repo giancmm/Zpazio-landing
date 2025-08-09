@@ -1,94 +1,62 @@
-
-/* Estilos existentes conservados */
-
-/* Logo */
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  height: 40px;
-  z-index: 1000;
+body {
+    margin: 0;
+    padding: 0;
+    background: url('Projects-Flos--Accademia_Militare_Modena-05_04.jpg') no-repeat center center/cover;
+    height: 100vh;
+    overflow: hidden;
 }
 
-/* Menú hamburguesa */
-.menu-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  cursor: pointer;
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 50px;
+}
+
+.menu-hamburguesa {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
 }
 
 .menu {
-  display: none;
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background-color: rgba(200, 200, 200, 0.9);
-  padding: 10px;
-  border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: lightgray;
+    padding: 10px;
 }
 
 .menu a {
-  display: block;
-  color: black;
-  text-decoration: none;
-  padding: 5px 0;
+    color: black;
+    text-decoration: none;
+    padding: 5px 0;
 }
 
-/* Bloque central tipo 5Sólidos */
-.top-vertical-menu {
-  position: absolute;
-  top: 20px; /* alineado con logo y hamburguesa */
-  left: 110px; /* desplazado desde el logo */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  z-index: 900;
+/* Nuevo bloque central tipo 5Sólidos */
+.menu-central {
+    position: absolute;
+    top: 50%;
+    left: 100px; /* similar a 5Sólidos */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
 }
 
-.top-vertical-menu a {
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 13px !important;
-  font-weight: bold !important;
-  color: #fff !important;
-  text-decoration: none !important;
-  line-height: 1.35;
-  text-transform: capitalize;
+.menu-central a {
+    color: white;
+    text-decoration: none;
 }
 
-/* Cursor bombilla */
-.custom-cursor {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  background: url('bombilla.png') no-repeat center/contain;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  transition: filter 0.3s ease;
-}
-
-.custom-cursor.active {
-  filter: drop-shadow(0 0 8px #ffff05) brightness(1.5);
-}
-
-/* Fondo y efecto onda */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('Projects-Flos--Accademia_Militare_Modena-05_04.jpg') no-repeat center center/cover;
-  z-index: -1;
+.menu-central a:hover {
+    text-decoration: underline;
 }
