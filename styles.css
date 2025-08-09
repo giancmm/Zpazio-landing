@@ -131,3 +131,32 @@ body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotat
 /* Lock scroll cuando el menú está abierto */
 body.menu-open{ overflow: hidden; }
 @media (max-width: 420px){ nav{ width: 88vw; } }
+
+
+/* Ajustes solicitados */
+nav{
+  width: 6.5cm !important;
+}
+nav a{
+  font-size: 10px !important;
+  text-transform: none !important;
+}
+
+
+/* === Ajustes solicitados === */
+/* a) Solo una X: ocultar hamburguesa al abrir el panel */
+body.menu-open #menu-toggle{ opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+
+/* b) Ancho exacto del panel: 6.5cm */
+nav{ width: 6.5cm !important; }
+
+/* c) Tipografía de items: tamaño 10, sin mayúsculas */
+nav a{
+  font-size: 10px !important;
+  text-transform: none !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+
+/* d) Ocultar cualquier título de cabecera si quedara */
+.menu-header .menu-title{ display: none !important; }
