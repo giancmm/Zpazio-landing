@@ -170,3 +170,10 @@ body.menu-open .menu-scrim{ opacity: 1; pointer-events: auto; }
 
 /* Lock scroll when menu is open */
 body.menu-open{ overflow: hidden; }
+
+
+/* ==== HOTFIX: asegurar visibilidad del menú ==== */
+nav { z-index: 100; min-width: 220px; }
+nav ul { list-style: none; margin: 0; padding: 0; display: block; }
+nav li { display: block; }
+nav.open { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
