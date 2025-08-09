@@ -33,7 +33,7 @@ html, body {
   z-index: 11;
 }
 
-nav.hidden { display: none; }
+/* nav.hidden rule neutralized */
 nav {
   position: fixed;
   top: 70px;
@@ -72,3 +72,62 @@ nav a { color: #111; text-decoration: none; font-weight: 700; }
 /* Si algo lo tapa, el panel off-canvas cerrado no recibe eventos */
 nav{ pointer-events: none !important; }
 nav.open{ pointer-events: auto !important; }
+
+
+/* ===== Off-canvas panel from right (square edges) ===== */
+nav{
+  position: fixed;
+  top: 0; right: 0;
+  height: 100vh;
+  width: 320px;
+  border-radius: 0;
+  border-left: 1px solid rgba(255,255,255,0.22);
+  padding: 20px 22px;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.18);
+  box-shadow: 0 10px 40px rgba(0,0,0,.18);
+  transform: translateX(105%);
+  opacity: 1;
+  pointer-events: none;
+  z-index: 12;
+  transition: transform .35s ease;
+}
+nav.open{
+  transform: translateX(0);
+  pointer-events: auto;
+}
+nav ul{ list-style:none; margin: 16px 0 0; padding:0; display:flex; flex-direction:column; gap:14px; }
+nav li{ margin:0; }
+nav a{ color:#fff; font-weight:700; letter-spacing:.08em; text-decoration:none; }
+
+/* Header interno del panel */
+.menu-header{ display:flex; align-items:center; justify-content:space-between; }
+.menu-title{ color:#fff; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:12px; opacity:.85; }
+.menu-close{
+  background: none; border: none; color: #fff; font-size: 22px; line-height: 1;
+  cursor: pointer; opacity: .9;
+}
+.menu-close:hover{ opacity: 1; }
+
+/* Scrim */
+.menu-scrim{
+  position: fixed; inset: 0; z-index: 11;
+  background: rgba(0,0,0,.35);
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease;
+}
+body.menu-open .menu-scrim{ opacity: 1; pointer-events: auto; }
+
+/* Hamburguesa (siempre visible y clickeable) */
+.menu-toggle{
+  position: fixed; top: 20px; right: 20px; z-index: 10000;
+  width: 36px; height: 28px; display: grid; place-content: center; gap:5px; cursor:pointer;
+}
+.menu-toggle .bar{ width:26px; height:2px; background:#fff; display:block; transition: transform .25s ease, opacity .2s ease; }
+body.menu-open .menu-toggle .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+body.menu-open .menu-toggle .bar:nth-child(2){ opacity: 0; }
+body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+/* Lock scroll cuando el menú está abierto */
+body.menu-open{ overflow: hidden; }
+@media (max-width: 420px){ nav{ width: 88vw; } }

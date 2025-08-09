@@ -1,35 +1,33 @@
-// --- Menú (hotfix click + z-index) ---
+// --- Menú (off-canvas robusto, con cierre interno) ---
 document.addEventListener('DOMContentLoaded', ()=>{
   const menu = document.getElementById('menu');
   const toggle = document.getElementById('menu-toggle');
+  const closeBtn = document.getElementById('menu-close');
   const scrim = document.getElementById('menu-scrim');
   if (!menu || !toggle) return;
 
   const openMenu = ()=>{
     menu.classList.add('open');
     document.body.classList.add('menu-open');
-    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-expanded','true');
   };
   const closeMenu = ()=>{
     menu.classList.remove('open');
     document.body.classList.remove('menu-open');
-    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-expanded','false');
   };
 
   toggle.addEventListener('click', (e)=>{
     e.stopPropagation();
-    if (menu.classList.contains('open')) closeMenu(); else openMenu();
+    menu.classList.contains('open') ? closeMenu() : openMenu();
   });
+  if (closeBtn){ closeBtn.addEventListener('click', closeMenu); }
+  if (scrim){ scrim.addEventListener('click', closeMenu); }
 
-  if (scrim){
-    scrim.addEventListener('click', closeMenu);
-  }
   document.addEventListener('click', (e)=>{
     if (!menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
   });
-  document.addEventListener('keydown', (e)=>{
-    if (e.key === 'Escape') closeMenu();
-  });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
 });
 // --- Cursor Bombilla ---
 const bulb = document.getElementById('cursor-bulb');
