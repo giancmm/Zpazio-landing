@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zpazio Landing</title>
+    <style>
+        html, body{
+          height:100%;
+        }
+        body{
+          margin:0;
+          background:#111; /* placeholder oscuro para ver el bloque */
+          font-family: Arial, sans-serif;
+        }
+        /* Bloque central */
+        .central-block{
+          position: fixed;
+          top: 50%;
+          left: clamp(36px, 6vw, 72px);
+          transform: translateY(-50%);
+          font-weight: bold;
+          font-size: 13px;
+          line-height: 1.8;
+          color: #fff; /* visible sobre fondo oscuro */
+          z-index: 1000;
+          pointer-events: auto;
+          /* DEBUG: quitar después */
+          outline: 1px dashed rgba(255,255,255,.35);
+          padding-left: 6px;
+        }
+        .central-block a{
+          color: #fff;
+          text-decoration: none;
+          transition: opacity .2s ease;
+        }
+        .central-block a:hover{ opacity:.75; }
+        /* Logo y hamburguesa (placeholders) */
+        .logo{
+          position:absolute;
+          top:20px; left:20px;
+          z-index:2000;
+        }
+        .menu-hamburguesa{
+          position:absolute;
+          top:20px; right:20px;
+          z-index:2000;
+        }
+        @media (max-width: 768px){
+          .central-block{
+            left:24px;
+            font-size:12px;
+            line-height:1.7;
+          }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logo -->
+    <div class="logo">
+        <img src="logo.png" alt="Zpazio Design & Brands">
+    </div>
+
+    <!-- Bloque central -->
+    <nav class="central-block" aria-label="Secciones principales">
+        <a href="#nosotros">Nosotros</a><br>
+        <a href="#marcas">Marcas</a><br>
+        <a href="#equipo">Equipo</a><br>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- Menú hamburguesa -->
+    <div class="menu-hamburguesa">
+        <!-- Aquí va el código de tu menú -->
+    </div>
+
+</body>
+</html>
