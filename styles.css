@@ -1,23 +1,20 @@
 
-/* Base layout */
 :root { --menu-bg: rgba(200,200,200,0.95); }
 
 html, body {
   margin: 0;
   height: 100%;
   overflow: hidden;
-  cursor: none; /* usamos cursor-bulb */
-  font-family: Arial, Helvetica, sans-serif;
+  cursor: none; /* ocultamos cursor nativo */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Canvas fondo con onda */
 #bgCanvas {
   position: fixed;
   inset: 0;
   z-index: 0;
 }
 
-/* Header */
 .logo {
   position: fixed;
   top: 20px;
@@ -50,33 +47,6 @@ nav ul { list-style: none; margin:0; padding:0; }
 nav li { margin: 10px 0; }
 nav a { color: #111; text-decoration: none; font-weight: 700; }
 
-/* ===== Menú superior VERTICAL estilo 5Sólidos =====
-   - alineado con el header
-   - colocado a la derecha del logo
-   - texto blanco, Arial, bold, 13px
-*/
-.top-vertical-menu {
-  position: fixed;
-  top: 28px;               /* altura similar a la del logo */
-  left: 112px;             /* separación desde el borde/ logo */
-  display: flex;
-  flex-direction: column;  /* vertical */
-  align-items: flex-start; /* texto alineado a la izquierda */
-  gap: 4px;                /* espaciado compacto como referencia */
-  z-index: 10;
-}
-
-.top-vertical-menu a {
-  color: #fff !important;
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  text-decoration: none !important;
-  line-height: 1.35;
-  text-transform: capitalize;
-}
-
-/* Cursor bombilla */
 .cursor-bulb {
   position: fixed;
   left: 0; top: 0;
@@ -89,20 +59,11 @@ nav a { color: #111; text-decoration: none; font-weight: 700; }
 }
 .cursor-bulb img { width: 22px; height: 22px; display:block; }
 
-/* Glow amarillo intenso (#ffff05) al click */
+/* Encendido amarillo intenso (0.5s) con color #ffff05 */
 .cursor-bulb.on img {
   filter: drop-shadow(0 0 12px rgba(255,255,5,1))
           drop-shadow(0 0 26px rgba(255,255,5,0.9))
           drop-shadow(0 0 40px rgba(255,255,5,0.7));
   transform: scale(1.15);
   transition: filter 0.5s ease, transform 0.2s ease;
-}
-
-/* Pequeño ajuste responsive para pantallas estrechas */
-@media (max-width: 640px) {
-  .top-vertical-menu {
-    left: 90px; /* un poco más cerca del borde en móviles */
-    gap: 6px;
-  }
-  .top-vertical-menu a { font-size: 12px; }
 }
