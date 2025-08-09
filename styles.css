@@ -87,3 +87,26 @@ nav a { color: #111; text-decoration: none; font-weight: 700; }
   transform: scale(1.15);
   transition: filter 0.5s ease, transform 0.2s ease;
 }
+
+
+/* === Menú superior VERTICAL, alineado con el header === */
+.top-vertical-menu {
+  position: fixed;
+  top: 20px;                 /* misma altura del logo/hamburguesa */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;    /* vertical */
+  align-items: flex-start;   /* texto alineado a la izquierda */
+  gap: 8px;                  /* espaciado vertical uniforme */
+  z-index: 10;
+}
+
+.top-vertical-menu a {
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;           /* como pediste */
+  text-decoration: none;
+  text-transform: capitalize;/* primera letra mayúscula */
+  letter-spacing: 0.5px;
+}
