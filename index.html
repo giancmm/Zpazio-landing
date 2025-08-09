@@ -4,26 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css?v=7"/>
+  <link rel="stylesheet" href="styles.css?v=5"/>
 </head>
 <body>
   <!-- Canvas que pinta la IMAGEN DE FONDO y aplica la onda -->
   <canvas id="bgCanvas"></canvas>
 
-  <!-- Overlay de degradado para mejorar legibilidad -->
-  <div class="bg-gradient-overlay" aria-hidden="true"></div>
-
   <header>
     <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
-    <!-- Botón hamburguesa (abre el panel) -->
-    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </div>
-    <!-- Panel off-canvas (sin class hidden) -->
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
     <nav id="menu">
-      <div class="menu-header">
-        <button class="menu-close" id="menu-close" aria-label="Cerrar menú">✕</button>
-      </div>
       <ul>
         <li><a href="#">NOSOTROS</a></li>
         <li><a href="#">MARCAS</a></li>
@@ -32,8 +22,6 @@
       </ul>
     </nav>
   </header>
-
-  <!-- Scrim para foco y cierre -->
   <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
 
   <!-- Bombilla que sigue al cursor -->
@@ -41,6 +29,6 @@
     <img src="bombilla.svg" alt="bulb"/>
   </div>
 
-  <script defer src="overlay.js?v=7"></script>
+  <script defer src="overlay.js?v=5"></script>
 </body>
 </html>
