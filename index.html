@@ -2,33 +2,40 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=9"/>
 </head>
 <body>
-  <!-- Canvas que pinta la IMAGEN DE FONDO y el efecto de onda -->
+  <!-- Canvas que pinta la imagen de fondo y aplica la onda -->
   <canvas id="bgCanvas"></canvas>
 
-  <!-- Logo y menú -->
+  <!-- Header con logo y menú hamburguesa gris -->
   <header>
-    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo" />
+    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
     <nav id="menu" class="hidden">
       <ul>
-        <li><a href="#">NOSOTROS</a></li>
-        <li><a href="#">MARCAS</a></li>
-        <li><a href="#">EQUIPO</a></li>
-        <li><a href="#">CONTACTO</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Marcas</a></li>
+        <li><a href="#">Equipo</a></li>
+        <li><a href="#">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Bombilla que sigue al cursor -->
-  <div class="cursor-bulb">
+  <!-- Bloque superior VERTICAL estilo 5Sólidos (a la derecha del logo) -->
+  <div class="top-vertical-menu">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#equipo">Equipo</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+
+  <!-- Cursor bombilla -->
+  <div class="cursor-bulb" id="cursor-bulb">
     <img src="bombilla.svg" alt="bulb"/>
   </div>
 
-  <script defer src="overlay.js"></script>
+  <script defer src="overlay.js?v=9"></script>
 </body>
 </html>
