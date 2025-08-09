@@ -7,28 +7,38 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <link rel="stylesheet" href="styles.css?v=20250809"/>
+  <link rel="stylesheet" href="styles.css?v=20250809-2"/>
 </head>
 <body>
   <canvas id="bgCanvas"></canvas>
+
   <header>
     <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
-    <div class="menu-toggle" id="menu-toggle">
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </div>
     <nav id="menu" class="hidden">
       <ul>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Marcas</a></li>
-        <li><a href="#">Equipo</a></li>
-        <li><a href="#">Contacto</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#marcas">Marcas</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
   </header>
-  <div class="menu-scrim" id="menu-scrim"></div>
+  <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
+
+  <!-- Bloque central a la altura del logo -->
+  <nav class="center-nav" aria-label="Acciones principales">
+    <a href="#nosotros" class="btn-link">Nosotros</a>
+    <a href="#equipo" class="btn-link">Equipo</a>
+    <a href="#contacto" class="btn-link">Contacto</a>
+  </nav>
+
   <div class="cursor-bulb" id="cursor-bulb">
     <img src="bombilla.svg" alt="bulb"/>
   </div>
+
   <script defer src="overlay.js?v=20250809"></script>
 </body>
 </html>

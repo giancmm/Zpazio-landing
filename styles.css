@@ -1,5 +1,4 @@
-
-/* ===== Zpazio — Off-canvas derecho (oscuro, más transparente, sin mayúsculas) ===== */
+/* ===== Zpazio — Panel + Center Nav ===== */
 
 /* Base */
 html, body{
@@ -7,13 +6,22 @@ html, body{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Canvas full */
-#bgCanvas{ position:fixed; inset:0; z-index:0; display:block; }
+/* Canvas */
+#bgCanvas{ position:fixed; inset:0; z-index:0; display:block;
+  transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .9s ease; }
 
-/* Logo */
-.logo{ position:fixed; top:20px; left:20px; height:50px; z-index:20; }
+/* Branding */
+.logo{ position:fixed; top:20px; left:20px; height:50px; z-index:20;
+  transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .9s ease; }
 
-/* Hamburguesa (3 barras → X) */
+/* Cursor */
+.cursor-bulb{ position:fixed; left:0; top:0; width:22px; height:22px;
+  transform:translate(-50%,-50%); pointer-events:none; z-index:50;
+  filter:drop-shadow(0 0 3px rgba(255,255,255,.6)); }
+.cursor-bulb img{ width:22px; height:22px; display:block; }
+.cursor-bulb.on img{ filter:drop-shadow(0 0 8px rgba(255,255,255,.95)); transform:scale(1.15); transition:all .2s ease; }
+
+/* Hamburguesa */
 .menu-toggle{
   position:fixed; top:20px; right:20px; z-index:40;
   width:36px; height:28px; display:grid; place-content:center; gap:5px; cursor:pointer;
@@ -24,13 +32,11 @@ body.menu-open .menu-toggle .bar:nth-child(1){ transform: translateY(7px) rotate
 body.menu-open .menu-toggle .bar:nth-child(2){ opacity:0; }
 body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-/* ===== Panel deslizante desde la derecha ===== */
-:root{ --panel-bg: rgba(50,50,50,.55); } /* gris oscuro con más transparencia */
+/* ===== Off-canvas lateral ===== */
+:root{ --panel-bg: rgba(50,50,50,.55); }
 
-/* Forzar que cualquier 'hidden' previo no lo oculte */
 nav#menu.hidden{ display:block !important; }
 
-/* Estado base: fuera de pantalla a la derecha */
 nav#menu{
   position:fixed; top:0; right:0; z-index:30;
   width:6.5cm; max-width:90vw; height:100vh;
@@ -39,33 +45,26 @@ nav#menu{
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow:-18px 0 40px rgba(0,0,0,.30);
-  border:none;
-  border-radius:0;
-
+  border:none; border-radius:0;
   transform: translateX(100%);
-  opacity:0;
-  pointer-events:none;
+  opacity:0; pointer-events:none;
   transition: transform 1.10s cubic-bezier(.22,.61,.36,1), opacity .55s ease;
 }
-
-/* Abierto */
-nav#menu.open{
-  transform: translateX(0);
-  opacity:1;
-  pointer-events:auto;
-}
-
-/* Items */
+nav#menu.open{ transform: translateX(0); opacity:1; pointer-events:auto; }
 nav#menu ul{ list-style:none; margin:56px 0 0 0; padding:0; }
 nav#menu li{ margin:14px 0; }
-nav#menu a{
+nav#menu a, .center-nav .btn-link{
   color:#fff; text-decoration:none; font-weight:500; letter-spacing:.02em;
-  font-size:10pt; text-transform:none; /* sin mayúsculas forzadas */
-  display:inline-block; padding:4px 0;
+  font-size:10pt; text-transform:none;
   transition: transform .2s ease, opacity .2s ease;
 }
-nav#menu a:hover{ transform: translateX(-2px); opacity:.92; }
-nav#menu a:active{ transform: translateX(-1px); opacity:.85; }
+nav#menu a:hover, .center-nav .btn-link:hover{ opacity:.92; transform: translateY(-1px); }
+
+/* Indicador activo en lateral (si lo usas) */
+nav#menu a.active::before{
+  content:""; position:absolute; left:0; top:4px; bottom:4px; width:2px;
+  background: rgba(255,255,255,.66); border-radius:2px;
+}
 
 /* Scrim */
 .menu-scrim{
@@ -75,9 +74,37 @@ nav#menu a:active{ transform: translateX(-1px); opacity:.85; }
 }
 body.menu-open .menu-scrim{ opacity:1; pointer-events:auto; }
 
-/* Cursor */
-.cursor-bulb{ position:fixed; left:0; top:0; width:22px; height:22px;
-  transform:translate(-50%,-50%); pointer-events:none; z-index:50;
-  filter:drop-shadow(0 0 3px rgba(255,255,255,.6)); }
-.cursor-bulb img{ width:22px; height:22px; display:block; }
-.cursor-bulb.on img{ filter:drop-shadow(0 0 8px rgba(255,255,255,.95)); transform:scale(1.15); transition:all .2s ease; }
+/* Parallax del contenido cuando abre el panel */
+body.menu-open #bgCanvas,
+body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate(.98); }
+
+/* ===== Center Nav (bloque central a la altura del logo) ===== */
+.center-nav{
+  position: fixed;
+  top: 20px;               /* misma altura que el logo */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 12px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.18);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+
+/* Botones tipo link, misma tipografía del panel lateral */
+.center-nav .btn-link{
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 8px;
+}
+.center-nav .btn-link:active{ opacity:.85; transform: translateY(0); }
+
+/* Responsive: ocultar el bloque central si el ancho es muy pequeño */
+@media (max-width: 680px){
+  .center-nav{ display:none; }
+}
