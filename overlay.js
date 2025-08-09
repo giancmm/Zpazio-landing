@@ -54,84 +54,111 @@ function drawBase(){
 }
 
 
-let ripples = [];
-const TWO_PI = Math.PI * 2;
 
-// Añadir ondas con variabilidad sutil para aspecto más orgánico
+// --- Ondas fluidas (natural water-like) ---
+// Principios:
+// - Animación basada en tiempo real (dt), no por frame fijo -> evita "cámara lenta" o pasos robóticos.
+// - Decaimiento exponencial suave y crecimiento dependiente de velocidad del cursor.
+// - Distorsión tipo "lente" con micro-variaciones suaves (LFO) para sensación de fluido.
+
+let ripples = [];
+let lastT = performance.now();
+
+// Pequeño generador de ruido suave (suma de senos) para variaciones orgánicas
+function softNoise(t, seed=0){
+  return (
+    Math.sin(t*0.45 + seed) * 0.55 +
+    Math.sin(t*0.19 + seed*1.7) * 0.30 +
+    Math.sin(t*0.08 + seed*2.3) * 0.15
+  );
+}
+
+// Suavizado de velocidad del puntero
+let prevX = null, prevY = null, smoothSpeed = 0;
 addEventListener('mousemove', (e)=>{
-  const speed = Math.hypot((e.movementX||0), (e.movementY||0));
-  const baseR = 12 + Math.min(speed, 18) * 0.4; // radio inicial depende un poco de la velocidad
-  const growth = 2.2 + Math.random()*1.6;        // crecimiento por frame
-  const fade = 0.016 + Math.random()*0.012;      // desvanecimiento
-  const zoom = 1.06 + Math.random()*0.05;        // zoom local
-  const ringAlpha = 0.18 + Math.random()*0.14;   // intensidad del anillo
-  const wobbleAmp = 0.35 + Math.random()*0.45;   // oscilación del borde
-  const phase = Math.random()*TWO_PI;
-  ripples.push({
-    x: e.clientX,
-    y: e.clientY,
-    r: baseR,
-    a: 0.9,
-    growth, fade, zoom, ringAlpha, wobbleAmp, phase,
-    t: 0
-  });
+  const x = e.clientX, y = e.clientY;
+  if (prevX === null){ prevX = x; prevY = y; }
+  const dx = x - prevX, dy = y - prevY;
+  const instSpeed = Math.hypot(dx, dy);
+  // filtro exponencial para suavizar
+  smoothSpeed = smoothSpeed*0.85 + instSpeed*0.15;
+  prevX = x; prevY = y;
+
+  // Emitimos una onda solo si hay movimiento suficiente o cada ~70ms al mover
+  const now = performance.now();
+  if (!window.__lastEmit || (now - window.__lastEmit) > 70 || instSpeed > 2){
+    window.__lastEmit = now;
+    const baseR = 10 + Math.min(smoothSpeed, 40) * 0.25; // radio inicial según velocidad
+    ripples.push({
+      x, y,
+      r: baseR,
+      age: 0,
+      life: 1.4 + Math.random()*0.5, // duración en segundos
+      grow: 180 + Math.random()*80,  // px por segundo
+      seed: Math.random()*10
+    });
+    // Evitar demasiadas ondas acumuladas
+    if (ripples.length > 24) ripples.shift();
+  }
 });
 
 function loop(){
+  const now = performance.now();
+  const dt = Math.min(0.05, (now - lastT)/1000); // delta en segundos, clamp a 50ms
+  lastT = now;
+
   drawBase();
+
+  // Oscilaciones globales sutiles (agua viva)
+  const t = now/1000;
+  const globalZoom = 1.0 + softNoise(t*0.6, 1)*0.005; // +-0.5%
+  const globalOx = softNoise(t*0.8, 2)*2.0; // desplazamientos leves
+  const globalOy = softNoise(t*0.7, 3)*2.0;
 
   for (let i=ripples.length-1; i>=0; i--){
     const rp = ripples[i];
-    rp.t += 1;
+    rp.age += dt;
+    rp.r += rp.grow * dt; // crecimiento por tiempo real
+    const k = 1.8; // tasa de decaimiento
+    const alpha = Math.exp(-k * rp.age); // decaimiento suave
 
-    // Región circular
+    // Si ya murió, remover
+    if (rp.age > rp.life || alpha < 0.02){
+      ripples.splice(i,1);
+      continue;
+    }
+
+    // Distorsión con micro-variaciones (como flujo de agua alrededor del lente)
+    const lfo = softNoise(t*1.2, rp.seed); // [-1..1]
+    const localZoom = 1.05 + lfo*0.03;     // 1.05 ± 0.03
+    const ox = (rp.x - canvas.width/2) * 0.006 + lfo*3 + globalOx;
+    const oy = (rp.y - canvas.height/2) * 0.006 + lfo*3 + globalOy;
+
+    // Clip circular suave
     ctx.save();
     ctx.beginPath();
-
-    // Borde con leve "wobble" para un look más natural
-    const steps = 24;
-    ctx.moveTo(rp.x + (rp.r + Math.sin(rp.t*0.12 + rp.phase)*rp.wobbleAmp), rp.y);
-    for (let k=1; k<=steps; k++){
-      const ang = k/steps * TWO_PI;
-      const rr = rp.r + Math.sin(ang*3 + rp.t*0.12 + rp.phase)*rp.wobbleAmp;
-      ctx.lineTo(rp.x + Math.cos(ang)*rr, rp.y + Math.sin(ang)*rr);
-    }
+    ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
     ctx.clip();
 
-    // Redibuja imagen con cover + leve zoom local y desplazamiento de refracción
+    // Redibujar imagen con cover + zoom local + drift global
     const iw = img.width, ih = img.height;
     const cw = canvas.width, ch = canvas.height;
     const ir = iw/ih, cr = cw/ch;
-    const localZoom = rp.zoom;
-    const ox = (rp.x - cw/2) * 0.010;
-    const oy = (rp.y - ch/2) * 0.010;
     let dw, dh, dx, dy;
-    if (ir > cr){ dh = ch*localZoom; dw = dh*ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
-    else { dw = cw*localZoom; dh = dw/ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
+    if (ir > cr){ dh = ch*globalZoom*localZoom; dw = dh*ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
+    else { dw = cw*globalZoom*localZoom; dh = dw/ir; dx = (cw-dw)/2 + ox; dy = (ch-dh)/2 + oy; }
     ctx.drawImage(img, dx, dy, dw, dh);
 
-    // Anillo sutil con alpha variable
+    // Borde con alpha suave (sin "wobble" poligonal para evitar look robótico)
     ctx.beginPath();
-    ctx.arc(rp.x, rp.y, rp.r, 0, TWO_PI);
-    ctx.strokeStyle = `rgba(255,255,255,${rp.a * rp.ringAlpha})`;
-    ctx.lineWidth = 1.1;
+    ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI*2);
+    ctx.strokeStyle = `rgba(255,255,255,${alpha*0.20})`;
+    ctx.lineWidth = 1.0;
     ctx.stroke();
 
     ctx.restore();
-
-    // Avance de la onda
-    rp.r += rp.growth;
-    rp.a -= rp.fade;
-    if (rp.a <= 0) ripples.splice(i,1);
   }
 
   requestAnimationFrame(loop);
 }
 loop();
-
-// Cerrar al hacer click fuera (robusto)
-document.addEventListener('click', (e)=>{
-  if (!__menu.contains(e.target) && !__toggle.contains(e.target)) {
-    __menu.classList.remove('open');
-  }
-});
