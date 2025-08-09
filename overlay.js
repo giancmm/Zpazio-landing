@@ -1,4 +1,4 @@
-// overlay.js — crea canvas si falta; WebGL agua + fallback 2D; usa background.jpg fijo; cursor con fallback
+// overlay.js — Fix definitivo: textura no invertida usando flip en shader (sin pixelStore), menú y cursor intactos
 
 /* ---------------- Menú ---------------- */
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -100,16 +100,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
     uniform sampler2D u_tex; uniform vec2 u_res; uniform float u_time; uniform vec2 u_mouse;
     ${NOISE}
     void main(){
-      vec2 uv = v_uv;
+      // Flip de la textura en shader (no usamos UNPACK_FLIP_Y_WEBGL)
+      vec2 uv = v_uv; uv.y = 1.0 - uv.y;
+
+      // flujo
       vec2 f1 = vec2(snoise(uv*2.2 + vec2(u_time*0.05, u_time*0.04)),
                      snoise(uv*2.2 - vec2(u_time*0.04, u_time*0.05)));
       vec2 f2 = vec2(snoise(uv*4.0 + vec2(u_time*0.03, -u_time*0.02)),
                      snoise(uv*4.0 + vec2(-u_time*0.02, u_time*0.03)));
       vec2 flow = f1*0.012 + f2*0.008;
-      vec2 mouseUV = u_mouse / u_res;
+
+      // mouse UV también volteado para que coincida con la imagen
+      vec2 mouseUV = vec2(u_mouse.x/u_res.x, 1.0 - (u_mouse.y/u_res.y));
       float hasMouse = step(0.0, u_mouse.x);
       float d = distance(uv, mouseUV);
-      vec2 wake = normalize(uv - mouseUV + 1e-5) * (exp(-d*35.0)*0.03) * hasMouse;
+      vec2 wake = normalize(uv - mouseUV + 1.0e-5) * (exp(-d*35.0)*0.03) * hasMouse;
+
       vec2 disp = flow + wake;
       gl_FragColor = texture2D(u_tex, uv + disp);
     }`;
@@ -129,6 +135,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     gl.useProgram(prog);
   }catch(e){ console.error('WebGL shader error', e); start2D(); return; }
 
+  // Quad
   const buf = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, buf);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,-1, 1,1, -1,1]), gl.STATIC_DRAW);
@@ -136,6 +143,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   gl.enableVertexAttribArray(a_pos);
   gl.vertexAttribPointer(a_pos, 2, gl.FLOAT, false, 0, 0);
 
+  // Textura con background.jpg (sin UNPACK_FLIP_Y_WEBGL)
   const tex = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, tex);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
@@ -148,6 +156,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   img.onload = ()=>{
     gl.bindTexture(gl.TEXTURE_2D, tex);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+
     const u_tex = gl.getUniformLocation(prog, 'u_tex');
     const u_time = gl.getUniformLocation(prog, 'u_time');
     const u_res = gl.getUniformLocation(prog, 'u_res');
@@ -157,7 +166,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     window.addEventListener('mousemove', (e)=>{
       const rect = canvas.getBoundingClientRect();
       const x = (e.clientX - rect.left) * (canvas.width/rect.width);
-      const y = (rect.bottom - e.clientY) * (canvas.height/rect.height);
+      const y = (e.clientY - rect.top) * (canvas.height/rect.height);
       mouse = [x, y];
     });
 
