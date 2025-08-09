@@ -64,3 +64,59 @@ nav a { color: #111; text-decoration: none; font-weight: 700; }
   transform: scale(1.15);
   transition: all 0.2s ease;
 }
+
+
+/* --- Enhancements Premium --- */
+
+/* Fade-in del logo y del botón hamburguesa */
+.logo {
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: zp-fade-in 0.6s ease-out 0.15s forwards;
+}
+
+.menu-toggle {
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: zp-fade-in 0.6s ease-out 0.25s forwards;
+}
+
+@keyframes zp-fade-in {
+  to { opacity: 1; transform: none; }
+}
+
+/* Panel de menú con transición elegante */
+nav {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background: var(--menu-bg);
+  border-radius: 14px;
+  padding: 18px 20px;
+  z-index: 10;
+  box-shadow: 0 8px 30px rgba(0,0,0,.18);
+  transform: translateY(-6px) scale(.985);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s ease, transform .28s ease;
+}
+nav.open {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Pulse sutil en la bombilla SVG */
+.cursor-bulb img {
+  animation: bulbPulse 2s ease-in-out infinite;
+}
+@keyframes bulbPulse {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.55)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 10px rgba(255,255,200,0.95)); transform: scale(1.06); }
+}
+/* Click: glow más intenso (ya existía la clase .on, la reforzamos) */
+.cursor-bulb.on img {
+  filter: drop-shadow(0 0 14px rgba(255,255,220,1));
+  transform: scale(1.12);
+  transition: filter .2s ease, transform .2s ease;
+}

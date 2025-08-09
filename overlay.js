@@ -1,7 +1,7 @@
 
 // --- Menú ---
 document.getElementById('menu-toggle').addEventListener('click', ()=>{
-  document.getElementById('menu').classList.toggle('hidden');
+  document.getElementById('menu').classList.toggle('open');
 });
 
 // --- Cursor Bombilla ---
@@ -92,3 +92,13 @@ function loop(){
   requestAnimationFrame(loop);
 }
 loop();
+
+
+// Cerrar menú al click fuera
+document.addEventListener('click', (e)=>{
+  const menu = document.getElementById('menu');
+  const toggle = document.getElementById('menu-toggle');
+  if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
