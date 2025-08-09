@@ -1,119 +1,65 @@
+/* ===== RESET MENÚ OFF-CANVAS v7.1 (fix) ===== */
 
-:root { --menu-bg: rgba(200,200,200,0.95); }
-
-html, body {
-  margin: 0;
-  height: 100%;
-  overflow: hidden;
-  cursor: none; /* ocultamos cursor nativo */
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-}
-
-#bgCanvas {
+/* Panel a la derecha, sin bordes, 6.5 cm (~246px), 100% alto */
+#menu{
   position: fixed;
-  inset: 0;
-  z-index: 0;
-}
+  top: 0; right: 0;
+  height: 100vh;
+  width: 246px;                  /* 6.5 cm ≈ 246px a 96dpi */
+  padding: 20px 22px;
 
-.logo {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  height: 50px;
-  z-index: 10;
-}
+  /* Estética */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.36);  /* sin borde blanco */
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 
-.menu-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-  z-index: 11;
-}
-
-nav.hidden { display: none; }
-nav {
-  position: fixed;
-  top: 70px;
-  right: 20px;
-  background: var(--menu-bg);
-  border-radius: 10px;
-  padding: 18px 20px;
-  z-index: 10;
-}
-nav ul { list-style: none; margin:0; padding:0; }
-nav li { margin: 10px 0; }
-nav a { color: #111; text-decoration: none; font-weight: 700; }
-
-.cursor-bulb {
-  position: fixed;
-  left: 0; top: 0;
-  width: 22px; height: 22px;
-  transform: translate(-50%, -50%);
+  /* Off-canvas */
+  transform: translateX(105%);
+  opacity: 1;
   pointer-events: none;
-  z-index: 12;
-  will-change: transform, filter;
-  filter: drop-shadow(0 0 3px rgba(255,255,255,0.6));
+  z-index: 1200;
+  transition: transform .4375s cubic-bezier(.08,.82,.17,1); /* 25% más lenta y sedosa */
 }
-.cursor-bulb img { width: 22px; height: 22px; display:block; }
-
-.cursor-bulb.on img {
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.95));
-  transform: scale(1.15);
-  transition: all 0.2s ease;
+#menu.open{
+  transform: translateX(0);
+  pointer-events: auto;
 }
 
-
-/* === Ajuste final: X a la derecha y sin borde/sombra === */
-nav {
-  border: none !important;
-  border-left: none !important;
-  box-shadow: none !important;
-}
-nav .menu-header {
-  border: none !important;
-  position: relative !important;
-}
-nav .menu-close, #menu-close {
-  position: absolute !important;
-  right: 20px !important;
-  top: 20px !important;
-  margin: 0 !important;
-  background: none !important;
-  border: none !important;
-  font-size: 22px !important;
-  color: #fff !important;
-  cursor: pointer !important;
+/* Botón X dentro del panel, a la derecha */
+#menu .menu-close{
+  position: absolute;
+  top: 16px; right: 16px;
+  margin: 0; padding: 0;
+  background: none; border: 0;
+  color: #fff; font-size: 20px; line-height: 1;
+  cursor: pointer;
 }
 
-
-/* ===== OVERRIDES FINALES (posicion X y panel sin borde/sombra) ===== */
-nav, #menu {
-  border: none !important;
-  border-left: none !important;
-  box-shadow: none !important;
+/* Contenido del panel */
+#menu ul{
+  list-style: none;
+  margin: 60px 0 0;   /* despeje bajo la X */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#menu a{
+  color: #fff;
+  font-size: 10pt;     /* como pediste */
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-decoration: none;
 }
 
-/* Asegurar que el botón de cierre esté dentro y a la derecha */
-nav .menu-close, #menu .menu-close, nav #menu-close, #menu #menu-close {
-  position: absolute !important;
-  right: 16px !important;
-  top: 16px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: none !important;
-  border: none !important;
-  color: #fff !important;
-  font-size: 20px !important;
-  line-height: 1 !important;
-  cursor: pointer !important;
-}
+/* Scrim debajo del panel */
+.menu-scrim{ z-index: 1100; }
 
-/* Si el borde venía de un pseudo-elemento, lo neutralizamos */
-nav::before, nav::after, #menu::before, #menu::after {
-  content: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
+/* Hamburguesa siempre visible y blanca; se oculta al abrir */
+#menu-toggle{ position: fixed; top: 20px; right: 20px; z-index: 1300; }
+#menu-toggle .bar{ background: #fff; }
+body.menu-open #menu-toggle{ opacity: 0; pointer-events: none; }
