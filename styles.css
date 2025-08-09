@@ -201,3 +201,18 @@ nav a{
 nav{
   transition: transform .4375s ease !important; /* 0.35s * 1.25 */
 }
+
+
+/* === Ajustes X a la derecha y panel sin borde === */
+nav {
+  border: none !important;
+}
+nav .menu-header {
+  border: none !important;
+}
+nav .menu-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  margin: 0;
+}
