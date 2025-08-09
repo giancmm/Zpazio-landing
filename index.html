@@ -1,41 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css?v=9"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zpazio Landing</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Canvas que pinta la imagen de fondo y aplica la onda -->
-  <canvas id="bgCanvas"></canvas>
+    <!-- Logo -->
+    <div class="logo">
+        <img src="logo.png" alt="Zpazio Design & Brands">
+    </div>
 
-  <!-- Header con logo y menú hamburguesa gris -->
-  <header>
-    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <nav id="menu" class="hidden">
-      <ul>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Marcas</a></li>
-        <li><a href="#">Equipo</a></li>
-        <li><a href="#">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Bloque central -->
+    <div class="central-block">
+        <a href="#nosotros">Nosotros</a><br>
+        <a href="#marcas">Marcas</a><br>
+        <a href="#equipo">Equipo</a><br>
+        <a href="#contacto">Contacto</a>
+    </div>
 
-  <!-- Bloque superior VERTICAL estilo 5Sólidos (a la derecha del logo) -->
-  <div class="top-vertical-menu">
-    <a href="#nosotros">Nosotros</a>
-    <a href="#equipo">Equipo</a>
-    <a href="#contacto">Contacto</a>
-  </div>
-
-  <!-- Cursor bombilla -->
-  <div class="cursor-bulb" id="cursor-bulb">
-    <img src="bombilla.svg" alt="bulb"/>
-  </div>
-
-  <script defer src="overlay.js?v=9"></script>
+    <!-- Menú hamburguesa -->
+    <div class="menu-hamburguesa">
+        <!-- Aquí va el código del menú existente -->
+    </div>
 </body>
 </html>

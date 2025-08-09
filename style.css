@@ -1,0 +1,39 @@
+/* Estilo para el bloque central */
+.central-block {
+    position: absolute;
+    top: 50%;
+    left: 60px; /* Ajustar según distancia deseada desde el borde izquierdo */
+    transform: translateY(-50%);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 1.8;
+    color: white;
+    z-index: 10;
+}
+
+/* Enlaces dentro del bloque central */
+.central-block a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.central-block a:hover {
+    color: #ccc;
+}
+
+/* Ajuste para evitar interferencia con logo y menú */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
+}
+
+.menu-hamburguesa {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+}
