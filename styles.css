@@ -1,35 +1,43 @@
-html, body { margin:0; height:100%; overflow:hidden; cursor: none;
-  font-family: system-ui, sans-serif; }
+/* Reset básico */
+html, body { margin:0; height:100%; overflow:hidden; cursor:none;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
 
-#glCanvas{ position: fixed; inset: 0; z-index: 0; display:block; }
+/* Canvas (si existe en el HTML) */
+#bgCanvas, #glCanvas { position: fixed; inset: 0; z-index: 0; display:block; }
 
+/* Branding */
 .logo { position: fixed; top: 20px; left: 20px; height: 50px; z-index: 10; }
 
+/* Hamburguesa (3 barras → X) */
 .menu-toggle{ position: fixed; top:20px; right:20px; width:36px; height:28px;
-  display:grid; place-content:center; gap:5px; cursor:pointer; z-index:11; }
+  display:grid; place-content:center; gap:5px; cursor:pointer; z-index:12; }
 .menu-toggle .bar{ width:26px; height:2px; background:#fff; display:block;
   transition: transform .25s ease, opacity .2s ease; }
 body.menu-open .menu-toggle .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-body.menu-open .menu-toggle .bar:nth-child(2){ opacity: 0; }
+body.menu-open .menu-toggle .bar:nth-child(2){ opacity:0; }
 body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-nav{ position: fixed; top: 70px; right: 20px; padding:18px 20px; z-index: 12;
+/* Menú glass flotante simple (se puede cambiar luego por off-canvas) */
+:root{ --menu-bg: rgba(255,255,255,0.18); }
+nav{ position:fixed; top:70px; right:20px; padding:18px 20px; z-index:11;
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  background: rgba(255,255,255,0.18); border-radius: 16px; border: none;
-  box-shadow: 0 10px 40px rgba(0,0,0,.18);
+  background: var(--menu-bg); border-radius:16px; border:1px solid rgba(255,255,255,0.22);
+  box-shadow:0 10px 40px rgba(0,0,0,.18);
   opacity:0; transform: translateY(-6px) scale(.985); pointer-events:none;
-  transition: opacity .28s ease, transform .28s ease; }
+  transition: opacity .35s ease, transform .35s ease; }
 nav.open{ opacity:1; transform:none; pointer-events:auto; }
 nav ul{ list-style:none; margin:0; padding:0; }
 nav li{ margin:10px 0; }
 nav a{ color:#fff; text-decoration:none; font-weight:700; letter-spacing:.08em; font-size:10pt; }
 
-.menu-scrim{ position:fixed; inset:0; z-index:11; background:rgba(0,0,0,.35);
+/* Scrim */
+.menu-scrim{ position:fixed; inset:0; z-index:10; background:rgba(0,0,0,.35);
   opacity:0; pointer-events:none; transition: opacity .25s ease; }
 body.menu-open .menu-scrim{ opacity:1; pointer-events:auto; }
 
+/* Cursor */
 .cursor-bulb{ position: fixed; left:0; top:0; width:22px; height:22px;
-  transform: translate(-50%,-50%); pointer-events:none; z-index: 20;
+  transform: translate(-50%,-50%); pointer-events:none; z-index:20;
   filter: drop-shadow(0 0 3px rgba(255,255,255,0.6)); }
 .cursor-bulb img{ width:22px; height:22px; display:block; }
 .cursor-bulb.on img{ filter: drop-shadow(0 0 8px rgba(255,255,255,0.95));

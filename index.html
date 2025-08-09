@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css?v=1"/>
+  <link rel="stylesheet" href="styles.css?v=9"/>
 </head>
 <body>
-  <canvas id="glCanvas"></canvas>
-
+  <!-- El canvas se crea automáticamente desde overlay.js si no existe -->
   <header>
     <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
     <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -25,11 +24,11 @@
   </header>
   <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
 
+  <!-- Cursor Bombilla (fallback a .jpeg lo maneja overlay.js) -->
   <div class="cursor-bulb" id="cursor-bulb">
-    <img src="bombilla.jpeg" alt="bulb"/>
+    <img src="bombilla.svg" alt="bulb"/>
   </div>
 
-  <script defer src="overlay.js?v=1"></script>
-  <script defer src="water.js?v=1"></script>
+  <script defer src="overlay.js?v=9"></script>
 </body>
 </html>
