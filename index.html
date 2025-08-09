@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css?v=5"/>
+  <link rel="stylesheet" href="styles.css?v=7"/>
 </head>
 <body>
-  <!-- Canvas que pinta la IMAGEN DE FONDO y aplica la onda -->
+  <!-- Canvas fondo -->
   <canvas id="bgCanvas"></canvas>
 
+  <!-- Header con logo y menú hamburguesa -->
   <header>
     <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
@@ -23,11 +24,18 @@
     </nav>
   </header>
 
-  <!-- Bombilla que sigue al cursor -->
+  <!-- Nuevo menú vertical superior central -->
+  <div class="vertical-menu">
+    <span>NOSOTROS</span>
+    <span>EQUIPO</span>
+    <span>CONTACTO</span>
+  </div>
+
+  <!-- Cursor bombilla -->
   <div class="cursor-bulb" id="cursor-bulb">
     <img src="bombilla.svg" alt="bulb"/>
   </div>
 
-  <script defer src="overlay.js?v=5"></script>
+  <script defer src="overlay.js?v=7"></script>
 </body>
 </html>

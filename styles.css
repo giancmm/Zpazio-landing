@@ -5,8 +5,8 @@ html, body {
   margin: 0;
   height: 100%;
   overflow: hidden;
-  cursor: none; /* ocultamos cursor nativo */
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  cursor: none;
+  font-family: 'Playfair Display', serif;
 }
 
 #bgCanvas {
@@ -47,6 +47,26 @@ nav ul { list-style: none; margin:0; padding:0; }
 nav li { margin: 10px 0; }
 nav a { color: #111; text-decoration: none; font-weight: 700; }
 
+/* Menú vertical superior central */
+.vertical-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 9;
+}
+.vertical-menu span {
+  color: white;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Cursor bombilla */
 .cursor-bulb {
   position: fixed;
   left: 0; top: 0;
@@ -59,7 +79,7 @@ nav a { color: #111; text-decoration: none; font-weight: 700; }
 }
 .cursor-bulb img { width: 22px; height: 22px; display:block; }
 
-/* Encendido amarillo intenso (0.5s) con color #ffff05 */
+/* Glow amarillo intenso */
 .cursor-bulb.on img {
   filter: drop-shadow(0 0 12px rgba(255,255,5,1))
           drop-shadow(0 0 26px rgba(255,255,5,0.9))
