@@ -2,15 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zpazio</title>
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5"/>
 </head>
 <body>
-  <div class="overlay"></div>
+  <!-- Canvas que pinta la IMAGEN DE FONDO y aplica la onda -->
+  <canvas id="bgCanvas"></canvas>
 
   <header>
-    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo" />
+    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
     <nav id="menu" class="hidden">
       <ul>
@@ -22,24 +23,11 @@
     </nav>
   </header>
 
-  <!-- Mata cualquier rastro del antiguo #cursor-effect por si está cacheado -->
-  <script>
-    (function killLegacyCursor(){
-      function nuke(){
-        const old = document.getElementById('cursor-effect');
-        if (old) old.remove();
-      }
-      nuke();
-      const mo = new MutationObserver(nuke);
-      mo.observe(document.documentElement, {childList:true, subtree:true});
-      window.addEventListener('unload', ()=>mo.disconnect());
-    })();
+  <!-- Bombilla que sigue al cursor -->
+  <div class="cursor-bulb" id="cursor-bulb">
+    <img src="bombilla.svg" alt="bulb"/>
+  </div>
 
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('menu').classList.toggle('hidden');
-    });
-  </script>
-
-  <script defer src="overlay.js?v=4"></script>
+  <script defer src="overlay.js?v=5"></script>
 </body>
 </html>
