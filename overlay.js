@@ -1,24 +1,37 @@
-// --- Menú (robusto) ---
+// --- Menú (robusto + UX premium) ---
 document.addEventListener('DOMContentLoaded', ()=>{
   const menu = document.getElementById('menu');
   const toggle = document.getElementById('menu-toggle');
+  const scrim = document.getElementById('menu-scrim');
   if (!menu || !toggle) return;
+
+  const closeMenu = ()=>{
+    menu.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
 
   toggle.addEventListener('click', (e)=>{
     e.stopPropagation();
-    menu.classList.toggle('open');
-    // Si usas la versión antigua con 'hidden', descomenta la siguiente línea y comenta la anterior
-    // menu.classList.toggle('hidden');
+    const isOpen = menu.classList.toggle('open');
+    document.body.classList.toggle('menu-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
   });
+
+  if (scrim){
+    scrim.addEventListener('click', closeMenu);
+  }
 
   document.addEventListener('click', (e)=>{
     if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.classList.remove('open');
-      // menu.classList.add('hidden'); // para compatibilidad con versión antigua
+      closeMenu();
     }
   });
-});
 
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') closeMenu();
+  });
+});
 // --- Cursor Bombilla ---
 const bulb = document.getElementById('cursor-bulb');
 window.addEventListener('mousemove',(e)=>{
