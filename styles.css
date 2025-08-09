@@ -1,5 +1,5 @@
 
-/* ===== Zpazio — Off-canvas derecho con entrada suave ===== */
+/* ===== Zpazio — Off-canvas derecho (ajustes solicitados) ===== */
 
 /* Base */
 html, body{
@@ -25,7 +25,7 @@ body.menu-open .menu-toggle .bar:nth-child(2){ opacity:0; }
 body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
 /* ===== Panel deslizante desde la derecha ===== */
-:root{ --panel-bg: rgba(20,20,20,.65); }
+:root{ --panel-bg: rgba(240,240,240,.72); } /* gris claro con transparencia */
 
 /* Forzar que cualquier 'hidden' previo no lo oculte */
 nav#menu.hidden{ display:block !important; }
@@ -33,19 +33,22 @@ nav#menu.hidden{ display:block !important; }
 /* Estado base: fuera de pantalla a la derecha */
 nav#menu{
   position:fixed; top:0; right:0; z-index:30;
-  width:6.5cm; max-width:90vw; height:100vh;
+  width:6.5cm; max-width:90vw; height:100vh; /* ancho 6.5 cm */
   padding:28px 26px;
   background:var(--panel-bg);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  box-shadow:-18px 0 40px rgba(0,0,0,.35);
-  border-radius:0; /* bordes cuadrados */
+  box-shadow:-18px 0 40px rgba(0,0,0,.30);
+
+  /* Sin bordes ni radios */
   border:none;
+  border-radius:0;
 
   transform: translateX(100%);
   opacity:0;
   pointer-events:none;
-  transition: transform .55s cubic-bezier(.22,.61,.36,1), opacity .35s ease;
+  /* Velocidad 50% más lenta: de .55s -> 1.10s */
+  transition: transform 1.10s cubic-bezier(.22,.61,.36,1), opacity .55s ease;
 }
 
 /* Abierto: visible y clicable */
@@ -59,7 +62,7 @@ nav#menu.open{
 nav#menu ul{ list-style:none; margin:56px 0 0 0; padding:0; }
 nav#menu li{ margin:14px 0; }
 nav#menu a{
-  color:#fff; text-decoration:none; font-weight:600; letter-spacing:.02em;
+  color:#111; text-decoration:none; font-weight:600; letter-spacing:.02em;
   font-size:10pt; text-transform:none; display:inline-block; padding:4px 0;
   transition: transform .2s ease, opacity .2s ease;
 }
@@ -70,7 +73,7 @@ nav#menu a:active{ transform: translateX(-1px); opacity:.85; }
 .menu-scrim{
   position:fixed; inset:0; z-index:25;
   background:rgba(0,0,0,.35);
-  opacity:0; pointer-events:none; transition: opacity .35s ease;
+  opacity:0; pointer-events:none; transition: opacity .55s ease; /* acompasa con el panel */
 }
 body.menu-open .menu-scrim{ opacity:1; pointer-events:auto; }
 
