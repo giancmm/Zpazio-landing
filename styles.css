@@ -1,98 +1,22 @@
 
-:root { --menu-bg: rgba(200,200,200,0.95); }
-
-html, body {
-  margin: 0;
-  height: 100%;
-  overflow: hidden;          /* home fijo */
-  cursor: none;              /* ocultar cursor nativo */
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Canvas del fondo */
-#bgCanvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-
-/* Header */
-.logo {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  height: 50px;
-  z-index: 10;
-}
-
-.menu-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-  z-index: 11;
-}
-
-nav.hidden { display: none; }
-nav {
-  position: fixed;
-  top: 70px;
-  right: 20px;
-  background: var(--menu-bg);
-  border-radius: 10px;
-  padding: 18px 20px;
-  z-index: 10;
-}
-nav ul { list-style: none; margin: 0; padding: 0; }
-nav li { margin: 10px 0; }
-nav a { color: #111; text-decoration: none; font-weight: 700; }
-
-/* Menú superior VERTICAL a la derecha del logo */
+/* ===== Ajuste de posición del bloque vertical (estilo 5Sólidos) ===== */
 .top-vertical-menu {
   position: fixed;
-  top: 28px;          /* alineado con el header */
-  left: 112px;        /* separado del logo */
+  top: 32px;      /* baja un poco para alinear con el header */
+  left: 165px;    /* a la derecha del logo, sin invadirlo */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
   z-index: 9;
 }
+
 .top-vertical-menu a {
   color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-weight: bold;
   text-decoration: none;
   line-height: 1.35;
   text-transform: capitalize;
-}
-
-/* Cursor bombilla */
-.cursor-bulb {
-  position: fixed;
-  left: 0; top: 0;
-  width: 22px; height: 22px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 12;
-  will-change: transform, filter;
-  filter: drop-shadow(0 0 3px rgba(255,255,255,0.6));
-}
-.cursor-bulb img { width: 22px; height: 22px; display: block; }
-
-/* Glow amarillo intenso #ffff05 */
-.cursor-bulb.on img {
-  filter: drop-shadow(0 0 12px rgba(255,255,5,1))
-          drop-shadow(0 0 26px rgba(255,255,5,0.9))
-          drop-shadow(0 0 40px rgba(255,255,5,0.7));
-  transform: scale(1.15);
-  transition: filter 0.5s ease, transform 0.2s ease;
-}
-
-/* Responsive mínimo */
-@media (max-width: 640px){
-  .top-vertical-menu { left: 90px; gap: 6px; }
-  .top-vertical-menu a { font-size: 12px; }
 }
