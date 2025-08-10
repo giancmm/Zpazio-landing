@@ -115,3 +115,5 @@ body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate
     overflow-y: auto;
     max-height: 100vh;
 }
+
+body.menu-open .menu-toggle{ display:none !important; }

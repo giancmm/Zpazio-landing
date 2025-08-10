@@ -56,7 +56,8 @@
       .cards p{ margin:0; color: var(--muted); }
       .thumbs .thumb{ height:150px; border-radius: var(--radius-sm); background:#1b1d1f; border:1px solid var(--border); box-shadow: var(--shadow); }
       body.menu-open{ overflow:hidden; }
-    </style>
+    body.menu-open .hb-toggle{ display:none !important; }
+</style>
     
   
   <style>
@@ -97,7 +98,8 @@
       z-index:50; opacity:0; pointer-events:none; transition: opacity .25s ease;
     }
     body.menu-open .hb-scrim{ opacity:1; pointer-events:auto; }
-  </style>
+  body.menu-open .hb-toggle{ display:none !important; }
+</style>
 
 </head>
 <body>
@@ -197,12 +199,13 @@
 
       toggle.addEventListener('click', (e)=>{
         e.stopPropagation();
-        const isOpen = menu.classList.toggle('open');
-        document.body.classList.toggle('menu-open', isOpen);
-        toggle.setAttribute('aria-expanded', String(isOpen));
+        if (!menu.classList.contains('open')){
+          menu.classList.add('open');
+          document.body.classList.add('menu-open');
+          toggle.setAttribute('aria-expanded','true');
+        }
       });
-
-      if (scrim){ scrim.addEventListener('click', closeMenu); }
+if (scrim){ scrim.addEventListener('click', closeMenu); }
 
       document.addEventListener('click', (e)=>{
         if (!menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
