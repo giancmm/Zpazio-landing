@@ -1,31 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flos - Zpazio</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flos — Zpazio</title>
+
+  <!-- Heredamos exactamente el look de Vibia -->
+  <link rel="stylesheet" href="vibia.css"/>
+
+  <!-- Fallback encapsulado (solo se aplica dentro de #brand-page si por algo vibia.css no carga) -->
+  <style>
+    #brand-page{font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#e7e7e7;background:#0f0f11;min-height:100vh}
+    #brand-page .container{max-width:1160px;margin:0 auto;padding:28px 20px}
+    #brand-page .logo-wrap{display:flex;justify-content:center;margin:10px 0 26px}
+    #brand-page .logo{height:38px;opacity:.9}
+    #brand-page .grid{display:grid;grid-template-columns:1.6fr .9fr;gap:22px}
+    #brand-page .panel{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:22px 22px 18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    #brand-page h1{font-size:40px;line-height:1.1;margin:0 0 12px}
+    #brand-page p{margin:10px 0 0;color:#cfd0d2}
+    #brand-page .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    #brand-page .pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;font-size:12px}
+    #brand-page .kvs{display:flex;gap:18px;flex-wrap:wrap}
+    #brand-page .kv h4{margin:0 0 6px;font-size:12px;letter-spacing:.06em;color:#b9bac0;text-transform:uppercase}
+    #brand-page .btns{display:flex;gap:10px;margin-top:10px}
+    #brand-page .btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:10px 14px;border-radius:999px;text-decoration:none;color:#fff;font-size:14px}
+    #brand-page h2.sec{margin:36px 0 14px;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:#cfd0d2}
+    #brand-page .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    #brand-page .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px 18px 16px;min-height:120px}
+    #brand-page .card h3{margin:0 0 8px;font-size:18px}
+    #brand-page .card p{margin:0;color:#cfd0d2}
+    #brand-page .projects{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+    #brand-page .ph{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:16px;aspect-ratio:1/1}
+    @media (max-width:980px){#brand-page .grid{grid-template-columns:1fr}}
+    body{overflow-y:auto} /* asegura scroll */
+  </style>
 </head>
 <body>
-    <header>
-        <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo">
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="vibia.html">Vibia</a>
-        </nav>
-    </header>
-    <main>
-        <section class="brand-hero">
-            <h1>Flos</h1>
-            <p>Iluminación decorativa de alto diseño, innovación y calidad.</p>
+  <div id="brand-page">
+    <div class="container">
+
+      <!-- Logo centrado como en Vibia -->
+      <div class="logo-wrap">
+        <img src="logo_zpazio_blanco_1.png" class="logo" alt="Zpazio Logo"/>
+      </div>
+
+      <!-- Hero (mismo layout que Vibia) -->
+      <div class="grid">
+        <section class="panel">
+          <h1>Flos</h1>
+          <p>Iluminación contemporánea con alma italiana e innovación técnica. Piezas icónicas, materiales exquisitos y una lectura espacial elegante: así entiende la luz Flos.</p>
+          <div class="pills">
+            <span class="pill">Italia</span>
+            <span class="pill">Diseño Contemporáneo</span>
+            <span class="pill">Arquitectónico/Decorativo</span>
+          </div>
         </section>
-        <section class="brand-gallery">
-            <img src="background.jpeg" alt="Lámpara Flos">
-            <p>Descubre la colección de iluminación decorativa de Flos, reconocida a nivel mundial por su diseño icónico y tecnología de vanguardia.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Zpazio Design & Brands</p>
-    </footer>
+
+        <aside class="panel">
+          <div class="kvs">
+            <div class="kv">
+              <h4>Fundación</h4>
+              <div>1962</div>
+            </div>
+            <div class="kv">
+              <h4>Enfoque</h4>
+              <div>Interior/Arquitectural</div>
+            </div>
+          </div>
+          <div class="btns">
+            <a class="btn" href="https://www.flos.com/" target="_blank" rel="noopener">Sitio oficial</a>
+            <a class="btn" href="https://www.flos.com/en/lighting/collections/" target="_blank" rel="noopener">Catálogo (PDF)</a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- BEST SELLERS (5) -->
+      <h2 class="sec">BEST SELLERS</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>IC</h3>
+          <p>Geometría y equilibrio: esfera y línea, una firma de diseño.</p>
+        </article>
+        <article class="card">
+          <h3>Glo-Ball</h3>
+          <p>Difusión uniforme: luz suave y envolvente para cualquier espacio.</p>
+        </article>
+        <article class="card">
+          <h3>Arco</h3>
+          <p>Clásico atemporal: arco de mármol y acero con presencia escultural.</p>
+        </article>
+        <article class="card">
+          <h3>Aim</h3>
+          <p>Cables visibles y lenguaje gráfico contemporáneo.</p>
+        </article>
+        <article class="card">
+          <h3>Noctambule</h3>
+          <p>Módulos de vidrio soplado que componen esculturas de luz.</p>
+        </article>
+      </div>
+
+      <!-- PROYECTOS ICÓNICOS (placeholders como en Vibia) -->
+      <h2 class="sec" style="margin-top:54px">PROYECTOS ICÓNICOS</h2>
+      <div class="projects">
+        <div class="ph" title="Proyecto 1"></div>
+        <div class="ph" title="Proyecto 2"></div>
+        <div class="ph" title="Proyecto 3"></div>
+        <div class="ph" title="Proyecto 4"></div>
+        <div class="ph" title="Proyecto 5"></div>
+      </div>
+
+      <div style="margin:32px 0 6px;opacity:.7;font-size:12px">
+        © Zpazio — Ficha curada de marca &nbsp;·&nbsp; <a href="https://www.flos.com/" target="_blank" rel="noopener" style="color:#cfd0d2">flos.com ↗</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
