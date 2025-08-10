@@ -1,33 +1,45 @@
-/* ===== Patch menú: Marcas — scroll + indent + títulos + tecnología ===== */
+/* ===== Patch menú: Marcas — alineación + scroll ===== */
+
+/* Habilita scroll dentro del panel sin romper el lock del body */
 #menu{
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  max-height: 100vh;                 /* asegura que no exceda la pantalla */
+  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+  overscroll-behavior: contain;      /* evita que la página detrás se mueva */
+  box-sizing: border-box;
 }
 
-/* Título de sección (Marcas / Tecnología) */
+/* Mantén el arranque de la lista debajo de la 'r' (como tu versión estable) */
+#menu ul{
+  padding-left: 1cm;   /* Alineado fino bajo la 'r' */
+  padding-right: 16px;
+  margin: 0;
+
+  padding-top: 1cm;
+}
+
+/* Título 'Marcas' (sin cambios de look) */
 #menu .menu-section-title{
-  margin: 12px 0 8px 0;
-  font-weight: 800;
-  font-size: 12pt;           /* ↑ tamaño del título */
+  margin: 12px 0 6px 0;
+  font-weight: 700;
+  font-size: 10pt;
   letter-spacing: .02em;
   color: #fff;
   list-style: none;
-  padding-left: 0;           /* títulos quedan “a ras” */
+  padding-left: 0;
 }
 
-/* Ítems: 0.5cm a la derecha respecto al título */
+/* Items (espaciado reducido) */
 #menu .menu-subitem{
-  margin: 8px 0;
+  margin: 7px 0;
   list-style: none;
-  margin-left: 0.5cm;        /* <-- desplazamiento que pediste */
 }
-
 #menu .menu-subitem a{
   display: inline-block;
   padding: 0;
   color: #fff;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 400;   /* sin negrita */
   font-size: 10pt;
   letter-spacing: .02em;
   opacity: .95;
@@ -37,3 +49,5 @@
   transform: translateX(-2px);
   transition: transform .2s ease, opacity .2s ease;
 }
+
+#menu .menu-spacer{ height: 0.5cm; list-style:none; }

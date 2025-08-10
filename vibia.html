@@ -1,59 +1,223 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vibia — Zpazio</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="styles_patch_marcas.css">
+  
+    <style>
+      :root{
+        --bg: #0b0b0c; --card:#161718; --card-2:#141516; --text:#e9e9ea; --muted:#b6b8bb;
+        --chip:#202224; --border: rgba(255,255,255,.06); --shadow: 0 10px 35px rgba(0,0,0,.35);
+        --radius: 16px; --radius-sm: 12px; --gap: 24px; --section-gap-lg: 92px;
+      }
+      html,body{ margin:0; padding:0; background:var(--bg); color:var(--text);
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; line-height:1.45; }
+      .wrapper{ width:min(1180px, 92vw); margin: 0 auto var(--section-gap-lg); }
+      .grid{ display:grid; gap: var(--gap); }
+      .grid-2{ grid-template-columns: 1.15fr .85fr; }
+      .grid-4{ grid-template-columns: repeat(4,1fr); }
+      .grid-5{ grid-template-columns: repeat(5,1fr); }
+      @media (max-width: 1100px){
+        .grid-4{ grid-template-columns: repeat(2,1fr); }
+        .grid-5{ grid-template-columns: repeat(3,1fr); }
+        .grid-2{ grid-template-columns: 1fr; }
+      }
+      @media (max-width: 640px){
+        .grid-4, .grid-5{ grid-template-columns: 1fr; }
+      }
+      .brand-header{ height: 0; } /* header solo coloca logo/hamburguesa fijos */
+      .card{
+        background: linear-gradient(180deg, var(--card), var(--card-2));
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 22px 22px;
+      }
+      .hero{ margin-top: 88px; } /* deja espacio bajo el header fijo */
+      h1.brand-title{ margin:0 0 14px 0; font-size: 42px; letter-spacing:.2px; font-weight: 800; }
+      .brand-desc{ margin: 0 0 14px 0; color: var(--muted); }
+      .tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+      .tag{ background: var(--chip); color: var(--text); border:1px solid var(--border); padding:8px 12px; border-radius:999px; font-size:14px; }
+      .hero-right .facts{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .fact .k{ color:var(--muted); font-size:12px; letter-spacing:.12em; text-transform:uppercase; }
+      .fact .v{ font-size:20px; font-weight:700; margin-top:4px; }
+      .cta-row{ display:flex; gap:12px; margin-top:18px; }
+      .btn{
+        display:inline-block; background:#1e1f22; border:1px solid var(--border);
+        padding:10px 14px; border-radius:999px; color:var(--text); text-decoration:none; font-weight:600;
+      }
+      .btn:hover{ filter:brightness(1.06); }
+      .section{ margin-top: var(--section-gap-lg); }
+      .section-title{
+        font-size:18px; letter-spacing:.25em; text-transform:uppercase; color:#dfe1e4; margin:0 0 18px 4px;
+      }
+      .cards .card-title{ margin:0 0 6px 0; font-size:18px; font-weight:800; }
+      .cards p{ margin:0; color: var(--muted); }
+      .thumbs .thumb{ height:150px; border-radius: var(--radius-sm); background:#1b1d1f; border:1px solid var(--border); box-shadow: var(--shadow); }
+      body.menu-open{ overflow:hidden; }
+    body.menu-open .hb-toggle{ display:none !important; }
+</style>
+    
+  
+  <style>
+    /* ====== Scoped styles del header/menu (no afecta el resto) ====== */
+    .hb-header{ position:relative; z-index:50; }
+    .hb-logo{ position:fixed; top:20px; left:20px; height:28px; z-index:52; }
+    .hb-toggle{
+      position:fixed; top:20px; right:20px; width:36px; height:28px;
+      display:grid; place-content:center; gap:5px; cursor:pointer; z-index:53;
+    }
+    .hb-toggle .bar{ width:26px; height:2px; background:#fff; display:block;
+      transition: transform .25s ease, opacity .2s ease; }
+    body.menu-open .hb-toggle .bar:nth-child(1){ transform:none !important; }
+    body.menu-open .hb-toggle .bar:nth-child(2){ opacity:1 !important; }
+    body.menu-open .hb-toggle .bar:nth-child(3){ transform:none !important; }
+
+    .hb-menu{
+      position:fixed; top:0; right:0; width:6.5cm; max-width:92vw; height:100vh;
+      background: rgba(50,50,50,.55); backdrop-filter: blur(14px);
+      box-shadow: -18px 0 40px rgba(0,0,0,.30);
+      transform: translateX(100%); opacity:0; pointer-events:none;
+      transition: transform 1.1s cubic-bezier(.22,.61,.36,1), opacity .55s ease;
+      z-index:51; border:none; border-radius:0; overflow-y:auto;
+      -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+      padding: 28px 22px;
+    }
+    .hb-menu.open{ transform: translateX(0); opacity:1; pointer-events:auto; }
+
+    .hb-list{ list-style:none; margin:56px 0 0 0; padding:0 16px 0 1cm; }
+    .hb-title{
+      margin: 12px 0 6px 0; font-weight:700; font-size:10pt; letter-spacing:.02em; color:#fff;
+    }
+    .hb-item{ margin:7px 0; }
+    .hb-item a{ color:#fff; text-decoration:none; font-weight:400; font-size:10pt; letter-spacing:.02em; }
+
+    .hb-scrim{
+      position:fixed; inset:0; background:rgba(0,0,0,.35);
+      z-index:50; opacity:0; pointer-events:none; transition: opacity .25s ease;
+    }
+    body.menu-open .hb-scrim{ opacity:1; pointer-events:auto; }
+  body.menu-open .hb-toggle{ display:none !important; }
+</style>
+
 </head>
 <body>
-  <canvas id="bgCanvas"></canvas>
-
-  <header>
-    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
-    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+  
+  <!-- ====== Header con hamburguesa (sin botón X) ====== -->
+  <header class="hb-header">
+    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="hb-logo"/>
+    <div class="hb-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </div>
-
-    <nav id="menu" class="hidden">
-      <ul>
-        <li class="menu-section-title">Marcas</li>
-        <li class="menu-subitem"><a href="#">A Emotional Light</a></li>
-        <li class="menu-subitem"><a href="#">Aldabra</a></li>
-        <li class="menu-subitem"><a href="#">Axolight</a></li>
-        <li class="menu-subitem"><a href="#">Bomma</a></li>
-        <li class="menu-subitem"><a href="#">Cini & Nils</a></li>
-        <li class="menu-subitem"><a href="#">Cooper Lighting</a></li>
-        <li class="menu-subitem"><a href="flos.html">Flos</a></li>
-        <li class="menu-subitem"><a href="#">Fritz Hansen</a></li>
-        <li class="menu-subitem"><a href="#">Hofflights</a></li>
-        <li class="menu-subitem"><a href="#">Icone Luce</a></li>
-        <li class="menu-subitem"><a href="#">Karman</a></li>
-        <li class="menu-subitem"><a href="#">Ledyi</a></li>
-        <li class="menu-subitem"><a href="#">Leucos</a></li>
-        <li class="menu-subitem"><a href="#">Lodes</a></li>
-        <li class="menu-subitem"><a href="#">Marset</a></li>
-        <li class="menu-subitem"><a href="#">Original BTC</a></li>
-        <li class="menu-subitem"><a href="#">Parachilna</a></li>
-        <li class="menu-subitem"><a href="#">Platek</a></li>
-        <li class="menu-subitem"><a href="#">Quasar</a></li>
-        <li class="menu-subitem"><a href="#">Terzani</a></li>
-        <li class="menu-subitem"><a href="vibia.html">Vibia</a></li>
-        <li class="menu-subitem"><a href="#">WAC Lighting</a></li>
-
+    <nav id="menu" class="hb-menu" aria-label="Marcas">
+      <ul class="hb-list">
+        <li class="hb-title">Marcas</li>
+        <li class="hb-item"><a href="vibia.html">Vibia</a></li>
+        <li class="hb-item"><a href="flos.html">Flos</a></li>
+        <li class="hb-item"><a href="#">A Emotional Light</a></li>
+        <li class="hb-item"><a href="#">Aldabra</a></li>
+        <li class="hb-item"><a href="#">Axolight</a></li>
+        <li class="hb-item"><a href="#">Bomma</a></li>
+        <li class="hb-item"><a href="#">Cini & Nils</a></li>
+        <li class="hb-item"><a href="#">Cooper Lighting</a></li>
+        <li class="hb-item"><a href="#">Fritz Hansen</a></li>
+        <li class="hb-item"><a href="#">Hofflights</a></li>
+        <li class="hb-item"><a href="#">Icone Luce</a></li>
+        <li class="hb-item"><a href="#">Karman</a></li>
+        <li class="hb-item"><a href="#">Ledyi</a></li>
+        <li class="hb-item"><a href="#">Leucos</a></li>
+        <li class="hb-item"><a href="#">Lodes</a></li>
+        <li class="hb-item"><a href="#">Marset</a></li>
+        <li class="hb-item"><a href="#">Original BTC</a></li>
+        <li class="hb-item"><a href="#">Parachilna</a></li>
+        <li class="hb-item"><a href="#">Platek</a></li>
+        <li class="hb-item"><a href="#">Quasar</a></li>
+        <li class="hb-item"><a href="#">Terzani</a></li>
+        <li class="hb-item"><a href="#">WAC Lighting</a></li>
+      
+        <li class="menu-spacer"></li>
         <li class="menu-section-title">Tecnología</li>
         <li class="menu-subitem"><a href="#">Hubbell</a></li>
         <li class="menu-subitem"><a href="#">Lutron</a></li>
       </ul>
     </nav>
+    <div class="hb-scrim" id="menu-scrim" aria-hidden="true"></div>
   </header>
-  <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
 
-  <main class="brand-shell">
-    <!-- contenido de vibia -->
+  <main class="wrapper">
+    <section class="grid grid-2 hero">
+      <article class="card hero-left">
+        <h1 class="brand-title">Vibia</h1>
+        <p class="brand-desc">Iluminación contemporánea con sensibilidad arquitectónica. Piezas sobrias, materiales exquisitos y una lectura espacial elegante: así se entiende la luz en Vibia.</p>
+        <div class="tags"><span class="tag">Barcelona</span><span class="tag">Diseño Contemporáneo</span><span class="tag">Arquitectónico</span></div>
+      </article>
+      <aside class="card hero-right">
+        <div class="facts"><div class="fact"><div class="k">Fundación</div><div class="v">1987</div></div><div class="fact"><div class="k">Enfoque</div><div class="v">Interior/Arquitectural</div></div></div>
+        <div class="cta-row">
+          <a class="btn" href="#" target="_blank" rel="noopener">Sitio oficial</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">Catálogo (PDF)</a>
+        </div>
+      </aside>
+    </section>
+    <section class="section">
+      <h2 class="section-title">BEST SELLERS</h2>
+      <div class="grid grid-4 cards"><article class="card">
+              <h3 class="card-title">Skan</h3>
+              <p>Líneas puras, luz precisa para espacios contenidos.</p>
+            </article><article class="card">
+              <h3 class="card-title">North</h3>
+              <p>Geometría ligera que articula la luz con sutileza.</p>
+            </article><article class="card">
+              <h3 class="card-title">Mayfair</h3>
+              <p>Clásico reinterpretado: tradición y minimalismo dialogando.</p>
+            </article><article class="card">
+              <h3 class="card-title">Duo</h3>
+              <p>Madera y luz técnica: calidez con rigor arquitectónico.</p>
+            </article><article class="card">
+              <h3 class="card-title">Musa</h3>
+              <p>Poética material: vidrio soplado y atmósferas suaves.</p>
+            </article></div>
+    </section>
+    
+        <section class="section">
+          <h2 class="section-title">PROYECTOS ICÓNICOS</h2>
+          <div class="grid grid-5 thumbs">
+            <div class="thumb"></div><div class="thumb"></div><div class="thumb"></div>
+            <div class="thumb"></div><div class="thumb"></div>
+          </div>
+        </section>
   </main>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const menu = document.getElementById('menu');
+      const toggle = document.getElementById('menu-toggle');
+      const scrim = document.getElementById('menu-scrim');
+      if (!menu || !toggle) return;
 
-  <script defer src="overlay.js"></script>
+      const closeMenu = ()=>{
+        menu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded','false');
+      };
+
+      toggle.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        if (!menu.classList.contains('open')){
+          menu.classList.add('open');
+          document.body.classList.add('menu-open');
+          toggle.setAttribute('aria-expanded','true');
+        }
+      });
+if (scrim){ scrim.addEventListener('click', closeMenu); }
+
+      document.addEventListener('click', (e)=>{
+        if (!menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+      });
+      document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeMenu(); });
+    });
+  </script>
+
 </body>
 </html>
