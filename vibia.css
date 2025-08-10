@@ -1,0 +1,18 @@
+/* === vibia-scroll.css: Parche mínimo de scroll SOLO para vibia.html === */
+/* En el home el body está bloqueado por overflow:hidden; aquí lo reactivamos. */
+html, body{
+  height: auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  cursor: auto;
+}
+
+/* Asegura que el contenedor principal no “fuerce” 100vh/hidden */
+.brand-page, .brand-main{
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
+}
+
+/* Pequeños ajustes para que nada fije la pantalla */
+.card-grid{ overflow: visible; }

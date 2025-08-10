@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibia — Zpazio</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <style>
+    /* ====== Reset & base ====== */
+    *,*::before,*::after{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; background:#0b0b0b; color:#eaeaea;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.45;
+    }
+    a{ color:#b9c7ff; text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    /* ====== Layout ====== */
+    .wrap{ width:min(1200px, 92vw); margin:0 auto; padding-bottom:96px; }
+    .spacer-hero{ height: 28px; } /* respiro bajo el logo */
+    .section{ margin-top: clamp(40px, 8vw, 88px); } /* +50% aprox vs 48-56px clásicos */
+    .row{ display:grid; grid-template-columns: 1.35fr .9fr; gap:24px; }
+    @media (max-width: 900px){
+      .row{ grid-template-columns: 1fr; }
+    }
+
+    /* ====== Branding ====== */
+    .brand{
+      display:flex; justify-content:center; align-items:center; padding-top:20px;
+    }
+    .brand img{
+      height: 50px; filter: drop-shadow(0 4px 10px rgba(0,0,0,.6));
+    }
+
+    /* ====== Cards ====== */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 22px 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .elev-1{ background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); }
+
+    /* ====== Typography ====== */
+    h1{ font-size: clamp(32px, 4.5vw, 40px); margin: 0 0 6px 0; letter-spacing: .02em; }
+    h2.section-title{
+      font-size: clamp(18px, 2.2vw, 22px); margin:0 0 18px 0; letter-spacing:.18em;
+      text-transform: uppercase;
+    }
+    .muted{ color:#bdbdbd; }
+    .eyebrow{ letter-spacing:.14em; text-transform: uppercase; color:#cfcfcf; font-weight:600; }
+
+    /* ====== Chips ====== */
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .chip{
+      background: rgba(255,255,255,.08);
+      color:#fff; font-size: 12px; padding:6px 10px; border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    /* ====== Buttons ====== */
+    .btn-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+    .btn{
+      display:inline-block; border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06); color:#fff; padding:9px 14px; border-radius:999px;
+      font-weight:600;
+    }
+    .btn:hover{ background: rgba(255,255,255,.12); }
+
+    /* ====== Grids ====== */
+    .grid-5{ display:grid; grid-template-columns: repeat(5, 1fr); gap:18px; }
+    .grid-4{ display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; }
+    @media (max-width: 1100px){
+      .grid-5, .grid-4{ grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 760px){
+      .grid-5, .grid-4{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px){
+      .grid-5, .grid-4{ grid-template-columns: 1fr; }
+    }
+
+    .product-card{ padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      min-height: 110px;
+    }
+    .product-title{ font-weight:700; margin:0 0 10px 0; }
+    .product-desc{ color:#cfcfcf; font-size:14px; }
+
+    /* ====== Project tiles ====== */
+    .tile{
+      aspect-ratio: 4/3;
+      border-radius:14px; border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015));
+    }
+
+    /* ====== Footer mini ====== */
+    .footnote{ color:#a8a8a8; font-size:12px; margin-top: 22px; }
+  </style>
+</head>
+<body>
+  <div class="brand">
+    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo">
+  </div>
+  <div class="spacer-hero"></div>
+
+  <div class="wrap">
+
+    <!-- Intro + Facts -->
+    <div class="row section">
+      <div class="card elev-1">
+        <h1>Vibia</h1>
+        <p class="muted">
+          Iluminación contemporánea con sensibilidad arquitectónica. Piezas sobrias, materiales exquisitos y una lectura
+          espacial elegante: así se entiende la luz en Vibia.
+        </p>
+        <div class="chips">
+          <span class="chip">Barcelona</span>
+          <span class="chip">Diseño Contemporáneo</span>
+          <span class="chip">Arquitectónico</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">Fundación</div>
+        <div style="font-weight:800; font-size:18px; margin-top:2px;">1987</div>
+
+        <div class="eyebrow" style="margin-top:14px;">Enfoque</div>
+        <div class="muted" style="font-weight:700;">Interior/Arquitectural</div>
+
+        <div class="btn-row">
+          <a class="btn" href="https://www.vibia.com" target="_blank" rel="noopener">Sitio oficial</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">Catálogo (PDF)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEST SELLERS -->
+    <section class="section">
+      <h2 class="section-title">Best Sellers</h2>
+      <div class="grid-4">
+        <div class="product-card">
+          <h3 class="product-title">Skan</h3>
+          <p class="product-desc">Líneas puras, luz precisa para espacios contenidos.</p>
+        </div>
+        <div class="product-card">
+          <h3 class="product-title">North</h3>
+          <p class="product-desc">Geometría ligera que articula la luz con sutileza.</p>
+        </div>
+        <div class="product-card">
+          <h3 class="product-title">Mayfair</h3>
+          <p class="product-desc">Clásico reinterpretado: tradición y minimalismo dialogando.</p>
+        </div>
+        <div class="product-card">
+          <h3 class="product-title">Duo</h3>
+          <p class="product-desc">Madera y luz técnica: calidez con rigor arquitectónico.</p>
+        </div>
+        <div class="product-card">
+          <h3 class="product-title">Musa</h3>
+          <p class="product-desc">Poética material: vidrio soplado y atmósferas suaves.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS ICÓNICOS -->
+    <section class="section">
+      <h2 class="section-title">Proyectos Icónicos</h2>
+      <div class="grid-5">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+      <div class="footnote">© Zpazio — Ficha curada de marca &nbsp;&nbsp;·&nbsp;&nbsp; vibia.com ↗</div>
+    </section>
+
+  </div>
+</body>
+</html>
