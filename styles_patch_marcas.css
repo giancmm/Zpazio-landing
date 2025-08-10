@@ -1,15 +1,22 @@
+/* ===== Patch menú: Marcas — alineación + scroll ===== */
 
-/* ===== Patch menú: Marcas — 1cm desde el borde, scroll, spacing reducido ===== */
+/* Habilita scroll dentro del panel sin romper el lock del body */
 #menu{
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  max-height: 100vh;                 /* asegura que no exceda la pantalla */
+  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+  overscroll-behavior: contain;      /* evita que la página detrás se mueva */
+  box-sizing: border-box;
 }
-/* Sangría general de la lista para arrancar debajo de la 'r' (aprox). Ajustable. */
+
+/* Mantén el arranque de la lista debajo de la 'r' (como tu versión estable) */
 #menu ul{
-  padding-left: 1cm;
+  padding-left: 1cm;   /* Alineado fino bajo la 'r' */
   padding-right: 16px;
   margin: 0;
 }
+
+/* Título 'Marcas' (sin cambios de look) */
 #menu .menu-section-title{
   margin: 12px 0 6px 0;
   font-weight: 700;
@@ -19,8 +26,10 @@
   list-style: none;
   padding-left: 0;
 }
+
+/* Items (espaciado reducido) */
 #menu .menu-subitem{
-  margin: 7px 0;            /* espaciado reducido */
+  margin: 7px 0;
   list-style: none;
 }
 #menu .menu-subitem a{
@@ -28,7 +37,7 @@
   padding: 0;
   color: #fff;
   text-decoration: none;
-  font-weight: 400;         /* sin negrita */
+  font-weight: 400;   /* sin negrita */
   font-size: 10pt;
   letter-spacing: .02em;
   opacity: .95;
