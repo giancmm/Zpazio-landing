@@ -28,3 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.style.display = "none";
     });
 });
+
+
+// Cerrar al hacer clic fuera del panel
+document.addEventListener('click', function(event) {
+    const panel = document.querySelector('.overlay-content');
+    const overlay = document.querySelector('.overlay');
+    if (overlay && overlay.style.width === '100%' && panel && !panel.contains(event.target)) {
+        overlay.style.width = '0';
+    }
+});
