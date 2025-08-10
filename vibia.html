@@ -1,42 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibia — Zpazio</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vibia — Zpazio</title>
+  <link rel="stylesheet" href="vibia.css?v=1" />
 </head>
-<body class="brand-page">
-    <header>
-        <img src="logo-zpazio.png" alt="Zpazio Design & Brands" class="logo">
-    </header>
-    <main>
-        <section class="brand-info">
-            <div class="brand-description">
-                <h1>Vibia</h1>
-                <p>Iluminación contemporánea con sensibilidad arquitectónica. Piezas sobrias, materiales exquisitos y una lectura espacial elegante: así se entiende la luz en Vibia.</p>
-                <div class="tags">
-                    <span>Barcelona</span>
-                    <span>Diseño Contemporáneo</span>
-                    <span>Arquitectónico</span>
-                </div>
-            </div>
-            <div class="brand-meta">
-                <p><strong>Fundación</strong><br>1987</p>
-                <p><strong>Enfoque</strong><br>Interior/Arquitectural</p>
-                <a href="#" class="btn">Sitio oficial</a>
-                <a href="#" class="btn">Catálogo (PDF)</a>
-            </div>
-        </section>
-        <section class="best-sellers">
-            <h2>Best Sellers</h2>
-            <div class="product-grid">
-                <div class="product-card"><h3>Skan</h3><p>Líneas puras, luz precisa para espacios contenidos.</p></div>
-                <div class="product-card"><h3>North</h3><p>Geometría ligera que articula la luz con sutileza.</p></div>
-                <div class="product-card"><h3>Mayfair</h3><p>Clásico reinterpretado: tradición y minimalismo dialogando.</p></div>
-                <div class="product-card"><h3>Duo</h3><p>Madera y luz técnica: calidez con rigor arquitectónico.</p></div>
-            </div>
-        </section>
-    </main>
+<body>
+  <header class="brand-header">
+    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="brand-logo"/>
+  </header>
+
+  <main class="wrapper">
+    <!-- Hero / Intro -->
+    <section class="grid grid-2 hero">
+      <article class="card hero-left">
+        <h1 class="brand-title">Vibia</h1>
+        <p class="brand-desc">
+          Iluminación contemporánea con sensibilidad arquitectónica. Piezas sobrias,
+          materiales exquisitos y una lectura espacial elegante: así se entiende la luz en Vibia.
+        </p>
+        <div class="tags">
+          <span class="tag">Barcelona</span>
+          <span class="tag">Diseño Contemporáneo</span>
+          <span class="tag">Arquitectónico</span>
+        </div>
+      </article>
+
+      <aside class="card hero-right">
+        <div class="facts">
+          <div class="fact">
+            <div class="k">Fundación</div>
+            <div class="v">1987</div>
+          </div>
+          <div class="fact">
+            <div class="k">Enfoque</div>
+            <div class="v">Interior/Arquitectural</div>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="btn" href="#" target="_blank" rel="noopener">Sitio oficial</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">Catálogo (PDF)</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="section">
+      <h2 class="section-title">BEST SELLERS</h2>
+      <div class="grid grid-4 cards">
+        <article class="card">
+          <h3 class="card-title">Skan</h3>
+          <p>Líneas puras, luz precisa para espacios contenidos.</p>
+        </article>
+        <article class="card">
+          <h3 class="card-title">North</h3>
+          <p>Geometría ligera que articula la luz con sutileza.</p>
+        </article>
+        <article class="card">
+          <h3 class="card-title">Mayfair</h3>
+          <p>Clásico reinterpretado: tradición y minimalismo dialogando.</p>
+        </article>
+        <article class="card">
+          <h3 class="card-title">Duo</h3>
+          <p>Madera y luz técnica: calidez con rigor arquitectónico.</p>
+        </article>
+        <article class="card">
+          <h3 class="card-title">Musa</h3>
+          <p>Poética material: vidrio soplado y atmósferas suaves.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="section">
+      <h2 class="section-title">PROYECTOS ICÓNICOS</h2>
+      <div class="grid grid-5 thumbs">
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
