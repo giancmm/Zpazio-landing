@@ -1,18 +1,97 @@
-/* === vibia-scroll.css: Parche mínimo de scroll SOLO para vibia.html === */
-/* En el home el body está bloqueado por overflow:hidden; aquí lo reactivamos. */
-html, body{
-  height: auto !important;
-  overflow-y: auto !important;
-  overflow-x: hidden;
-  cursor: auto;
+:root{
+  --bg:#0b0b0b;
+  --card:#141416;
+  --card-to:#0f0f11;
+  --text:#e9e9ee;
+  --muted:#b7b7c0;
+  --chip:#1d1f22;
+  --chip-b:#2a2d31;
+  --radius:16px;
+  --shadow: 0 10px 40px rgba(0,0,0,.35);
+  --section-gap: 72px;
 }
-
-/* Asegura que el contenedor principal no “fuerce” 100vh/hidden */
-.brand-page, .brand-main{
-  height: auto;
-  min-height: 100%;
-  overflow: visible;
+*{ box-sizing:border-box }
+html,body{ margin:0; padding:0; }
+body.brand-page{
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  line-height: 1.45;
 }
-
-/* Pequeños ajustes para que nada fije la pantalla */
-.card-grid{ overflow: visible; }
+.brand-header{
+  display:flex; align-items:center; justify-content:center;
+  padding: 24px 0 10px;
+}
+.brand-logo{
+  height: 28px; opacity:.9; display:block;
+}
+.brand-main{ width:min(1180px, 92vw); margin: 0 auto; padding: 10px 0 80px; }
+.grid-2{
+  display:grid; grid-template-columns: 1fr 420px; gap: 22px;
+}
+@media (max-width: 980px){
+  .grid-2{ grid-template-columns: 1fr; }
+}
+.grid-3{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+@media (max-width: 980px){
+  .grid-3{ grid-template-columns: 1fr; }
+}
+.grid-5{
+  display:grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+}
+@media (max-width: 980px){
+  .grid-5{ grid-template-columns: repeat(2, 1fr); }
+}
+.card{
+  background: linear-gradient(180deg, var(--card), var(--card-to));
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 22px;
+}
+.brand-title{
+  margin: 0 0 10px 0; font-size: 38px; letter-spacing: .2px;
+}
+.brand-lead{ margin: 14px 0 16px; color: var(--muted); }
+.chips{ display:flex; flex-wrap:wrap; gap: 8px; }
+.chip{
+  display:inline-block; padding: 6px 10px; border-radius: 999px;
+  background: var(--chip); border: 1px solid var(--chip-b);
+  color: #d7d7dd; font-size: 12px;
+}
+.facts .facts-row{
+  display:flex; gap: 26px; margin-bottom: 14px;
+}
+.fact-label{ font-size:12px; color:#a9a9b3; text-transform:uppercase; letter-spacing:.08em; }
+.fact-value{ font-weight: 700; font-size:18px; margin-top: 4px; }
+.actions{ display:flex; gap: 10px; }
+.btn{
+  display:inline-block; padding: 10px 14px; border-radius: 999px;
+  background: #1a1c20; color:#e9e9ee; text-decoration:none; font-weight:600;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.btn:hover{ background:#1f2126; }
+.brand-section{ margin-top: var(--section-gap); }
+.section-title{
+  margin: 0 0 14px 2px; letter-spacing: .22em; font-size: 14px;
+  color:#dcdce3;
+}
+.card-title{ margin: 0 0 8px 0; font-size: 18px; }
+.card-text{ margin: 0; color: var(--muted); }
+.projects .project-tile{
+  height: 120px; border-radius: 12px; background: #101115;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.brand-footer{
+  width:min(1180px, 92vw); margin: 26px auto 60px;
+  display:flex; gap:10px; align-items:center; color:#a4a4ad;
+  font-size:12px; justify-content: space-between;
+}
+.brand-footer .brand-home{
+  color:#cfcfd7; text-decoration:none; padding:6px 8px;
+  background:#121316; border:1px solid rgba(255,255,255,.06);
+  border-radius:8px;
+}
+.brand-footer .brand-home:hover{ background:#17181c; }
