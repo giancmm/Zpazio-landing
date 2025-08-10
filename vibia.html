@@ -69,9 +69,9 @@
     }
     .hb-toggle .bar{ width:26px; height:2px; background:#fff; display:block;
       transition: transform .25s ease, opacity .2s ease; }
-    body.menu-open .hb-toggle .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-    body.menu-open .hb-toggle .bar:nth-child(2){ opacity:0; }
-    body.menu-open .hb-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+    body.menu-open .hb-toggle .bar:nth-child(1){ transform:none !important; }
+    body.menu-open .hb-toggle .bar:nth-child(2){ opacity:1 !important; }
+    body.menu-open .hb-toggle .bar:nth-child(3){ transform:none !important; }
 
     .hb-menu{
       position:fixed; top:0; right:0; width:6.5cm; max-width:92vw; height:100vh;

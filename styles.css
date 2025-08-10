@@ -28,9 +28,9 @@ html, body{
 }
 .menu-toggle .bar{ width:26px; height:2px; background:#fff; display:block;
   transition: transform .25s ease, opacity .2s ease; }
-body.menu-open .menu-toggle .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-body.menu-open .menu-toggle .bar:nth-child(2){ opacity:0; }
-body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+body.menu-open .menu-toggle .bar:nth-child(1){ transform:none !important; }
+body.menu-open .menu-toggle .bar:nth-child(2){ opacity:1 !important; }
+body.menu-open .menu-toggle .bar:nth-child(3){ transform:none !important; }
 
 /* ===== Off-canvas lateral ===== */
 :root{ --panel-bg: rgba(50,50,50,.55); }
