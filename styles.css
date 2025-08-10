@@ -108,3 +108,10 @@ body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate
 @media (max-width: 680px){
   .center-nav{ display:none; }
 }
+
+
+/* Scroll en panel hamburguesa */
+.menu-panel {
+    overflow-y: auto;
+    max-height: 100vh;
+}
