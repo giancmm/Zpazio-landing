@@ -1,4 +1,4 @@
-/* ===== Zpazio — Panel + Center Nav ===== */
+/* ===== Zpazio — Panel + Center Nav (estable) ===== */
 
 /* Base */
 html, body{
@@ -28,9 +28,9 @@ html, body{
 }
 .menu-toggle .bar{ width:26px; height:2px; background:#fff; display:block;
   transition: transform .25s ease, opacity .2s ease; }
-body.menu-open .menu-toggle .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-body.menu-open .menu-toggle .bar:nth-child(2){ opacity:0; }
-body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+/* Anulamos la "X" cuando el panel está abierto y ocultamos la hamburguesa */
+body.menu-open .menu-toggle{ opacity:0; pointer-events:none; }
+body.menu-open .menu-toggle .bar{ transform:none !important; opacity:1 !important; }
 
 /* ===== Off-canvas lateral ===== */
 :root{ --panel-bg: rgba(50,50,50,.55); }
@@ -51,7 +51,8 @@ nav#menu{
   transition: transform 1.10s cubic-bezier(.22,.61,.36,1), opacity .55s ease;
 }
 nav#menu.open{ transform: translateX(0); opacity:1; pointer-events:auto; }
-nav#menu ul{ list-style:none; margin:56px 0 0 0; padding:0; }
+/* Mantiene la posición original 1cm arriba (no tocamos) y alinea listado */
+nav#menu ul{ list-style:none; margin:56px 0 0 0; padding:0 16px 0 1cm; }
 nav#menu li{ margin:14px 0; }
 nav#menu a, .center-nav .btn-link{
   color:#fff; text-decoration:none; font-weight:500; letter-spacing:.02em;
@@ -59,6 +60,29 @@ nav#menu a, .center-nav .btn-link{
   transition: transform .2s ease, opacity .2s ease;
 }
 nav#menu a:hover, .center-nav .btn-link:hover{ opacity:.92; transform: translateY(-1px); }
+
+/* Títulos de sección (Marcas, Tecnología) – sutilmente diferenciados */
+#menu .menu-section-title{
+  margin: 12px 0 6px 0;
+  font-weight: 700;
+  font-size: 11pt;
+  letter-spacing: .08em;
+  color:#fff;
+  list-style: none;
+  padding-left: 0;
+  text-transform: uppercase;
+  opacity: .92;
+}
+/* Duplicar espacio antes de cualquier título que NO sea el primero (ej. Tecnología) */
+#menu .menu-section-title:not(:first-child){ margin-top: 28px; }
+
+/* Items (estables) */
+#menu .menu-subitem{ margin:7px 0; list-style:none; }
+#menu .menu-subitem a{
+  display:inline-block; padding:0; color:#fff; text-decoration:none;
+  font-weight:400; font-size:10pt; letter-spacing:.02em; opacity:.95;
+}
+#menu .menu-subitem a:hover{ opacity:1; transform: translateX(-2px); }
 
 /* Indicador activo en lateral (si lo usas) */
 nav#menu a.active::before{
@@ -81,7 +105,7 @@ body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate
 /* ===== Center Nav (bloque central a la altura del logo) ===== */
 .center-nav{
   position: fixed;
-  top: 20px;               /* misma altura que el logo */
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 25;
@@ -95,16 +119,11 @@ body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0,0,0,.18);
 }
-
-/* Botones tipo link, misma tipografía del panel lateral */
 .center-nav .btn-link{
-  color: #fff;
-  text-decoration: none;
-  padding: 6px 8px;
+  color:#fff; text-decoration:none; padding:6px 8px;
 }
 .center-nav .btn-link:active{ opacity:.85; transform: translateY(0); }
 
-/* Responsive: ocultar el bloque central si el ancho es muy pequeño */
 @media (max-width: 680px){
   .center-nav{ display:none; }
 }
