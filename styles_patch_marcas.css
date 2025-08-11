@@ -1,49 +1,49 @@
 
-/* ===== Patch micro-efectos títulos del panel ===== */
-/* Mantiene tus márgenes/espaciado y sólo añade look premium a los títulos */
+/* ===== Patch: restaurar SCROLL solo dentro del panel hamburguesa ===== */
+#menu{
+  overflow-y: auto !important;      /* activa scroll vertical dentro del panel */
+  max-height: 100vh;                /* que no exceda la pantalla */
+  -webkit-overflow-scrolling: touch;/* scroll suave en iOS */
+  overscroll-behavior: contain;     /* evita que se mueva la página detrás */
+  box-sizing: border-box;
+}
 
+/* Mantener sangría/alineación premium que ya venías usando */
+#menu ul{
+  padding-left: 1cm;
+  padding-right: 16px;
+  margin: 0;
+}
+
+/* Títulos de sección (Marcas, Tecnología) – look premium */
 #menu .menu-section-title{
-  position: relative;
-  text-transform: uppercase;
-  letter-spacing: .25em;
+  margin: 22px 0 8px 0;
   font-weight: 800;
+  font-size: 10pt;
+  letter-spacing: .24em;
+  text-transform: uppercase;
   color: #fff;
-  /* glow muy sutil */
-  text-shadow: 0 0 6px rgba(255,255,255,.08);
+  list-style: none;
+  padding-left: 0;
+  opacity: .96;
+  transition: transform .18s ease, opacity .18s ease;
 }
+#menu .menu-section-title:hover{ transform: translateY(-1px); }
 
-/* Línea decorativa bajo el título (estado base: oculta) */
-#menu .menu-section-title::after{
-  content:"";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  height: 1px;
-  width: 26px; /* base */
-  background: linear-gradient(90deg, rgba(255,255,255,.7), rgba(255,255,255,0));
-  transform: scaleX(0);
-  transform-origin: left center;
-  opacity: 0;
-  transition:
-    transform .45s cubic-bezier(.22,.61,.36,1),
-    opacity .35s ease,
-    width .25s ease;
+/* Items del listado (micro-efecto sutil) */
+#menu .menu-subitem{ margin: 7px 0; list-style: none; }
+#menu .menu-subitem a{
+  display: inline-block;
+  padding: 0;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 10pt;
+  letter-spacing: .02em;
+  opacity: .95;
+  transition: transform .18s ease, opacity .18s ease;
 }
-
-/* Al abrir el panel (tu JS ya añade body.menu-open) se revela la línea */
-body.menu-open #menu .menu-section-title::after{
-  transform: scaleX(1);
-  opacity: .85;
-}
-
-/* Hover sutil: la línea se estira un poco */
-#menu .menu-section-title:hover::after{
-  width: 34px;
-}
-
-/* Respeto accesibilidad: sin animaciones si el usuario lo pide */
-@media (prefers-reduced-motion: reduce){
-  #menu .menu-section-title::after{
-    transition: none;
-  }
+#menu .menu-subitem a:hover{
+  opacity: 1;
+  transform: translateX(-2px);
 }
