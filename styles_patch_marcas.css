@@ -1,6 +1,4 @@
-/* ===== Patch menú: Marcas — alineación + scroll ===== */
-
-/* Scroll interno del panel */
+/* ===== Patch menú: Marcas — alineación + scroll (estable) ===== */
 #menu{
   overflow-y: auto;
   max-height: 100vh;
@@ -9,25 +7,14 @@
   box-sizing: border-box;
 }
 
-/* Lista 0.5cm a la derecha respecto al título */
+/* Arranque de la lista debajo de la “r” (tal como lo tenías) */
 #menu ul{
   padding-left: 1cm;
   padding-right: 16px;
   margin: 0;
 }
 
-/* Títulos de sección (Marcas, Tecnología, etc.) */
-#menu .menu-section-title{
-  margin: 12px 0 6px 0;
-  font-weight: 700;
-  font-size: 10pt;
-  letter-spacing: .02em;
-  color: #fff;
-  list-style: none;
-  padding-left: 0;
-}
-
-/* Items */
+/* Items (se mantienen iguales) */
 #menu .menu-subitem{
   margin: 7px 0;
   list-style: none;
@@ -48,7 +35,29 @@
   transition: transform .2s ease, opacity .2s ease;
 }
 
-/* >>> Duplicar espacio antes del siguiente título de sección (p.ej., "Tecnología") */
-#menu .menu-subitem + .menu-section-title{
-  margin-top: 24px; /* antes 12px */
+/* ===== NUEVO: realce sutil para títulos (“Marcas”, “Tecnología”, etc.) ===== */
+#menu .menu-section-title{
+  margin: 12px 0 6px 0;           /* mismo espaciado que tenías */
+  padding-left: 0;
+  list-style: none;
+
+  color: #fff;
+  font-weight: 800;                /* un poco más de presencia */
+  font-size: 10.5pt;               /* +0.5pt, muy sutil */
+  letter-spacing: .12em;           /* tracking para look premium */
+  text-transform: uppercase;       /* solo en títulos */
+  opacity: .95;
+  position: relative;
+}
+
+/* Línea decorativa corta debajo del título (no afecta el layout) */
+#menu .menu-section-title::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,.4), rgba(255,255,255,.12));
+  border-radius: 1px;
 }
