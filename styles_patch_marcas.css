@@ -1,22 +1,22 @@
 /* ===== Patch menú: Marcas — alineación + scroll ===== */
 
-/* Habilita scroll dentro del panel sin romper el lock del body */
+/* Scroll dentro del panel */
 #menu{
   overflow-y: auto;
-  max-height: 100vh;                 /* asegura que no exceda la pantalla */
-  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
-  overscroll-behavior: contain;      /* evita que la página detrás se mueva */
+  max-height: 100vh;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   box-sizing: border-box;
 }
 
-/* Mantén el arranque de la lista debajo de la 'r' (como tu versión estable) */
+/* Lista alineada bajo la “r” */
 #menu ul{
-  padding-left: 1cm;   /* Alineado fino bajo la 'r' */
+  padding-left: 1cm;
   padding-right: 16px;
   margin: 0;
 }
 
-/* Título 'Marcas' (sin cambios de look) */
+/* Título */
 #menu .menu-section-title{
   margin: 12px 0 6px 0;
   font-weight: 700;
@@ -27,23 +27,13 @@
   padding-left: 0;
 }
 
-/* Items (espaciado reducido) */
-#menu .menu-subitem{
-  margin: 7px 0;
-  list-style: none;
-}
+/* Items */
+#menu .menu-subitem{ margin: 7px 0; list-style: none; }
 #menu .menu-subitem a{
-  display: inline-block;
-  padding: 0;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 400;   /* sin negrita */
-  font-size: 10pt;
-  letter-spacing: .02em;
-  opacity: .95;
+  display:inline-block; padding:0; color:#fff; text-decoration:none;
+  font-weight:400; font-size:10pt; letter-spacing:.02em; opacity:.95;
 }
 #menu .menu-subitem a:hover{
-  opacity: 1;
-  transform: translateX(-2px);
+  opacity:1; transform: translateX(-2px);
   transition: transform .2s ease, opacity .2s ease;
 }
