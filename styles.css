@@ -1,4 +1,4 @@
-/* ===== Zpazio — Panel + Center Nav (estable) ===== */
+/* ===== Zpazio — Panel + Center Nav ===== */
 
 /* Base */
 html, body{
@@ -28,9 +28,9 @@ html, body{
 }
 .menu-toggle .bar{ width:26px; height:2px; background:#fff; display:block;
   transition: transform .25s ease, opacity .2s ease; }
-/* Anulamos la "X" cuando el panel está abierto y ocultamos la hamburguesa */
-body.menu-open .menu-toggle{ opacity:0; pointer-events:none; }
-body.menu-open .menu-toggle .bar{ transform:none !important; opacity:1 !important; }
+body.menu-open .menu-toggle .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+body.menu-open .menu-toggle .bar:nth-child(2){ opacity:0; }
+body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
 /* ===== Off-canvas lateral ===== */
 :root{ --panel-bg: rgba(50,50,50,.55); }
@@ -51,38 +51,18 @@ nav#menu{
   transition: transform 1.10s cubic-bezier(.22,.61,.36,1), opacity .55s ease;
 }
 nav#menu.open{ transform: translateX(0); opacity:1; pointer-events:auto; }
-/* Mantiene la posición original 1cm arriba (no tocamos) y alinea listado */
-nav#menu ul{ list-style:none; margin:56px 0 0 0; padding:0 16px 0 1cm; }
+
+/* === Elevación del contenido del panel (~1cm más alto) === */
+nav#menu ul{ list-style:none; margin:18px 0 0 0; padding:0; } /* antes ~56px */
 nav#menu li{ margin:14px 0; }
+
+/* Tipografía y links del panel (sin cambios) */
 nav#menu a, .center-nav .btn-link{
   color:#fff; text-decoration:none; font-weight:500; letter-spacing:.02em;
   font-size:10pt; text-transform:none;
   transition: transform .2s ease, opacity .2s ease;
 }
 nav#menu a:hover, .center-nav .btn-link:hover{ opacity:.92; transform: translateY(-1px); }
-
-/* Títulos de sección (Marcas, Tecnología) – sutilmente diferenciados */
-#menu .menu-section-title{
-  margin: 12px 0 6px 0;
-  font-weight: 700;
-  font-size: 11pt;
-  letter-spacing: .08em;
-  color:#fff;
-  list-style: none;
-  padding-left: 0;
-  text-transform: uppercase;
-  opacity: .92;
-}
-/* Duplicar espacio antes de cualquier título que NO sea el primero (ej. Tecnología) */
-#menu .menu-section-title:not(:first-child){ margin-top: 28px; }
-
-/* Items (estables) */
-#menu .menu-subitem{ margin:7px 0; list-style:none; }
-#menu .menu-subitem a{
-  display:inline-block; padding:0; color:#fff; text-decoration:none;
-  font-weight:400; font-size:10pt; letter-spacing:.02em; opacity:.95;
-}
-#menu .menu-subitem a:hover{ opacity:1; transform: translateX(-2px); }
 
 /* Indicador activo en lateral (si lo usas) */
 nav#menu a.active::before{
@@ -102,10 +82,10 @@ body.menu-open .menu-scrim{ opacity:1; pointer-events:auto; }
 body.menu-open #bgCanvas,
 body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate(.98); }
 
-/* ===== Center Nav (bloque central a la altura del logo) ===== */
+/* ===== Center Nav (bloque central) ===== */
 .center-nav{
   position: fixed;
-  top: 20px;
+  top: 20px;               /* misma altura que el logo */
   left: 50%;
   transform: translateX(-50%);
   z-index: 25;
@@ -120,10 +100,25 @@ body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate
   box-shadow: 0 6px 20px rgba(0,0,0,.18);
 }
 .center-nav .btn-link{
-  color:#fff; text-decoration:none; padding:6px 8px;
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 8px;
 }
 .center-nav .btn-link:active{ opacity:.85; transform: translateY(0); }
-
 @media (max-width: 680px){
   .center-nav{ display:none; }
 }
+
+/* Scroll en panel hamburguesa (si no lo toma del patch adicional) */
+.menu-panel { overflow-y: auto; max-height: 100vh; }
+
+/* === PATCH: ocultar hamburguesa/X cuando el panel está abierto === */
+body.menu-open .menu-toggle{
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+/* === PATCH: indentación de 0.5cm para TODOS los ítems de categorías en el panel === */
+#menu .menu-subitem{ padding-left: 0.5cm; }        /* solo la lista, no el título */
+#menu .menu-section-title{ padding-left: 0; }       /* el título queda alineado como está */
