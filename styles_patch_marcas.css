@@ -1,57 +1,49 @@
 
-/* ===== Patch menú: títulos premium + alineación + espaciado ===== */
+/* ===== Patch micro-efectos títulos del panel ===== */
+/* Mantiene tus márgenes/espaciado y sólo añade look premium a los títulos */
 
-/* Contenedor: scroll sin romper el lock del body */
-#menu{
-  overflow-y: auto;
-  max-height: 100vh;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  box-sizing: border-box;
-}
-
-/* Alineación para que arranque debajo de la 'r' */
-#menu ul{
-  padding-left: 1cm;
-  padding-right: 16px;
-  margin: 0;
-}
-
-/* === TITULOS DE SECCIÓN (Marcas, Tecnología) — look premium === */
 #menu .menu-section-title{
-  margin: 14px 0 6px 0;
-  font-weight: 800;             /* más peso */
-  font-size: 11pt;              /* +1pt aprox */
-  letter-spacing: .24em;        /* tracking elegante */
-  text-transform: uppercase;    /* todo en mayúsculas */
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  font-weight: 800;
   color: #fff;
-  list-style: none;
-  padding-left: 0;
-  opacity: .95;
+  /* glow muy sutil */
+  text-shadow: 0 0 6px rgba(255,255,255,.08);
 }
 
-/* Espaciado extra cuando un título viene después de una lista de marcas */
-#menu .menu-subitem + .menu-section-title{
-  margin-top: 32px;             /* duplica el espacio previo a 'Tecnología' */
+/* Línea decorativa bajo el título (estado base: oculta) */
+#menu .menu-section-title::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 1px;
+  width: 26px; /* base */
+  background: linear-gradient(90deg, rgba(255,255,255,.7), rgba(255,255,255,0));
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition:
+    transform .45s cubic-bezier(.22,.61,.36,1),
+    opacity .35s ease,
+    width .25s ease;
 }
 
-/* Subitems: conservan tu look y espaciado reducido */
-#menu .menu-subitem{
-  margin: 7px 0;
-  list-style: none;
+/* Al abrir el panel (tu JS ya añade body.menu-open) se revela la línea */
+body.menu-open #menu .menu-section-title::after{
+  transform: scaleX(1);
+  opacity: .85;
 }
-#menu .menu-subitem a{
-  display: inline-block;
-  padding: 0;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 10pt;
-  letter-spacing: .02em;
-  opacity: .95;
+
+/* Hover sutil: la línea se estira un poco */
+#menu .menu-section-title:hover::after{
+  width: 34px;
 }
-#menu .menu-subitem a:hover{
-  opacity: 1;
-  transform: translateX(-2px);
-  transition: transform .2s ease, opacity .2s ease;
+
+/* Respeto accesibilidad: sin animaciones si el usuario lo pide */
+@media (prefers-reduced-motion: reduce){
+  #menu .menu-section-title::after{
+    transition: none;
+  }
 }
