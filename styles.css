@@ -51,8 +51,12 @@ nav#menu{
   transition: transform 1.10s cubic-bezier(.22,.61,.36,1), opacity .55s ease;
 }
 nav#menu.open{ transform: translateX(0); opacity:1; pointer-events:auto; }
-nav#menu ul{ list-style:none; margin:18px 0 0 0; padding:0; } /* ← sube ~1cm el contenido */
+
+/* === Elevación del contenido del panel (~1cm más alto) === */
+nav#menu ul{ list-style:none; margin:18px 0 0 0; padding:0; } /* antes ~56px */
 nav#menu li{ margin:14px 0; }
+
+/* Tipografía y links del panel (sin cambios) */
 nav#menu a, .center-nav .btn-link{
   color:#fff; text-decoration:none; font-weight:500; letter-spacing:.02em;
   font-size:10pt; text-transform:none;
@@ -78,10 +82,10 @@ body.menu-open .menu-scrim{ opacity:1; pointer-events:auto; }
 body.menu-open #bgCanvas,
 body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate(.98); }
 
-/* ===== Center Nav ===== */
+/* ===== Center Nav (bloque central) ===== */
 .center-nav{
   position: fixed;
-  top: 20px;
+  top: 20px;               /* misma altura que el logo */
   left: 50%;
   transform: translateX(-50%);
   z-index: 25;
@@ -95,12 +99,18 @@ body.menu-open .logo{ transform: translateX(-10px) scale(.995); filter: saturate
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0,0,0,.18);
 }
-.center-nav .btn-link{ color:#fff; text-decoration:none; padding:6px 8px; }
+.center-nav .btn-link{
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 8px;
+}
 .center-nav .btn-link:active{ opacity:.85; transform: translateY(0); }
-@media (max-width: 680px){ .center-nav{ display:none; } }
+@media (max-width: 680px){
+  .center-nav{ display:none; }
+}
 
-/* Scroll en panel hamburguesa */
-.menu-panel{ overflow-y:auto; max-height:100vh; }
+/* Scroll en panel hamburguesa (si no lo toma del patch adicional) */
+.menu-panel { overflow-y: auto; max-height: 100vh; }
 
 /* === PATCH: ocultar hamburguesa/X cuando el panel está abierto === */
 body.menu-open .menu-toggle{
@@ -108,3 +118,7 @@ body.menu-open .menu-toggle{
   pointer-events: none;
   transition: opacity .2s ease;
 }
+
+/* === PATCH: indentación de 0.5cm para TODOS los ítems de categorías en el panel === */
+#menu .menu-subitem{ padding-left: 0.5cm; }        /* solo la lista, no el título */
+#menu .menu-section-title{ padding-left: 0; }       /* el título queda alineado como está */
