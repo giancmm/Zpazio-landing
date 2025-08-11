@@ -1,20 +1,69 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zpazio</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zpazio — Lujo en iluminación</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="styles.css?v=20250810-2"/>
+  <link rel="stylesheet" href="styles_patch_marcas.css?v=3"/>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="logo_zpazio.png" alt="Zpazio Logo">
-        </div>
-    </header>
-    <main>
-        <h1>Bienvenido a Zpazio</h1>
-    </main>
+  <canvas id="bgCanvas"></canvas>
+
+  <header>
+    <img src="logo_zpazio_blanco_1.png" alt="Zpazio Logo" class="logo"/>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+
+    <nav id="menu" class="hidden">
+      <ul>
+        <li class="menu-section-title">Marcas</li>
+        <li class="menu-subitem"><a href="#">A Emotional Light</a></li>
+        <li class="menu-subitem"><a href="#">Aldabra</a></li>
+        <li class="menu-subitem"><a href="#">Axolight</a></li>
+        <li class="menu-subitem"><a href="#">Bomma</a></li>
+        <li class="menu-subitem"><a href="#">Cini &amp; Nils</a></li>
+        <li class="menu-subitem"><a href="#">Cooper Lighting</a></li>
+        <li class="menu-subitem"><a href="flos.html">Flos</a></li>
+        <li class="menu-subitem"><a href="#">Fritz Hansen</a></li>
+        <li class="menu-subitem"><a href="#">Hofflights</a></li>
+        <li class="menu-subitem"><a href="#">Icone Luce</a></li>
+        <li class="menu-subitem"><a href="#">Karman</a></li>
+        <li class="menu-subitem"><a href="#">Ledyi</a></li>
+        <li class="menu-subitem"><a href="#">Leucos</a></li>
+        <li class="menu-subitem"><a href="#">Lodes</a></li>
+        <li class="menu-subitem"><a href="#">Marset</a></li>
+        <li class="menu-subitem"><a href="#">Original BTC</a></li>
+        <li class="menu-subitem"><a href="#">Parachilna</a></li>
+        <li class="menu-subitem"><a href="#">Platek</a></li>
+        <li class="menu-subitem"><a href="#">Quasar</a></li>
+        <li class="menu-subitem"><a href="#">Terzani</a></li>
+        <li class="menu-subitem"><a href="vibia.html">Vibia</a></li>
+        <li class="menu-subitem"><a href="#">WAC Lighting</a></li>
+
+        <!-- ===== Nueva categoría: Tecnología ===== -->
+        <li class="menu-section-title">Tecnología</li>
+        <li class="menu-subitem"><a href="#">Hubbell</a></li>
+        <li class="menu-subitem"><a href="#">Lutron</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="menu-scrim" id="menu-scrim" aria-hidden="true"></div>
+
+  <nav class="center-nav" aria-label="Acciones principales">
+    <a href="#nosotros" class="btn-link">Nosotros</a>
+    <a href="#equipo" class="btn-link">Equipo</a>
+    <a href="#contacto" class="btn-link">Contacto</a>
+  </nav>
+
+  <div class="cursor-bulb" id="cursor-bulb">
+    <img src="bombilla.svg" alt="bulb"/>
+  </div>
+
+  <script defer src="overlay.js?v=20250810"></script>
 </body>
 </html>
