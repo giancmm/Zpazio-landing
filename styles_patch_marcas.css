@@ -1,6 +1,6 @@
 /* ===== Patch menú: Marcas — alineación + scroll ===== */
 
-/* Scroll dentro del panel */
+/* Scroll interno del panel */
 #menu{
   overflow-y: auto;
   max-height: 100vh;
@@ -9,14 +9,14 @@
   box-sizing: border-box;
 }
 
-/* Lista alineada bajo la “r” */
+/* Lista 0.5cm a la derecha respecto al título */
 #menu ul{
   padding-left: 1cm;
   padding-right: 16px;
   margin: 0;
 }
 
-/* Título */
+/* Títulos de sección (Marcas, Tecnología, etc.) */
 #menu .menu-section-title{
   margin: 12px 0 6px 0;
   font-weight: 700;
@@ -28,12 +28,27 @@
 }
 
 /* Items */
-#menu .menu-subitem{ margin: 7px 0; list-style: none; }
+#menu .menu-subitem{
+  margin: 7px 0;
+  list-style: none;
+}
 #menu .menu-subitem a{
-  display:inline-block; padding:0; color:#fff; text-decoration:none;
-  font-weight:400; font-size:10pt; letter-spacing:.02em; opacity:.95;
+  display: inline-block;
+  padding: 0;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 10pt;
+  letter-spacing: .02em;
+  opacity: .95;
 }
 #menu .menu-subitem a:hover{
-  opacity:1; transform: translateX(-2px);
+  opacity: 1;
+  transform: translateX(-2px);
   transition: transform .2s ease, opacity .2s ease;
+}
+
+/* >>> Duplicar espacio antes del siguiente título de sección (p.ej., "Tecnología") */
+#menu .menu-subitem + .menu-section-title{
+  margin-top: 24px; /* antes 12px */
 }
