@@ -1,20 +1,34 @@
-/* ===== Patch menú: Marcas — alineación + scroll (estable) ===== */
+
+/* ===== Patch menú: Marcas — alineación + scroll ===== */
+
+/* Habilita scroll dentro del panel sin romper el lock del body */
 #menu{
   overflow-y: auto;
-  max-height: 100vh;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  max-height: 100vh;                 /* asegura que no exceda la pantalla */
+  -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+  overscroll-behavior: contain;      /* evita que la página detrás se mueva */
   box-sizing: border-box;
 }
 
-/* Arranque de la lista debajo de la “r” (tal como lo tenías) */
+/* Mantén el arranque de la lista debajo de la 'r' (como tu versión estable) */
 #menu ul{
-  padding-left: 1cm;
+  padding-left: 1cm;   /* Alineado fino bajo la 'r' */
   padding-right: 16px;
   margin: 0;
 }
 
-/* Items (se mantienen iguales) */
+/* Título de categoría (Marcas, Tecnología, etc.) */
+#menu .menu-section-title{
+  margin: 12px 0 6px 0;
+  font-weight: 700;
+  font-size: 10pt;
+  letter-spacing: .02em;
+  color: #fff;
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Items (espaciado reducido) */
 #menu .menu-subitem{
   margin: 7px 0;
   list-style: none;
@@ -24,7 +38,7 @@
   padding: 0;
   color: #fff;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 400;   /* sin negrita */
   font-size: 10pt;
   letter-spacing: .02em;
   opacity: .95;
@@ -35,29 +49,8 @@
   transition: transform .2s ease, opacity .2s ease;
 }
 
-/* ===== NUEVO: realce sutil para títulos (“Marcas”, “Tecnología”, etc.) ===== */
-#menu .menu-section-title{
-  margin: 12px 0 6px 0;           /* mismo espaciado que tenías */
-  padding-left: 0;
-  list-style: none;
-
-  color: #fff;
-  font-weight: 800;                /* un poco más de presencia */
-  font-size: 10.5pt;               /* +0.5pt, muy sutil */
-  letter-spacing: .12em;           /* tracking para look premium */
-  text-transform: uppercase;       /* solo en títulos */
-  opacity: .95;
-  position: relative;
-}
-
-/* Línea decorativa corta debajo del título (no afecta el layout) */
-#menu .menu-section-title::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 28px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(255,255,255,.4), rgba(255,255,255,.12));
-  border-radius: 1px;
+/* ===== Espaciado extra antes de una NUEVA categoría ===== */
+/* Duplica el espacio entre el ÚLTIMO item (WAC Lighting) y el siguiente título de categoría (TECNOLOGÍA) */
+#menu .menu-subitem + .menu-section-title{
+  margin-top: 28px; /* 2x respecto al spacing normal */
 }
