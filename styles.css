@@ -124,8 +124,5 @@ body.menu-open .menu-toggle{
 #menu .menu-section-title{ padding-left: 0; }       /* el título queda alineado como está */
 
 
-/* Reducir logo del home al 50% */
-.home-logo {
-    max-width: 50%;
-    height: auto;
-}
+/* ===== Home: reducir logo al 50% ===== */
+.logo.home-50 { height: 25px !important; }
