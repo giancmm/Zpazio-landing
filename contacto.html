@@ -13,31 +13,29 @@
     a:hover { text-decoration: underline; }
   </style>
 <style>
-/* === ZPAZIO uniform header/menu (INLINE) === */
-:root{--z-panel:#f2f2f2;--z-fg:#111;--z-white:rgba(255,255,255,.96)}
-.z-header{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:10000}
-/* avoid purple/visited link look */
-.z-logo{color:#fff !important;text-decoration:none !important;display:flex;align-items:center}
-.z-logo img{height:28px;width:auto;display:block;filter:drop-shadow(0 0 0 transparent)}
+/* === Z v3: header/menu unified === */
+:root{--z-panel:#f2f2f2;--z-fg:#111;--z-white:rgba(255,255,255,.98)}
+.z-header{position:fixed;inset:0 0 auto 0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:10000;background:transparent}
+.z-logo, .z-header a{color:#fff !important;text-decoration:none !important}
+.z-logo img{height:28px;width:auto;display:block}
 .z-logo-text{color:#fff;font-weight:700;letter-spacing:.08em}
-/* Burger */
+/* Burger glass */
 .z-burger{width:36px;height:36px;border-radius:12px;border:1px solid rgba(255,255,255,.22);
-background:rgba(255,255,255,.08);backdrop-filter:saturate(140%) blur(6px);display:grid;place-items:center;cursor:pointer}
+background:rgba(255,255,255,.08);backdrop-filter:saturate(140%) blur(6px);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.35)}
 .z-burger span,.z-burger::before,.z-burger::after{content:"";display:block;width:18px;height:2px;background:#fff;transition:transform .2s ease,opacity .2s ease}
 .z-burger span{margin:3px 0}
 .z-burger.z-active span{opacity:0}
 .z-burger.z-active::before{transform:translateY(5px) rotate(45deg)}
 .z-burger.z-active::after{transform:translateY(-5px) rotate(-45deg)}
-
 /* Panel */
 .z-menu{position:fixed;top:16px;right:16px;width:min(320px, calc(100% - 32px));background:var(--z-panel);color:var(--z-fg);
 border-radius:16px;padding:12px;box-shadow:0 12px 36px rgba(0,0,0,.25);transform:scale(.98);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:9999;max-height:70vh;overflow:auto}
 .z-menu.z-open{opacity:1;pointer-events:auto;transform:scale(1)}
 .z-group{background:#fff;border-radius:12px;padding:8px}
-.z-group a{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;color:#111;font-weight:600;text-decoration:none}
+.z-group a{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;color:#111 !important;font-weight:600;text-decoration:none !important}
 .z-group a:hover{background:#f6f6f6}
 .z-active-link{background:#efefef !important}
-/* Body spacer to avoid overlap */
+/* Page spacing */
 body{scroll-padding-top:80px}
 .z-pagepad{padding-top:80px}
 </style></head>
@@ -84,17 +82,15 @@ body{scroll-padding-top:80px}
 <p>Página de referencia para la sección <strong>Contacto</strong>. Aquí podrás agregar el contenido definitivo más adelante.</p>
 <a href="index.html">← Volver al inicio</a>
 <script>
-// === ZPAZIO uniform header/menu (INLINE) ===
+// Z v3 menu behavior
 (function(){
   const burger=document.querySelector('.z-burger');
   const menu=document.querySelector('.z-menu');
   if(burger && menu){
     burger.addEventListener('click',()=>{burger.classList.toggle('z-active');menu.classList.toggle('z-open');});
     document.addEventListener('click',(e)=>{if(!menu.contains(e.target)&&!burger.contains(e.target)){burger.classList.remove('z-active');menu.classList.remove('z-open');}});
-    // close on link click
     menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('z-active');menu.classList.remove('z-open');}));
   }
-  // highlight active
   const path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   document.querySelectorAll('.z-menu a').forEach(a=>{ if(a.getAttribute('href').toLowerCase()===path){ a.classList.add('z-active-link'); } });
 })();
