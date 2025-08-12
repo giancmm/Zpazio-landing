@@ -13,30 +13,42 @@
     a:hover { text-decoration: underline; }
   </style>
 <style>
-/* Inline hamburger styles */
-.header{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:1000}
-.header .logo img{height:28px;width:auto;display:block}
-.hamburger{width:36px;height:36px;border-radius:12px;border:1px solid rgba(0,0,0,.1);display:grid;place-items:center;background:#fff;cursor:pointer}
-.hamburger span,.hamburger::before,.hamburger::after{content:"";display:block;width:18px;height:2px;background:#111;transition:transform .2s ease,opacity .2s ease}
-.hamburger span{margin:3px 0}
-.hamburger.active span{opacity:0}
-.hamburger.active::before{transform:translateY(5px) rotate(45deg)}
-.hamburger.active::after{transform:translateY(-5px) rotate(-45deg)}
-.menu{position:fixed;top:16px;right:16px;width:min(320px, calc(100% - 32px));background:#f2f2f2;color:#111;border-radius:16px;padding:12px;box-shadow:0 12px 36px rgba(0,0,0,.25);transform:scale(.98);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:999}
-.menu.open{opacity:1;pointer-events:auto;transform:scale(1)}
-.menu .group{background:#fff;border-radius:12px;padding:8px}
-.menu a{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;color:#111;font-weight:600;text-decoration:none}
-.menu a:hover{background:#f6f6f6}
-.page-padding{padding-top:80px}
+/* === ZPAZIO uniform header/menu (INLINE) === */
+:root{--z-panel:#f2f2f2;--z-fg:#111;--z-white:rgba(255,255,255,.96)}
+.z-header{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:10000}
+/* avoid purple/visited link look */
+.z-logo{color:#fff !important;text-decoration:none !important;display:flex;align-items:center}
+.z-logo img{height:28px;width:auto;display:block;filter:drop-shadow(0 0 0 transparent)}
+.z-logo-text{color:#fff;font-weight:700;letter-spacing:.08em}
+/* Burger */
+.z-burger{width:36px;height:36px;border-radius:12px;border:1px solid rgba(255,255,255,.22);
+background:rgba(255,255,255,.08);backdrop-filter:saturate(140%) blur(6px);display:grid;place-items:center;cursor:pointer}
+.z-burger span,.z-burger::before,.z-burger::after{content:"";display:block;width:18px;height:2px;background:#fff;transition:transform .2s ease,opacity .2s ease}
+.z-burger span{margin:3px 0}
+.z-burger.z-active span{opacity:0}
+.z-burger.z-active::before{transform:translateY(5px) rotate(45deg)}
+.z-burger.z-active::after{transform:translateY(-5px) rotate(-45deg)}
+
+/* Panel */
+.z-menu{position:fixed;top:16px;right:16px;width:min(320px, calc(100% - 32px));background:var(--z-panel);color:var(--z-fg);
+border-radius:16px;padding:12px;box-shadow:0 12px 36px rgba(0,0,0,.25);transform:scale(.98);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:9999;max-height:70vh;overflow:auto}
+.z-menu.z-open{opacity:1;pointer-events:auto;transform:scale(1)}
+.z-group{background:#fff;border-radius:12px;padding:8px}
+.z-group a{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;color:#111;font-weight:600;text-decoration:none}
+.z-group a:hover{background:#f6f6f6}
+.z-active-link{background:#efefef !important}
+/* Body spacer to avoid overlap */
+body{scroll-padding-top:80px}
+.z-pagepad{padding-top:80px}
 </style></head>
-<body class="page-padding">
-<header class="header">
-<a aria-label="ZPAZIO Home" class="logo" href="index.html">
-<img alt="ZPAZIO logo" onerror="this.outerHTML='&lt;strong&gt;ZPAZIO&lt;/strong&gt;'" src="assets/img/logo.svg"/>
+<body class="z-pagepad">
+<header class="z-header">
+<a aria-label="ZPAZIO Home" class="z-logo" href="index.html">
+<img alt="ZPAZIO logo" onerror="this.outerHTML='&lt;span class=&quot;z-logo-text&quot;&gt;ZPAZIO&lt;/span&gt;'" src="assets/img/logo.svg"/>
 </a>
-<button aria-label="Abrir menú" class="hamburger"><span></span></button>
-<nav aria-label="Menú principal" class="menu">
-<div class="group">
+<button aria-label="Abrir menú" class="z-burger"><span></span></button>
+<nav aria-label="Menú principal" class="z-menu">
+<div class="z-group">
 <a href="flos.html">FLOS</a>
 <a href="vibia.html">Vibia</a>
 <a href="terzani.html">Terzani</a>
@@ -50,13 +62,13 @@
 <a href="fritz-hansen.html">Fritz Hansen</a>
 <a href="ledyi.html">LEDYi</a>
 <a href="leucos.html">Leucos</a>
+<a href="lodes.html">Lodes</a>
 <a href="lutron.html">Lutron</a>
 <a href="marset.html">Marset</a>
 <a href="aldabra.html">Aldabra</a>
 <a href="cini-nils.html">Cini &amp; Nils</a>
 <a href="cooper-lighting.html">Cooper Lighting</a>
 <a href="hubbell.html">Hubbell</a>
-<a href="lodes.html">Lodes</a>
 <a href="robus.html">Robus</a>
 <a href="simes.html">Simes</a>
 <a href="slamp.html">Slamp</a>
@@ -72,16 +84,19 @@
 <p>Página de referencia para la sección <strong>Nosotros</strong>. Aquí podrás agregar el contenido definitivo más adelante.</p>
 <a href="index.html">← Volver al inicio</a>
 <script>
-// Inline hamburger logic
+// === ZPAZIO uniform header/menu (INLINE) ===
 (function(){
-  const burger=document.querySelector('.hamburger');
-  const menu=document.querySelector('.menu');
-  if(burger&&menu){
-    burger.addEventListener('click',()=>{burger.classList.toggle('active');menu.classList.toggle('open');});
-    document.addEventListener('click',(e)=>{if(!menu.contains(e.target)&&!burger.contains(e.target)){burger.classList.remove('active');menu.classList.remove('open');}});
+  const burger=document.querySelector('.z-burger');
+  const menu=document.querySelector('.z-menu');
+  if(burger && menu){
+    burger.addEventListener('click',()=>{burger.classList.toggle('z-active');menu.classList.toggle('z-open');});
+    document.addEventListener('click',(e)=>{if(!menu.contains(e.target)&&!burger.contains(e.target)){burger.classList.remove('z-active');menu.classList.remove('z-open');}});
+    // close on link click
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('z-active');menu.classList.remove('z-open');}));
   }
-  const path=location.pathname.split('/').pop();
-  document.querySelectorAll('.menu a').forEach(a=>{if(a.getAttribute('href')===path){a.style.background='#efefef';}});
+  // highlight active
+  const path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  document.querySelectorAll('.z-menu a').forEach(a=>{ if(a.getAttribute('href').toLowerCase()===path){ a.classList.add('z-active-link'); } });
 })();
 </script></body>
 </html>
