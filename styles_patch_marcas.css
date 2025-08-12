@@ -1,26 +1,79 @@
-/* ==== ZPAZIO – Ajustes globales header/menu y marcas ==== */
 
-/* Logo solo en Home */
-.brands .z-logo { display: none !important; }  /* oculta logo en marcas */
-.home   .z-logo { display: flex !important; }  /* visible en home */
+/* ===== Patch menú: Marcas — scroll + spacing + títulos premium con micro-efectos ===== */
 
-/* Símbolo Z centrado */
-.brand-symbol {
-  position: fixed;
-  top: 64px;
-  left: 0; right: 0;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  z-index: 5000;
-  opacity: .7;
+/* Scroll sólo dentro del panel, sin romper el lock del body */
+#menu{
+  overflow-y: auto;
+  max-height: 100vh;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  box-sizing: border-box;
 }
-.brand-symbol svg { height: 22px; width: auto; }
-@media (max-width: 768px) { .brand-symbol { top: 56px; } }
 
-/* Menú hamburguesa — scroll y límites */
-.z-menu { max-height: 70vh; overflow: auto; }
+/* Sangría general (arranque bajo la “r”) */
+#menu ul{
+  padding-left: 1cm;
+  padding-right: 16px;
+  margin: 0;
+}
 
-/* Scroll de página correcto */
-html, body { overflow-x: hidden; }
-body { padding-top: 80px; scroll-padding-top: 80px; }
+/* Títulos de sección (Marcas, Tecnología) — look premium */
+#menu .menu-section-title{
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 8px 0;            /* espacio superior generoso */
+  color: #fff;
+  font-weight: 800;
+  font-size: 10pt;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  opacity: .95;
+  position: relative;
+  transition: opacity .25s ease, letter-spacing .25s ease;
+}
+
+/* Subrayado sutil animado bajo el título */
+#menu .menu-section-title::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 1px;
+  width: 26px;
+  background: rgba(255,255,255,.9);
+  transform-origin: left;
+  transform: scaleX(.65);
+  opacity: .85;
+  transition: transform .25s ease, opacity .25s ease;
+}
+#menu .menu-section-title:hover{ opacity: 1; letter-spacing: .3em; }
+#menu .menu-section-title:hover::after{ transform: scaleX(1); opacity: 1; }
+
+/* Ítems */
+#menu .menu-subitem{
+  margin: 7px 0;
+  list-style: none;
+}
+#menu .menu-subitem a{
+  display: inline-block;
+  padding: 0;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 10pt;
+  letter-spacing: .02em;
+  opacity: .95;
+  transition: transform .2s ease, opacity .2s ease;
+}
+#menu .menu-subitem a:hover{
+  opacity: 1;
+  transform: translateX(-2px);
+}
+
+/* Espacio extra entre el último item y el siguiente título (WAC Lighting → Tecnología) */
+#menu .menu-subitem + .menu-section-title{
+  margin-top: 28px;   /* duplica el espacio respecto a los 14px base */
+}
+
+/* Asegurar que el panel siga siendo clickable por encima del scrim central si lo hubiera */
+#menu{ z-index: 30; }
