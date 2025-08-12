@@ -5,75 +5,47 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Lodes — Zpazio</title>
-<link href="brands_base.css?v=1" rel="stylesheet"/>
-<link href="marcas_header.css?v=3" rel="stylesheet"/>
-<style>
-/* === Z v3: header/menu unified === */
-:root{--z-panel:#f2f2f2;--z-fg:#111;--z-white:rgba(255,255,255,.98)}
-.z-header{position:fixed;inset:0 0 auto 0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:10000;background:transparent}
-.z-logo, .z-header a{color:#fff !important;text-decoration:none !important}
-.z-logo img{height:28px;width:auto;display:block}
-.z-logo-text{color:#fff;font-weight:700;letter-spacing:.08em}
-/* Burger glass */
-.z-burger{width:36px;height:36px;border-radius:12px;border:1px solid rgba(255,255,255,.22);
-background:rgba(255,255,255,.08);backdrop-filter:saturate(140%) blur(6px);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.35)}
-.z-burger span,.z-burger::before,.z-burger::after{content:"";display:block;width:18px;height:2px;background:#fff;transition:transform .2s ease,opacity .2s ease}
-.z-burger span{margin:3px 0}
-.z-burger.z-active span{opacity:0}
-.z-burger.z-active::before{transform:translateY(5px) rotate(45deg)}
-.z-burger.z-active::after{transform:translateY(-5px) rotate(-45deg)}
-/* Panel */
-.z-menu{position:fixed;top:16px;right:16px;width:min(320px, calc(100% - 32px));background:var(--z-panel);color:var(--z-fg);
-border-radius:16px;padding:12px;box-shadow:0 12px 36px rgba(0,0,0,.25);transform:scale(.98);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:9999;max-height:70vh;overflow:auto}
-.z-menu.z-open{opacity:1;pointer-events:auto;transform:scale(1)}
-.z-group{background:#fff;border-radius:12px;padding:8px}
-.z-group a{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;color:#111 !important;font-weight:600;text-decoration:none !important}
-.z-group a:hover{background:#f6f6f6}
-.z-active-link{background:#efefef !important}
-/* Page spacing */
-body{scroll-padding-top:80px}
-.z-pagepad{padding-top:80px}
-</style></head>
-<body class="z-pagepad">
-<header class="z-header">
-<a aria-label="ZPAZIO Home" class="z-logo" href="index.html">
-<img alt="ZPAZIO logo" onerror="this.outerHTML='&lt;span class=&quot;z-logo-text&quot;&gt;ZPAZIO&lt;/span&gt;'" src="assets/img/logo.svg"/>
-</a>
-<button aria-label="Abrir menú" class="z-burger"><span></span></button>
-<nav aria-label="Menú principal" class="z-menu">
-<div class="z-group">
-<a href="flos.html">FLOS</a>
-<a href="vibia.html">Vibia</a>
-<a href="terzani.html">Terzani</a>
-<a href="a-emotional-light.html">A Emotional Light</a>
-<a href="santa-cole.html">Santa &amp; Cole</a>
-<a href="hofflights.html">HOFFLIGHTS</a>
-<a href="karman.html">Karman</a>
-<a href="bomma.html">Bomma</a>
-<a href="platek.html">Platek</a>
-<a href="icone-luce.html">Icone Luce</a>
-<a href="fritz-hansen.html">Fritz Hansen</a>
-<a href="ledyi.html">LEDYi</a>
-<a href="leucos.html">Leucos</a>
-<a href="lodes.html">Lodes</a>
-<a href="lutron.html">Lutron</a>
-<a href="marset.html">Marset</a>
-<a href="aldabra.html">Aldabra</a>
-<a href="cini-nils.html">Cini &amp; Nils</a>
-<a href="cooper-lighting.html">Cooper Lighting</a>
-<a href="hubbell.html">Hubbell</a>
-<a href="robus.html">Robus</a>
-<a href="simes.html">Simes</a>
-<a href="slamp.html">Slamp</a>
-<a href="studio-italia.html">Studio Italia</a>
-<a href="nosotros.html">Nosotros</a>
-<a href="equipo.html">Equipo</a>
-<a href="contacto.html">Contacto</a>
+
+
+<link href="styles.css?v=20250810-2" rel="stylesheet"/><link href="styles_patch_marcas.css?v=3" rel="stylesheet"/></head>
+<body>
+<header>
+<img alt="Zpazio Logo" class="logo home-50" src="logo_zpazio_blanco_1.png"/>
+<div aria-expanded="false" aria-label="Abrir menú" class="menu-toggle" id="menu-toggle">
+<span class="bar"></span><span class="bar"></span><span class="bar"></span>
 </div>
+<nav class="hidden" id="menu">
+<ul>
+<li class="menu-section-title">Marcas</li>
+<li class="menu-subitem"><a href="a-emotional-light.html">A Emotional Light</a></li>
+<li class="menu-subitem"><a href="aldabra.html">Aldabra</a></li>
+<li class="menu-subitem"><a href="axolight.html">Axolight</a></li>
+<li class="menu-subitem"><a href="bomma.html">Bomma</a></li>
+<li class="menu-subitem"><a href="cini-nils.html">Cini &amp; Nils</a></li>
+<li class="menu-subitem"><a href="cooper-lighting.html">Cooper Lighting</a></li>
+<li class="menu-subitem"><a href="flos.html">Flos</a></li>
+<li class="menu-subitem"><a href="fritz-hansen.html">Fritz Hansen</a></li>
+<li class="menu-subitem"><a href="hofflights.html">Hofflights</a></li>
+<li class="menu-subitem"><a href="icone-luce.html">Icone Luce</a></li>
+<li class="menu-subitem"><a href="karman.html">Karman</a></li>
+<li class="menu-subitem"><a href="ledyi.html">Ledyi</a></li>
+<li class="menu-subitem"><a href="leucos.html">Leucos</a></li>
+<li class="menu-subitem"><a href="lodes.html">Lodes</a></li>
+<li class="menu-subitem"><a href="marset.html">Marset</a></li>
+<li class="menu-subitem"><a href="original-btc.html">Original BTC</a></li>
+<li class="menu-subitem"><a href="parachilna.html">Parachilna</a></li>
+<li class="menu-subitem"><a href="platek.html">Platek</a></li>
+<li class="menu-subitem"><a href="quasar.html">Quasar</a></li>
+<li class="menu-subitem"><a href="terzani.html">Terzani</a></li>
+<li class="menu-subitem"><a href="vibia.html">Vibia</a></li>
+<li class="menu-subitem"><a href="wac-lighting.html">WAC Lighting</a></li>
+<!-- ===== Nueva categoría: Tecnología ===== -->
+<li class="menu-section-title">Tecnología</li>
+<li class="menu-subitem"><a href="hubbell.html">Hubbell</a></li>
+<li class="menu-subitem"><a href="lutron.html">Lutron</a></li>
+</ul>
 </nav>
 </header>
-
-
 <main class="wrapper">
 <!-- Hero / Intro -->
 <section class="grid grid-2 hero">
@@ -139,18 +111,5 @@ body{scroll-padding-top:80px}
 </div>
 </section>
 </main>
-<script>
-// Z v3 menu behavior
-(function(){
-  const burger=document.querySelector('.z-burger');
-  const menu=document.querySelector('.z-menu');
-  if(burger && menu){
-    burger.addEventListener('click',()=>{burger.classList.toggle('z-active');menu.classList.toggle('z-open');});
-    document.addEventListener('click',(e)=>{if(!menu.contains(e.target)&&!burger.contains(e.target)){burger.classList.remove('z-active');menu.classList.remove('z-open');}});
-    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('z-active');menu.classList.remove('z-open');}));
-  }
-  const path=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-  document.querySelectorAll('.z-menu a').forEach(a=>{ if(a.getAttribute('href').toLowerCase()===path){ a.classList.add('z-active-link'); } });
-})();
-</script></body>
+<script src="overlay.js?v=20250810"></script></body>
 </html>
