@@ -1,20 +1,5 @@
 
 /* Encabezado centrado para páginas de marcas */
-.brand-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 0 24px;
-}
-
-.brand-header .brand-symbol {
-  height: 72px; /* ajusta a gusto */
-  width: auto;
-  display: block;
-}
-
-@media (max-width: 640px) {
-  .brand-header .brand-symbol {
-    height: 56px;
-  }
-}
+.brand-header { display:flex; justify-content:center; align-items:center; padding:16px 0 24px; }
+.brand-header .brand-symbol { height:54px; width:auto; display:block; } /* antes 72px */
+@media (max-width: 640px){ .brand-header .brand-symbol{ height:42px; } } /* antes 56px */
