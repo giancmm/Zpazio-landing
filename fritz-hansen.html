@@ -7,7 +7,23 @@
 <title>Fritz Hansen — Zpazio</title>
 <link href="brands_base.css?v=1" rel="stylesheet"/>
 <link href="marcas_header.css?v=3" rel="stylesheet"/>
-<link href="assets/css/menu_brand.css" rel="stylesheet"/></head>
+<style>
+/* Inline hamburger styles */
+.header{position:fixed;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:1000}
+.header .logo img{height:28px;width:auto;display:block}
+.hamburger{width:36px;height:36px;border-radius:12px;border:1px solid rgba(0,0,0,.1);display:grid;place-items:center;background:#fff;cursor:pointer}
+.hamburger span,.hamburger::before,.hamburger::after{content:"";display:block;width:18px;height:2px;background:#111;transition:transform .2s ease,opacity .2s ease}
+.hamburger span{margin:3px 0}
+.hamburger.active span{opacity:0}
+.hamburger.active::before{transform:translateY(5px) rotate(45deg)}
+.hamburger.active::after{transform:translateY(-5px) rotate(-45deg)}
+.menu{position:fixed;top:16px;right:16px;width:min(320px, calc(100% - 32px));background:#f2f2f2;color:#111;border-radius:16px;padding:12px;box-shadow:0 12px 36px rgba(0,0,0,.25);transform:scale(.98);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:999}
+.menu.open{opacity:1;pointer-events:auto;transform:scale(1)}
+.menu .group{background:#fff;border-radius:12px;padding:8px}
+.menu a{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;color:#111;font-weight:600;text-decoration:none}
+.menu a:hover{background:#f6f6f6}
+.page-padding{padding-top:80px}
+</style></head>
 <body class="page-padding">
 <header class="header">
 <a aria-label="ZPAZIO Home" class="logo" href="index.html">
@@ -29,11 +45,21 @@
 <a href="fritz-hansen.html">Fritz Hansen</a>
 <a href="ledyi.html">LEDYi</a>
 <a href="leucos.html">Leucos</a>
+<a href="lutron.html">Lutron</a>
+<a href="marset.html">Marset</a>
+<a href="aldabra.html">Aldabra</a>
+<a href="cini-nils.html">Cini &amp; Nils</a>
+<a href="cooper-lighting.html">Cooper Lighting</a>
+<a href="hubbell.html">Hubbell</a>
+<a href="lodes.html">Lodes</a>
+<a href="robus.html">Robus</a>
+<a href="simes.html">Simes</a>
+<a href="slamp.html">Slamp</a>
+<a href="studio-italia.html">Studio Italia</a>
 <a href="nosotros.html">Nosotros</a>
 <a href="equipo.html">Equipo</a>
 <a href="contacto.html">Contacto</a>
 </div>
-<div class="note" style="padding:8px 4px;color:#555;font-size:.85rem">Fondo gris claro y dentro del margen.</div>
 </nav>
 </header>
 
@@ -105,5 +131,17 @@
 </div>
 </section>
 </main>
-<script src="assets/js/menu_brand.js"></script></body>
+<script>
+// Inline hamburger logic
+(function(){
+  const burger=document.querySelector('.hamburger');
+  const menu=document.querySelector('.menu');
+  if(burger&&menu){
+    burger.addEventListener('click',()=>{burger.classList.toggle('active');menu.classList.toggle('open');});
+    document.addEventListener('click',(e)=>{if(!menu.contains(e.target)&&!burger.contains(e.target)){burger.classList.remove('active');menu.classList.remove('open');}});
+  }
+  const path=location.pathname.split('/').pop();
+  document.querySelectorAll('.menu a').forEach(a=>{if(a.getAttribute('href')===path){a.style.background='#efefef';}});
+})();
+</script></body>
 </html>
