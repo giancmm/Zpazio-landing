@@ -122,3 +122,10 @@ body.menu-open .menu-toggle{
 /* === PATCH: indentación de 0.5cm para TODOS los ítems de categorías en el panel === */
 #menu .menu-subitem{ padding-left: 0.5cm; }        /* solo la lista, no el título */
 #menu .menu-section-title{ padding-left: 0; }       /* el título queda alineado como está */
+
+
+/* Reducir logo del home al 50% */
+.home-logo {
+    max-width: 50%;
+    height: auto;
+}
