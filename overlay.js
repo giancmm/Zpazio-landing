@@ -183,3 +183,21 @@ loop();
     setTimeout(()=> target.classList.remove('hi-lite'), 1200);
   });
 })();
+
+
+
+// Redirect Equipo anchor to equipo.html (safety)
+(function(){
+  try{
+    var el = document.querySelector('a[href="#equipo"]');
+    if(el){ el.addEventListener('click', function(e){ e.preventDefault(); window.location.href='equipo.html'; }); }
+  }catch(e){}
+})();
+
+// Redirect Contacto anchor to contacto.html (safety)
+(function(){
+  try{
+    var el = document.querySelector('a[href="#contacto"]');
+    if(el){ el.addEventListener('click', function(e){ e.preventDefault(); window.location.href='contacto.html'; }); }
+  }catch(e){}
+})();

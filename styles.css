@@ -1,14 +1,14 @@
 /* ===== Zpazio — Panel + Center Nav ===== */
 
 /* Base */
-html, body{
+html, body{ overflow:auto; 
   margin:0; height:100%; cursor:none;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* Scroll global habilitado; Home bloqueado para efecto full-screen */
 body{ overflow:auto; }
-body.home{ overflow:hidden; }
+body.home{ overflow:auto; }
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
