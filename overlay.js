@@ -199,3 +199,16 @@ loop();
     });
   }catch(e){}
 })();
+
+
+// Redirect Contacto anchor to contacto.html (safety)
+(function(){
+  try{
+    var cta = document.querySelector('a[href="#contacto"]');
+    if(!cta) return;
+    cta.addEventListener('click', function(e){
+      e.preventDefault();
+      window.location.href = 'contacto.html';
+    });
+  }catch(e){}
+})();
