@@ -141,3 +141,31 @@ function loop(){
   requestAnimationFrame(loop);
 }
 loop();
+
+
+// === WhatsApp Floating Button ===
+(function(){
+  // Configuración: pon aquí tu número en formato internacional SIN signos (+) ni espacios. Ej: 573001112233
+  var WHATSAPP_NUMBER = window.ZPAZIO_WHATSAPP_NUMBER || "573001112233";
+  var DEFAULT_TEXT = encodeURIComponent("Hola, quiero asesoría de iluminación con Zpazio.");
+  try{
+    var link = document.createElement('a');
+    link.className = 'whatsapp-fab';
+    link.href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + DEFAULT_TEXT;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.setAttribute('aria-label','Chatear por WhatsApp');
+
+    // Ícono WhatsApp (SVG inline, sin dependencias)
+    link.innerHTML = '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
+      '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'+
+      '<stop offset="0%" stop-color="#25D366"/><stop offset="100%" stop-color="#128C7E"/></linearGradient></defs>'+
+      '<circle cx="16" cy="16" r="15" fill="url(#g)" opacity="0.95"/>'+
+      '<path fill="#fff" d="M20.6 17.2c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2c-.2.2-.4.2-.7 0-.3-.2-1.3-.5-2.5-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.2-.7.2-.2.3-.4.5-.6.2-.2.3-.4.4-.6s0-.4 0-.6c0-.2-.7-1.7-1-2.3-.3-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.6 1.1 3 1.3 3.2c.2.3 2.1 3.3 5.1 4.6.7.3 1.3.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.9-.8 2.1-1.6.3-.8.3-1.5.2-1.6 0-.1-.3-.2-.6-.4z"/>'+
+      '</svg>';
+
+    document.body.appendChild(link);
+  }catch(e){
+    console && console.warn && console.warn('WhatsApp FAB error:', e);
+  }
+})();
