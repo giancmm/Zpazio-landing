@@ -185,3 +185,17 @@ loop();
     });
   }catch(e){}
 })();
+
+
+// Scroll suave para Equipo en Home
+(function(){
+  try{
+    var link = document.querySelector('a.btn-link[href="#equipo"]');
+    var target = document.getElementById('equipo');
+    if(!link || !target) return;
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }catch(e){}
+})();
