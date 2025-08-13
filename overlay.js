@@ -169,3 +169,19 @@ loop();
     console && console.warn && console.warn('WhatsApp FAB error:', e);
   }
 })();
+
+
+// Scroll suave en Home para el botón Nosotros
+(function(){
+  try{
+    var link = document.querySelector('a.btn-link[href="#nosotros"]');
+    var target = document.getElementById('nosotros');
+    if(!link || !target) return;
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.classList.add('hi-lite');
+      setTimeout(function(){ target.classList.remove('hi-lite'); }, 800);
+    });
+  }catch(e){}
+})();
