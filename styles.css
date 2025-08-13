@@ -126,3 +126,9 @@ body.menu-open .menu-toggle{
 
 /* ===== Home: reducir logo al 50% ===== */
 .logo.home-50 { height: 25px !important; }
+
+
+/* --- Control de visibilidad del logo: solo en Home --- */
+.logo{ display:none !important; }
+body.home .logo{ display:block !important; }
+
