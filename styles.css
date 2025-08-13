@@ -228,3 +228,11 @@ html, body, button, input, select, textarea {
 @media (max-width: 640px){
   #nosotros{ padding: 28px 20px; margin-top: 36px; margin-bottom: 36px; }
 }
+
+/* === Nosotros (Home) — estilo editorial mínimo (white) === */
+#nosotros{ background:#ffffff; color:#111; margin: 80px 0; border-radius:16px; box-shadow: 0 2px 24px rgba(0,0,0,.06); }
+#nosotros .nos-wrapper{ width: min(980px, 92vw); margin: 0 auto; padding: 48px 28px; }
+#nosotros .nos-title{ margin: 0 0 10px 0; font-size: clamp(22px, 3.4vw, 28px); letter-spacing: .18em; color:#0f0f10; }
+#nosotros .nos-lead{ margin: 0 0 16px 0; font-size: clamp(16px, 2.2vw, 18px); line-height: 1.6; color:#3e4248; max-width: 70ch; }
+#nosotros .nos-link{ display: inline-block; text-decoration: none; border-bottom: 1px solid #0f0f10; padding-bottom: 2px; transition: transform .15s ease, opacity .2s ease; color:#0f0f10; }
+#nosotros .nos-link:hover{ transform: translateY(-1px); opacity:.9; }
