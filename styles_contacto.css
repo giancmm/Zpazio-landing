@@ -63,3 +63,26 @@
 .c-toast.show{ opacity:1; transform: translateX(-50%) translateY(0); }
 .c-toast.error{ background:#2b1212; border-color:#5c2a2a; }
 .c-legal{ color:#8f949a; font-size:12px; margin-top:8px; }
+
+
+/* FIX: mantener label de <select> flotada siempre, ya que <option> tiene valor por defecto */
+.field select + .label-select{
+  transform: translateY(-12px);
+  font-size: 12px;
+  opacity: .9;
+}
+
+/* Ajuste fino de altura del <select> para alinear con inputs */
+.field select{ min-height: 48px; line-height: 1.2; }
+
+/* Mejoras de accesibilidad al foco */
+.field input:focus, .field textarea:focus, .field select:focus{
+  outline: none;
+  border-color: rgba(255,255,255,.25);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.08);
+}
+
+/* Margen extra para que los botones no choquen con el dock del sistema en pantallas bajas */
+@media (max-height: 700px){
+  .c-wrapper{ padding-bottom: 32px; }
+}
