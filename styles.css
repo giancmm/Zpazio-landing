@@ -179,3 +179,12 @@ body:not(.home) .whatsapp-fab svg{ filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)
 html, body, button, input, select, textarea {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
+
+
+/* Highlight sutil al aterrizar en #nosotros */
+#nosotros.hi-lite{
+  outline: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 8px 40px rgba(0,0,0,.35);
+  transition: box-shadow .6s ease, outline-color .6s ease, transform .6s ease, opacity .6s ease;
+}
+#nosotros.hi-lite{ transform: translateY(-2px); opacity: 0.98; }
