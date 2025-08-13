@@ -173,31 +173,42 @@ loop();
 
 // Scroll suave en Home para el botón Nosotros
 (function(){
-  var link = document.querySelector('a.btn-link[href="#nosotros"]');
-  var target = document.getElementById('nosotros');
-  if(!link || !target) return;
-  link.addEventListener('click', function(e){
-    e.preventDefault();
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    target.classList.add('hi-lite');
-    setTimeout(()=> target.classList.remove('hi-lite'), 1200);
-  });
-})();
-
-
-
-// Redirect Equipo anchor to equipo.html (safety)
-(function(){
   try{
-    var el = document.querySelector('a[href="#equipo"]');
-    if(el){ el.addEventListener('click', function(e){ e.preventDefault(); window.location.href='equipo.html'; }); }
+    var link = document.querySelector('a.btn-link[href="#nosotros"]');
+    var target = document.getElementById('nosotros');
+    if(!link || !target) return;
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.classList.add('hi-lite');
+      setTimeout(function(){ target.classList.remove('hi-lite'); }, 800);
+    });
   }catch(e){}
 })();
+
+
+// Scroll suave para Equipo en Home
+(function(){
+  try{
+    var link = document.querySelector('a.btn-link[href="#equipo"]');
+    var target = document.getElementById('equipo');
+    if(!link || !target) return;
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }catch(e){}
+})();
+
 
 // Redirect Contacto anchor to contacto.html (safety)
 (function(){
   try{
-    var el = document.querySelector('a[href="#contacto"]');
-    if(el){ el.addEventListener('click', function(e){ e.preventDefault(); window.location.href='contacto.html'; }); }
+    var cta = document.querySelector('a[href="#contacto"]');
+    if(!cta) return;
+    cta.addEventListener('click', function(e){
+      e.preventDefault();
+      window.location.href = 'contacto.html';
+    });
   }catch(e){}
 })();
