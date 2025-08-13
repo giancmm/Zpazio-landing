@@ -1,61 +1,172 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Contacto - Zpazio</title>
-<style>
-    body { font-family: Arial, sans-serif; margin: 40px; background: #fff; color: #333; }
-    h1 { font-size: 2em; margin-bottom: 0.5em; }
-    p { font-size: 1em; line-height: 1.5; }
-    a { display: inline-block; margin-top: 20px; color: #007BFF; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
-<link href="styles.css?v=20250810-2" rel="stylesheet"/><link href="styles_patch_marcas.css?v=3" rel="stylesheet"/></head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto — Zpazio</title>
+  <meta name="description" content="Hablemos de tu proyecto de iluminación. Escríbenos por WhatsApp, email o completa el formulario premium de contacto."/>
+  <link rel="stylesheet" href="brands_base.css?v=1"/>
+  <link rel="stylesheet" href="styles.css?v=20250810-2"/>
+  <link rel="stylesheet" href="styles_contacto.css?v=1"/>
+</head>
 <body>
-<div class="cursor-bulb" id="cursor-bulb">
-<img alt="bulb" src="bombilla.svg"/>
-</div>
-<header>
-<img alt="Zpazio Logo" class="logo home-50" src="logo_zpazio_blanco_1.png"/>
-<div aria-expanded="false" aria-label="Abrir menú" class="menu-toggle" id="menu-toggle">
-<span class="bar"></span><span class="bar"></span><span class="bar"></span>
-</div>
-<nav class="hidden" id="menu">
-<ul>
-<li class="menu-section-title">Marcas</li>
-<li class="menu-subitem"><a href="a-emotional-light.html">A Emotional Light</a></li>
-<li class="menu-subitem"><a href="aldabra.html">Aldabra</a></li>
-<li class="menu-subitem"><a href="axolight.html">Axolight</a></li>
-<li class="menu-subitem"><a href="bomma.html">Bomma</a></li>
-<li class="menu-subitem"><a href="cini-nils.html">Cini &amp; Nils</a></li>
-<li class="menu-subitem"><a href="cooper-lighting.html">Cooper Lighting</a></li>
-<li class="menu-subitem"><a href="flos.html">Flos</a></li>
-<li class="menu-subitem"><a href="fritz-hansen.html">Fritz Hansen</a></li>
-<li class="menu-subitem"><a href="hofflights.html">Hofflights</a></li>
-<li class="menu-subitem"><a href="icone-luce.html">Icone Luce</a></li>
-<li class="menu-subitem"><a href="karman.html">Karman</a></li>
-<li class="menu-subitem"><a href="ledyi.html">Ledyi</a></li>
-<li class="menu-subitem"><a href="leucos.html">Leucos</a></li>
-<li class="menu-subitem"><a href="lodes.html">Lodes</a></li>
-<li class="menu-subitem"><a href="marset.html">Marset</a></li>
-<li class="menu-subitem"><a href="original-btc.html">Original BTC</a></li>
-<li class="menu-subitem"><a href="parachilna.html">Parachilna</a></li>
-<li class="menu-subitem"><a href="platek.html">Platek</a></li>
-<li class="menu-subitem"><a href="quasar.html">Quasar</a></li>
-<li class="menu-subitem"><a href="terzani.html">Terzani</a></li>
-<li class="menu-subitem"><a href="vibia.html">Vibia</a></li>
-<li class="menu-subitem"><a href="wac-lighting.html">WAC Lighting</a></li>
-<!-- ===== Nueva categoría: Tecnología ===== -->
-<li class="menu-section-title">Tecnología</li>
-<li class="menu-subitem"><a href="hubbell.html">Hubbell</a></li>
-<li class="menu-subitem"><a href="lutron.html">Lutron</a></li>
-</ul>
-</nav>
-</header>
-<h1>Contacto</h1>
-<p>Página de referencia para la sección <strong>Contacto</strong>. Aquí podrás agregar el contenido definitivo más adelante.</p>
-<a href="index.html">← Volver al inicio</a>
-<script src="overlay.js?v=20250810"></script></body>
+  <main class="c-wrapper">
+    <!-- Hero -->
+    <section class="c-hero">
+      <h1>Hablemos de tu proyecto</h1>
+      <p>Cuéntanos qué quieres lograr y te proponemos la atmósfera perfecta. Respuesta rápida.</p>
+      <div class="c-quick">
+        <a class="btn" href="https://wa.me/573001112233?text=Hola%2C%20quiero%20asesor%C3%ADa%20de%20iluminaci%C3%B3n%20con%20Zpazio." target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="mailto:gerencia@zpazio.co?subject=Contacto%20web%20Zpazio">Email</a>
+      </div>
+    </section>
+
+    <!-- Form + Info -->
+    <section class="c-grid">
+      <!-- Form card -->
+      <form id="contact-form" class="c-card" novalidate>
+        <div class="c-fields">
+          <div class="field">
+            <input id="nombre" name="nombre" type="text" required placeholder=" "/>
+            <label for="nombre">Nombre*</label>
+          </div>
+          <div class="field">
+            <input id="email" name="email" type="email" placeholder=" "/>
+            <label for="email">Email</label>
+          </div>
+          <div class="field">
+            <input id="telefono" name="telefono" type="tel" placeholder=" "/>
+            <label for="telefono">Teléfono</label>
+          </div>
+
+          <div class="field">
+            <select id="interes" name="interes">
+              <option value="Diseño de iluminación">Diseño de iluminación</option>
+              <option value="Curaduría / Producto">Curaduría / Producto</option>
+              <option value="Control (Lutron)">Control (Lutron)</option>
+              <option value="Suministro e instalación">Suministro e instalación</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <label class="label-select" for="interes">¿Qué necesitas?</label>
+          </div>
+
+          <div class="field">
+            <textarea id="mensaje" name="mensaje" rows="5" required placeholder=" "></textarea>
+            <label for="mensaje">Cuéntanos del proyecto*</label>
+          </div>
+
+          <div class="field-inline">
+            <label>¿Dónde estás?</label>
+            <input id="ciudad" name="ciudad" type="text" placeholder="Ciudad / País"/>
+          </div>
+
+          <div class="field-inline">
+            <label>Presupuesto estimado</label>
+            <input id="presupuesto" name="presupuesto" type="text" placeholder="Ej: 20k USD"/>
+          </div>
+        </div>
+
+        <div class="c-actions">
+          <button class="btn" type="submit">Enviar</button>
+          <button class="btn ghost" type="button" id="btn-whats">Enviar por WhatsApp</button>
+        </div>
+
+        <p class="c-legal">* Campos obligatorios. Al enviar aceptas nuestro tratamiento de datos para contactarte respecto a tu proyecto.</p>
+
+        <!-- Success toast -->
+        <div id="c-toast" class="c-toast" role="status" aria-live="polite">
+          ¡Gracias! Recibimos tu mensaje. Te contactamos muy pronto.
+        </div>
+      </form>
+
+      <!-- Contact info & Socials -->
+      <aside class="c-info">
+        <div class="c-card">
+          <h3>Showroom técnico</h3>
+          <p>Bogotá, Colombia</p>
+          <p><a class="text-link" href="https://maps.google.com" target="_blank" rel="noopener">Ver mapa →</a></p>
+        </div>
+
+        <div class="c-card">
+          <h3>Redes</h3>
+          <div class="c-socials">
+            <a class="social" href="https://instagram.com/zpazio" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+              <!-- Instagram SVG -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6zM18 6.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+            </a>
+            <a class="social" href="https://www.linkedin.com/company/zpazio" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+              <!-- LinkedIn SVG -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v15H0V8zm7.5 0H12v2.2h.06c.62-1.18 2.14-2.42 4.4-2.42 4.7 0 5.54 3.1 5.54 7.1V23H17v-6.7c0-1.6-.03-3.65-2.23-3.65-2.23 0-2.57 1.73-2.57 3.53V23H7.5V8z"/></svg>
+            </a>
+            <a class="social" href="https://www.youtube.com/@zpazio" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+              <!-- YouTube SVG -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5v-7l6.4 3.5-6.4 3.5z"/></svg>
+            </a>
+            <a class="social" href="https://wa.me/573001112233" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+              <!-- WhatsApp SVG -->
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 3.9A10 10 0 0 0 3.3 17.7L2 22l4.4-1.2A10 10 0 1 0 20 3.9zM12 4a8 8 0 0 1 6.8 12l-.5.8-.6.7-.9.6a8 8 0 1 1-5-14zM7.9 8.8c.1-.2.3-.4.6-.4h.4c.2 0 .4 0 .5.3l.6 1.4c.1.3.1.5 0 .7l-.3.4-.4.4c-.1.2 0 .3.1.5.4.7 1 1.3 1.7 1.8.2.1.3.1.5 0l.7-.4.4-.2c.2-.1.5 0 .6.2l.8 1.6c.1.2 0 .5-.2.6-.4.3-1 .6-1.6.6-.5.1-1 0-1.6-.2a7.7 7.7 0 0 1-2.6-1.6 7.5 7.5 0 0 1-1.5-2.4c-.2-.6-.3-1.2-.2-1.7.1-.6.3-1 .6-1.4z"/></svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+  (function(){
+    const form = document.getElementById('contact-form');
+    const toast = document.getElementById('c-toast');
+    const btnWhats = document.getElementById('btn-whats');
+
+    function buildMessage(){
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const interes = document.getElementById('interes').value;
+      const ciudad = document.getElementById('ciudad').value.trim();
+      const presupuesto = document.getElementById('presupuesto').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+      return `Nuevo contacto web Zpazio%0A%0A`+
+             `Nombre: ${nombre}%0A`+
+             `Email: ${email || '-'}%0A`+
+             `Teléfono: ${telefono || '-'}%0A`+
+             `Interés: ${interes}%0A`+
+             `Ciudad: ${ciudad || '-'}%0A`+
+             `Presupuesto: ${presupuesto || '-'}%0A%0A`+
+             `Mensaje:%0A${mensaje}`;
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      // Validación mínima
+      const nombre = document.getElementById('nombre');
+      const mensaje = document.getElementById('mensaje');
+      if(!nombre.value.trim() || !mensaje.value.trim()){
+        toast.textContent = 'Por favor completa los campos obligatorios (Nombre y Mensaje).';
+        toast.classList.add('show','error');
+        setTimeout(()=> toast.classList.remove('show','error'), 2500);
+        return;
+      }
+      // Éxito UI
+      toast.textContent = '¡Gracias! Recibimos tu mensaje. Te contactamos muy pronto.';
+      toast.classList.add('show');
+      setTimeout(()=> toast.classList.remove('show'), 2800);
+
+      // Abrir mailto para que quede registro del usuario (sin backend)
+      const body = buildMessage();
+      const mail = `mailto:gerencia@zpazio.co?subject=Contacto%20web%20Zpazio&body=${body}`;
+      window.location.href = mail;
+      form.reset();
+    });
+
+    btnWhats.addEventListener('click', function(){
+      const text = buildMessage();
+      const phone = '573001112233';
+      const url = `https://wa.me/${phone}?text=${text}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  })();
+  </script>
+  <script defer src="overlay.js?v=20250810"></script>
+</body>
 </html>
