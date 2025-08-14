@@ -1,0 +1,31 @@
+/* Oculta el cursor nativo en desktop */
+html, body { cursor: none; }
+
+/* Contenedor del cursor compuesto (flecha + bombilla) */
+#zp-cursor {
+  position: fixed;
+  left: 0; top: 0;
+  pointer-events: none;
+  z-index: 999999; /* por encima de todo */
+  display: flex;
+  align-items: center;
+}
+
+/* Flecha más pequeña para que la bombilla sea protagonista */
+#zp-cursor .arrow {
+  width: 12px;
+  height: auto;
+}
+
+/* Bombilla a la derecha de la flecha */
+#zp-cursor .bulb {
+  width: 18px;
+  height: auto;
+  margin-left: 6px;
+}
+
+/* Opcional: en pantallas táctiles mostramos cursor normal */
+@media (hover: none) and (pointer: coarse) {
+  html, body { cursor: auto; }
+  #zp-cursor { display: none; }
+}
