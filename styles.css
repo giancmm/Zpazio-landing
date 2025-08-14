@@ -21,38 +21,6 @@ body.home{ overflow:auto; }
   transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .9s ease; }
 
 /* Cursor */
-/* === Cursor: mejora de visibilidad en fondos claros === */
-.cursor-bulb{
-  position: fixed;
-  left: 0; top: 0;
-  width: 22px; height: 22px;
-  transform: translate(-50%,-50%);
-  pointer-events: none;
-  z-index: 60;
-}
-.cursor-bulb::after{
-  content: "";
-  position: absolute;
-  left: 50%; top: 50%;
-  width: 28px; height: 28px;
-  transform: translate(-50%,-50%);
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.35);
-  opacity: 0;
-  transition: opacity .2s ease;
-}
-.cursor-bulb.on-light img{ 
-  filter: drop-shadow(0 0 6px rgba(0,0,0,.35));
-}
-.cursor-bulb.on-light::after{
-  opacity: 1;
-  border-color: rgba(0,0,0,.35);
-}
-@media (pointer: coarse){
-  /* Evitar artefactos en pantallas táctiles */
-  .cursor-bulb{ display:none; }
-}
-
 .cursor-bulb{ position:fixed; left:0; top:0; width:22px; height:22px;
   transform:translate(-50%,-50%); pointer-events:none; z-index:50;
   filter:drop-shadow(0 0 3px rgba(255,255,255,.6)); }
