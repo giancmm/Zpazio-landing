@@ -274,3 +274,17 @@ html, body, button, input, select, textarea {
 @media (max-width:640px){
   #equipo .nos-wrapper{ padding: 36px 20px; }
 }
+
+/* === Pequeña flecha acompañante del cursor-bulb === */
+.cursor-arrow{
+  position: fixed;
+  width: 12px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%,-50%);
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 24 24" fill="black"><path d="M0 0l24 12-9 2 5 8-3 2-5-8-4 4z"/></svg>') no-repeat center/contain;
+}
+.cursor-bulb.on-dark + .cursor-arrow{
+  filter: invert(1) brightness(2);
+}

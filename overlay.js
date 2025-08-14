@@ -262,3 +262,26 @@ loop();
     console && console.warn && console.warn('Cursor adaptativo (opt2) error:', e);
   }
 })();
+
+// === Crear flecha pequeña junto a bombilla ===
+(function(){
+  try{
+    const bulb = document.getElementById('cursor-bulb');
+    if(!bulb) return;
+    const arrow = document.createElement('div');
+    arrow.className = 'cursor-arrow';
+    bulb.insertAdjacentElement('afterend', arrow);
+    window.addEventListener('mousemove', e=>{
+      const offsetX = 14; // distancia horizontal desde la bombilla
+      const offsetY = 6;  // distancia vertical desde la bombilla
+      arrow.style.left = (e.clientX + offsetX) + 'px';
+      arrow.style.top = (e.clientY + offsetY) + 'px';
+      // sincronizar modo claro/oscuro
+      if(bulb.classList.contains('on-light')){
+        arrow.classList.add('on-light'); arrow.classList.remove('on-dark');
+      }else{
+        arrow.classList.add('on-dark'); arrow.classList.remove('on-light');
+      }
+    }, {passive:true});
+  }catch(err){console.warn('cursor-arrow error', err);}
+})();
