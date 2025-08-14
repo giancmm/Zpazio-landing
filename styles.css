@@ -21,31 +21,10 @@ body.home{ overflow:auto; }
   transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .9s ease; }
 
 /* Cursor */
-/* === Cursor Bombilla: contraste adaptativo sin halo (Opción 2) === */
-.cursor-bulb{
-  position: fixed;
-  left: 0; top: 0;
-  width: 22px; height: 22px;
-  transform: translate(-50%,-50%);
-  pointer-events: none;  /* jamás bloquea clics */
-  z-index: 10000;
-}
-.cursor-bulb img{ will-change: filter, transform; 
-  width: 22px; height: 22px; display: block;
-  transition: filter .2s ease;
-}
-/* Fondo claro -> invertir y oscurecer ligeramente */
-.cursor-bulb.on-light img{ filter: invert(1) brightness(0.8); }
-/* Fondo oscuro -> sin filtro */
-.cursor-bulb.on-dark  img{ filter: none; }
-@media (pointer: coarse){
-  .cursor-bulb{ display:none; }
-}
-
 .cursor-bulb{ position:fixed; left:0; top:0; width:22px; height:22px;
-  transform:translate(-50%,-50%); pointer-events:none; z-index:10000;
+  transform:translate(-50%,-50%); pointer-events:none; z-index:50;
   filter:drop-shadow(0 0 3px rgba(255,255,255,.6)); }
-.cursor-bulb img{ will-change: filter, transform;  width:22px; height:22px; display:block; }
+.cursor-bulb img{ width:22px; height:22px; display:block; }
 .cursor-bulb.on img{ filter:drop-shadow(0 0 8px rgba(255,255,255,.95)); transform:scale(1.15); transition:all .2s ease; }
 
 /* Hamburguesa */
@@ -273,18 +252,4 @@ html, body, button, input, select, textarea {
 
 @media (max-width:640px){
   #equipo .nos-wrapper{ padding: 36px 20px; }
-}
-
-/* === Pequeña flecha acompañante del cursor-bulb === */
-.cursor-arrow{
-  position: fixed;
-  width: 12px;
-  height: 18px;
-  pointer-events: none;
-  z-index: 10001;
-  transform: translate(-50%,-50%);
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 24 24" fill="black"><path d="M0 0l24 12-9 2 5 8-3 2-5-8-4 4z"/></svg>') no-repeat center/contain;
-}
-.cursor-bulb.on-dark + .cursor-arrow{
-  filter: invert(1) brightness(2);
 }
