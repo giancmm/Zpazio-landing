@@ -253,7 +253,11 @@ loop();
       bulb.style.left = e.clientX + 'px';
       bulb.style.top = e.clientY + 'px';
     };
-    window.addEventListener('mousemove', onMove, { passive: true });
+    let _rafCur = null;
+    window.addEventListener('mousemove', (e)=>{
+      if(_rafCur) return;
+      _rafCur = requestAnimationFrame(()=>{ _rafCur = null; onMove(e); });
+    }, { passive: true });
   }catch(e){
     console && console.warn && console.warn('Cursor adaptativo (opt2) error:', e);
   }
