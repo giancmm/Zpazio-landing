@@ -1,0 +1,4 @@
+
+/* Patch: ensure off-canvas menu scrolls and body locks when open */
+nav#menu{ overflow-y:auto; }
+body.menu-open{ overflow:hidden; }
