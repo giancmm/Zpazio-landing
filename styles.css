@@ -1,4 +1,78 @@
-"; position:absolute; left:0; top:4px; bottom:4px; width:2px;
+/* ===== Zpazio — Panel + Center Nav ===== */
+
+/* Base */
+html, body{
+  margin:0; height:100%; cursor:none;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Scroll global habilitado; Home bloqueado para efecto full-screen */
+body{ overflow:auto; }
+body.home{ overflow:auto; }
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Canvas */
+#bgCanvas{ position:fixed; inset:0; z-index:0; display:block;
+  transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .9s ease; }
+
+/* Branding */
+.logo{ position:fixed; top:20px; left:20px; height:50px; z-index:20;
+  transition: transform .9s cubic-bezier(.22,.61,.36,1), filter .9s ease; }
+
+/* Cursor */
+.cursor-bulb{ position:fixed; left:0; top:0; width:22px; height:22px;
+  transform:translate(-50%,-50%); pointer-events:none; z-index:50;
+  filter:drop-shadow(0 0 3px rgba(255,255,255,.6)); }
+.cursor-bulb img{ width:22px; height:22px; display:block; }
+.cursor-bulb.on img{ filter:drop-shadow(0 0 8px rgba(255,255,255,.95)); transform:scale(1.15); transition:all .2s ease; }
+
+/* Hamburguesa */
+.menu-toggle{
+  position:fixed; top:20px; right:20px; z-index:40;
+  width:36px; height:28px; display:grid; place-content:center; gap:5px; cursor:pointer;
+}
+.menu-toggle .bar{ width:26px; height:2px; background:#fff; display:block;
+  transition: transform .25s ease, opacity .2s ease; }
+body.menu-open .menu-toggle .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+body.menu-open .menu-toggle .bar:nth-child(2){ opacity:0; }
+body.menu-open .menu-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== Off-canvas lateral ===== */
+:root{ --panel-bg: rgba(50,50,50,.55); }
+
+nav#menu.hidden{ display:block !important; }
+
+nav#menu{
+  position:fixed; top:0; right:0; z-index:30;
+  width:6.5cm; max-width:90vw; height:100vh;
+  padding:28px 26px;
+  background:var(--panel-bg);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow:-18px 0 40px rgba(0,0,0,.30);
+  border:none; border-radius:0;
+  transform: translateX(100%);
+  opacity:0; pointer-events:none;
+  transition: transform 1.10s cubic-bezier(.22,.61,.36,1), opacity .55s ease;
+}
+nav#menu.open{ transform: translateX(0); opacity:1; pointer-events:auto; }
+
+/* === Elevación del contenido del panel (~1cm más alto) === */
+nav#menu ul{ list-style:none; margin:18px 0 0 0; padding:0; } /* antes ~56px */
+nav#menu li{ margin:14px 0; }
+
+/* Tipografía y links del panel (sin cambios) */
+nav#menu a, .center-nav .btn-link{
+  color:#fff; text-decoration:none; font-weight:500; letter-spacing:.02em;
+  font-size:10pt; text-transform:none;
+  transition: transform .2s ease, opacity .2s ease;
+}
+nav#menu a:hover, .center-nav .btn-link:hover{ opacity:.92; transform: translateY(-1px); }
+
+/* Indicador activo en lateral (si lo usas) */
+nav#menu a.active::before{
+  content:""; position:absolute; left:0; top:4px; bottom:4px; width:2px;
   background: rgba(255,255,255,.66); border-radius:2px;
 }
 

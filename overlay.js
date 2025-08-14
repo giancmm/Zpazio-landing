@@ -23,7 +23,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
   document.addEventListener('click', (e)=>{
     if (!menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
   });
-  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape);
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeMenu(); });
+});
+
+// --- Cursor Bombilla (igual) ---
+const bulb = document.getElementById('cursor-bulb');
 window.addEventListener('mousemove',(e)=>{
   if (!bulb) return;
   bulb.style.transform = `translate(${e.clientX+12}px, ${e.clientY+12}px)`;
