@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 // --- Cursor Bombilla (igual) ---
-const bulb = document.getElementById('cursor-bulb');
 window.addEventListener('mousemove',(e)=>{
   if (!bulb) return;
   bulb.style.transform = `translate(${e.clientX+12}px, ${e.clientY+12}px)`;
