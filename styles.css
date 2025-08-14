@@ -253,3 +253,10 @@ html, body, button, input, select, textarea {
 @media (max-width:640px){
   #equipo .nos-wrapper{ padding: 36px 20px; }
 }
+
+
+/* Safety: centered Z logo & hamburger on internal pages */
+header{ position:sticky; top:0; z-index:80; display:flex; justify-content:center; align-items:center; padding:12px 0 18px; background: rgba(11,11,12,.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom:1px solid rgba(255,255,255,.06); }
+header .logo.home-50{ display:block; height:54px; width:auto; }
+@media (max-width:640px){ header .logo.home-50{ height:42px; } }
+header .menu-toggle{ position:absolute; right:14px; top:14px; }
