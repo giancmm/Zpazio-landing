@@ -95,3 +95,7 @@
 .map-actions { margin-top: 12px; }
 .btn-outlined { display:inline-block; padding:8px 12px; border:1px solid rgba(255,255,255,.25); border-radius:999px; text-decoration:none; }
 .btn-outlined:hover { border-color: rgba(255,255,255,.45); }
+
+
+/* Failsafe: si por cache se repite, ocultar duplicados */
+.c-card .map-embed + .map-embed { display:none !important; }
