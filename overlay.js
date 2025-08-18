@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeMenu(); });
 });
 
+// --- Cursor Bombilla (igual) ---
 const bulb = document.getElementById('cursor-bulb');
 window.addEventListener('mousemove',(e)=>{
   if (!bulb) return;
