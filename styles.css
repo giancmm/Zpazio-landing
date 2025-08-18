@@ -2,7 +2,7 @@
 
 /* Base */
 html, body{
-  margin:0; height:100%; cursor:none;
+  margin:0; height:100%; 
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
