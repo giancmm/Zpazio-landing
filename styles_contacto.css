@@ -86,3 +86,12 @@
 @media (max-height: 700px){
   .c-wrapper{ padding-bottom: 32px; }
 }
+
+
+/* === Mapa embebido (responsive) === */
+.map-card { background: #111; border-radius: 16px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,.25); }
+.map-embed { position: relative; width: 100%; padding-top: 56.25%; border-radius: 12px; overflow: hidden; margin-top: 8px; }
+.map-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map-actions { margin-top: 12px; }
+.btn-outlined { display:inline-block; padding:8px 12px; border:1px solid rgba(255,255,255,.25); border-radius:999px; text-decoration:none; }
+.btn-outlined:hover { border-color: rgba(255,255,255,.45); }

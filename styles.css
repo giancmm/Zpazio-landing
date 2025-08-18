@@ -274,3 +274,19 @@ summary {
 .brand-header .brand-symbol {
   cursor: pointer !important;
 }
+
+
+/* === Google Maps container === */
+.map-container{
+  margin-top:12px;
+  overflow:hidden;
+  border-radius:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.25);
+}
+.map-container iframe{
+  display:block;
+  width:100%;
+  height:280px;
+  border:0;
+  border-radius:16px;
+}
