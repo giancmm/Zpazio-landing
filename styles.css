@@ -253,3 +253,8 @@ html, body, button, input, select, textarea {
 @media (max-width:640px){
   #equipo .nos-wrapper{ padding: 36px 20px; }
 }
+
+
+/* === Cursor reset enforced (auto + pointer for interactive) === */
+html, body, * { cursor: auto !important; }
+a, button, [role="button"], input[type="submit"], input[type="button"], label[for], select, summary { cursor: pointer !important; }

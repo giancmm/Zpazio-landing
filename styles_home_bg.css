@@ -32,3 +32,7 @@
     background-image: url('../img/home/bilboquet-1024.jpg');
   }
 }
+
+/* === Cursor reset enforced (auto + pointer for interactive) === */
+html, body, * { cursor: auto !important; }
+a, button, [role="button"], input[type="submit"], input[type="button"], label[for], select, summary { cursor: pointer !important; }

@@ -1,3 +1,4 @@
+// === Cursor customization disabled: restored native cursor ===
 
 // --- Menú (igual que tenías) ---
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 // --- Cursor Bombilla (igual) ---
 const bulb = document.getElementById('cursor-bulb');
-window.addEventListener('mousemove',(e)=>{
+// [disabled cursor] window.addEventListener('mousemove',(e)=>{
   if (!bulb) return;
   bulb.style.transform = `translate(${e.clientX+12}px, ${e.clientY+12}px)`;
 });
@@ -82,7 +83,7 @@ function drawBase(){
 
 // === Ripple como lo tenías ===
 let ripples = [];
-addEventListener('mousemove', (e)=>{
+// [disabled cursor] addEventListener('mousemove', (e)=>{
   ripples.push({ x:e.clientX, y:e.clientY, r: 16, a: 0.9 });
 });
 
