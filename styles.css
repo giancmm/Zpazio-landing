@@ -251,3 +251,16 @@ html, body, button, input, select, textarea {
 /* === Cursor reset enforced (auto + pointer) === */
 html, body, * { cursor: auto !important; }
 a, button, [role="button"], input[type="submit"], input[type="button"], label[for], select, summary { cursor: pointer !important; }
+
+
+/* === Estilo de cursor para elementos interactivos === */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+label[for],
+select,
+summary {
+  cursor: pointer !important;
+}
