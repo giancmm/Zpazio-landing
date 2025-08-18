@@ -7,9 +7,35 @@
 <title>A Emotional Light — Zpazio</title>
 <link href="brands_base.css?v=1" rel="stylesheet"/><link href="styles_patch_marcas.css?v=3" rel="stylesheet"/><link href="styles.css?v=20250810-2" rel="stylesheet"/>
 <link href="marcas_header.css?v=3" rel="stylesheet"/>
+
+<style>
+/* Ajustes sutiles solo para la sección de proyectos icónicos de esta página */
+.section .products .product-card img{
+  width:100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 12px;
+  display:block;
+  box-shadow: 0 6px 22px rgba(0,0,0,.18);
+}
+.section .products .product-card .product-title{
+  margin-top: 12px;
+  font-weight: 600;
+}
+.section .products{
+  gap: 22px;
+}
+@media (max-width: 640px){
+  .section .products{
+    display:grid;
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
 </head>
 <body><header>
-<img alt="Zpazio Logo" class="logo home-50" src="logo_zpazio_blanco_1.png"/>
+<img loading="lazy" decoding="async" alt="Zpazio Logo" class="logo home-50" src="logo_zpazio_blanco_1.png"/>
 <div aria-expanded="false" aria-label="Abrir menú" class="menu-toggle" id="menu-toggle">
 <span class="bar"></span><span class="bar"></span><span class="bar"></span>
 </div>
@@ -46,7 +72,7 @@
 </nav>
 </header>
 <header class="brand-header">
-<a href="index.html" aria-label="Ir al Home"><img alt="Símbolo Zpazio" class="brand-symbol" src="simbolo_zpazio_thicker.png"/></a>
+<a href="index.html" aria-label="Ir al Home"><img loading="lazy" decoding="async" alt="Símbolo Zpazio" class="brand-symbol" src="simbolo_zpazio_thicker.png"/></a>
 </header>
 <main class="wrapper">
 <!-- Hero / Intro -->
@@ -54,7 +80,7 @@
 <article class="card hero-left">
 <h1 class="brand-title">A·emotional light</h1>
 <p class="brand-desc">En a·emotional light, la emoción adquiere un valor propio. El valor de lo hecho a mano, de lo singular y lo exclusivo. Para nosotros, la luz es un medio para evocar emociones, igual que lo son la música o el arte.</p>
-<div class="brand-actions"><a class="btn-filled" href="https://www.a-emotionallight.com/es/" target="_blank" rel="noopener">Sitio oficial</a> <a class="btn-outlined" href="https://www.a-emotionallight.com/es/catalogo/" target="_blank" rel="noopener">Catálogo PDF</a></div>
+
 <div class="tags">
 <span class="tag">artesanal</span>
 <span class="tag">exclusivo</span>
@@ -78,6 +104,7 @@
 <a class="btn" href="#" rel="noopener" target="_blank">Catálogo (PDF)</a>
 </div>
 </aside>
+<noscript><p>Si no ves las imágenes, visita los proyectos en el sitio oficial de A·emotional light.</p></noscript>
 </section>
 <!-- Best Sellers -->
 <section class="section">
@@ -100,27 +127,10 @@
 <p>Descripción breve.</p>
 </article>
 </div>
+<noscript><p>Si no ves las imágenes, visita los proyectos en el sitio oficial de A·emotional light.</p></noscript>
 </section>
 <!-- Proyectos -->
-<section class="section">
-<h2 class="section-title">PRODUCTOS CLAVE</h2>
-<section class="section">
-  <h2 class="section-title">PRODUCTOS CLAVE</h2>
-  <div class="grid grid-3 products">
-    <article class="card product-card">
-      <h3 class="product-title">Tempo</h3>
-      <p class="product-desc">Colección de luminarias suspendidas con formas geométricas sutiles y un alto componente artesanal.</p>
-    </article>
-    <article class="card product-card">
-      <h3 class="product-title">Coral</h3>
-      <p class="product-desc">Piezas con carácter escultórico y presencia orgánica, pensadas para generar atmósferas sensoriales.</p>
-    </article>
-    <article class="card product-card">
-      <h3 class="product-title">Fluos</h3>
-      <p class="product-desc">Línea de diseño limpio que equilibra pureza formal y emoción lumínica.</p>
-    </article>
-  </div>
-</section>
+
 
 
 <section class="section">
@@ -128,34 +138,35 @@
   <div class="grid grid-3 products">
     <article class="card product-card">
       <a href="https://www.a-emotionallight.com/es/portfolio_page/edificio-one-quito/" target="_blank" rel="noopener">
-        <img src="https://www.a-emotionallight.com/wp-content/uploads/2021/05/fluo-large-composition-chandelier-public-space-lighting-hall-by-arturo-alvarez-one-quito-building.jpg" alt="Edificio ONE Quito" style="width:100%;height:auto;border-radius:12px;display:block;"/>
+        <img loading="lazy" decoding="async" src="https://www.a-emotionallight.com/wp-content/uploads/2021/05/fluo-large-composition-chandelier-public-space-lighting-hall-by-arturo-alvarez-one-quito-building.jpg" alt="Edificio ONE Quito" style="width:100%;height:auto;border-radius:12px;display:block;"/>
       </a>
       <h3 class="product-title" style="margin-top:12px;">Edificio ONE Quito</h3>
       <div class="brand-actions">
-        <a class="btn-outlined" href="https://www.a-emotionallight.com/es/portfolio_page/edificio-one-quito/" target="_blank" rel="noopener">Ver proyecto</a>
+        <a class="btn-outlined" href="\1" target="_blank" rel="noopener" aria-label="Ver proyecto: \1">Ver proyecto</a>
       </div>
     </article>
 
     <article class="card product-card">
       <a href="https://www.a-emotionallight.com/es/portfolio_page/28-posti-milan/" target="_blank" rel="noopener">
-        <img src="https://www.a-emotionallight.com/wp-content/uploads/2021/05/tempo-vivace-pendant-lamp-restaurant-lighting-cristina-celestino-by-arturo-alvarez-general-1.jpg" alt="28 Posti – Milán" style="width:100%;height:auto;border-radius:12px;display:block;"/>
+        <img loading="lazy" decoding="async" src="https://www.a-emotionallight.com/wp-content/uploads/2021/05/tempo-vivace-pendant-lamp-restaurant-lighting-cristina-celestino-by-arturo-alvarez-general-1.jpg" alt="28 Posti – Milán" style="width:100%;height:auto;border-radius:12px;display:block;"/>
       </a>
       <h3 class="product-title" style="margin-top:12px;">28 Posti – Milán</h3>
       <div class="brand-actions">
-        <a class="btn-outlined" href="https://www.a-emotionallight.com/es/portfolio_page/28-posti-milan/" target="_blank" rel="noopener">Ver proyecto</a>
+        <a class="btn-outlined" href="\1" target="_blank" rel="noopener" aria-label="Ver proyecto: \1">Ver proyecto</a>
       </div>
     </article>
 
     <article class="card product-card">
       <a href="https://www.a-emotionallight.com/es/portfolio_page/hotel-elba-sunset-mallorca/" target="_blank" rel="noopener">
-        <img src="https://www.a-emotionallight.com/wp-content/uploads/2021/05/coral-composition-lamp-a-by-arturo-alvarez-hotel-elba-sunset-hall.jpg" alt="Hotel Elba Sunset – Mallorca" style="width:100%;height:auto;border-radius:12px;display:block;"/>
+        <img loading="lazy" decoding="async" src="https://www.a-emotionallight.com/wp-content/uploads/2021/05/coral-composition-lamp-a-by-arturo-alvarez-hotel-elba-sunset-hall.jpg" alt="Hotel Elba Sunset – Mallorca" style="width:100%;height:auto;border-radius:12px;display:block;"/>
       </a>
       <h3 class="product-title" style="margin-top:12px;">Hotel Elba Sunset – Mallorca</h3>
       <div class="brand-actions">
-        <a class="btn-outlined" href="https://www.a-emotionallight.com/es/portfolio_page/hotel-elba-sunset-mallorca/" target="_blank" rel="noopener">Ver proyecto</a>
+        <a class="btn-outlined" href="\1" target="_blank" rel="noopener" aria-label="Ver proyecto: \1">Ver proyecto</a>
       </div>
     </article>
   </div>
+<noscript><p>Si no ves las imágenes, visita los proyectos en el sitio oficial de A·emotional light.</p></noscript>
 </section>
 
 </main>
