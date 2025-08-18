@@ -264,3 +264,13 @@ select,
 summary {
   cursor: pointer !important;
 }
+
+
+/* === Cursor pointer for Z symbol & hamburger (prioridad sobre reset) === */
+#menu-toggle,
+.menu-toggle,
+.brand-header a,
+.brand-symbol,
+.brand-header .brand-symbol {
+  cursor: pointer !important;
+}
