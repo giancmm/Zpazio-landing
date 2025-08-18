@@ -11,8 +11,3 @@
   transform: scale(1.05);
   filter: drop-shadow(0 0 4px rgba(255,255,255,0.4));
 }
-
-
-/* === Cursor reset enforced (auto + pointer for interactive) === */
-html, body, * { cursor: auto !important; }
-a, button, [role="button"], input[type="submit"], input[type="button"], label[for], select, summary { cursor: pointer !important; }

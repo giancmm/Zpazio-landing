@@ -77,8 +77,3 @@
 
 /* Asegurar que el panel siga siendo clickable por encima del scrim central si lo hubiera */
 #menu{ z-index: 30; }
-
-
-/* === Cursor reset enforced (auto + pointer for interactive) === */
-html, body, * { cursor: auto !important; }
-a, button, [role="button"], input[type="submit"], input[type="button"], label[for], select, summary { cursor: pointer !important; }

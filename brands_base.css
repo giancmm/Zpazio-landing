@@ -74,7 +74,3 @@ html,body{
   height: 150px; border-radius: var(--radius-sm);
   background: #1b1d1f; border:1px solid var(--border); box-shadow: var(--shadow);
 }
-
-/* === Cursor reset enforced (auto + pointer for interactive) === */
-html, body, * { cursor: auto !important; }
-a, button, [role="button"], input[type="submit"], input[type="button"], label[for], select, summary { cursor: pointer !important; }
